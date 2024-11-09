@@ -7,6 +7,7 @@ public class Banco {
   Banco (double capital) {
     this.capital = capital;
   }
+  
   /* Getter e Setter */
   double getCapital() {
     return capital;
