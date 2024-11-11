@@ -1,14 +1,13 @@
 package main;
 
-import javax.swing.JPanel;
-import java.awt.Dimension;
 import java.awt.Color;
-import java.awt.Graphics;       
-import java.awt.Graphics2D;     
+import java.awt.Dimension;     
 import java.awt.Font;
 import java.awt.FontMetrics;
-import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.util.ArrayList;
+import javax.swing.JPanel;
 
 
 public class GamePanel extends JPanel implements Runnable{
@@ -20,42 +19,16 @@ public class GamePanel extends JPanel implements Runnable{
     final int maxScreenRow = 8;
     final int screenWidth = tileSize * maxScreenCol;
     final int screenHeight = tileSize * maxScreenRow;   
-    private ArrayList<String> Lugares = new ArrayList<>();
+    private ArrayList<Casa> casas = new ArrayList<>();
+    private ArrayList<Jogador> jogadores = new ArrayList<>();
     Thread gameThread;
 
-    public GamePanel() {
+    public GamePanel(ArrayList<Casa> casas, ArrayList<Jogador> jogadores) {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.darkGray);
         this.setDoubleBuffered(true); 
-
-        Lugares.add("Início");
-        Lugares.add("Passeio Público");
-        Lugares.add("Sorte ou    Azar?");
-        Lugares.add("Calçadão R.XV");
-        Lugares.add("Gibiteca");
-        Lugares.add("UFPR Prédio Histórico");
-        Lugares.add("Paço da Liberdade");
-        Lugares.add("Cadeia");
-        Lugares.add("Sorte ou    Azar?");
-        Lugares.add("Museu Oscar Niemeyer");
-        Lugares.add("Santa Felicidade");
-        Lugares.add("UFPR Politécnico");
-        Lugares.add("UFPR Jardim Botânico");
-        Lugares.add("Jardim Botânico");
-        Lugares.add("Linha de Turismo (Volte para o Início)");
-        Lugares.add("Teatro Guaíra");
-        Lugares.add("Shopping Barigui");
-        Lugares.add("Parque Barigui");
-        Lugares.add("Mercado Municipal");
-        Lugares.add("Parque Tingui");
-        Lugares.add("Bosque Alemão");
-        Lugares.add("BLITZ (Pague R$100 ou vá preso)");
-        Lugares.add("Praça do Japão");
-        Lugares.add("Sorte ou    Azar?");
-        Lugares.add("Torre Panorâmica");
-        Lugares.add("Catedral Curitiba");
-        Lugares.add("Shopping Pátio Batel");
-        Lugares.add("Prefeitura de Curitiba");
+        this.casas = casas;
+        this.jogadores = jogadores;
     }
 
     public void startGameThread(){
@@ -64,12 +37,7 @@ public class GamePanel extends JPanel implements Runnable{
     }    
     
     @Override
-    public void run(){
-        //while(gameThread != null){
-        //    update();
-        //    repaint();
-        //}
-    }
+    public void run(){}
     
     public void update () {}
 
@@ -78,30 +46,12 @@ public class GamePanel extends JPanel implements Runnable{
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
 
-        // Definir a cor dos blocos como branca
         g2.setColor(Color.white);
         
-        int x = 96*7;
-        int y = 96*7;
-        int i = 0;
-        for (x = 96 * 7; x >= 0 && i < Lugares.size(); x -= 96) {
-            DesenhaBloco(x, y, tileSize, g2, Lugares.get(i));
-            i++; 
-        }
-        x = 0;
-        for (y = 96 * 6; y >= 0 && i < Lugares.size(); y -= 96){
-            DesenhaBloco(x, y, tileSize, g2, Lugares.get(i));
-            i++; 
-        }
-        y = 0;
-        for (x = 96; x<= 96*7 && i < Lugares.size(); x += 96){
-            DesenhaBloco(x, y, tileSize, g2, Lugares.get(i));
-            i++;
-        }
-        x = 96*7;
-        for (y = 96; y <= 96*7 && i < Lugares.size(); y += 96){
-            DesenhaBloco(x, y, tileSize, g2, Lugares.get(i));
-            i++;
+        for (int i = 0; i < casas.size(); i++) {
+            DesenhaBloco(casas.get(i).getCoordenadaX(),
+                         casas.get(i).getCoordenadaY(),
+                         tileSize, g2, casas.get(i).getNome());
         }
         g2.dispose();
     }
@@ -157,7 +107,40 @@ public class GamePanel extends JPanel implements Runnable{
 
         // Resetar a cor para o próximo bloco
         g2.setColor(Color.white);
-}
+    }
+    public static void DesenhaJogadores(ArrayList<Casa> casas, ArrayList<Jogador> jogadores){
+        int indexcasa;
+        Jogador jogador;
+        Casa casa;
+        for (int i = 0; i < jogadores.size(); i++){
+            jogador = jogadores.get(i);
+            indexcasa = jogador.getCasa();
+            casa = casas.get(indexcasa);
+            for (int j = 0; j< casa.getNumPessoasNaCasa(); j++){
+                EncontraEDesenhaJogador(casa, jogador);
+            }
+        }
+        }
+
+    public static int EncontraEDesenhaJogador(Casa casa, Jogador jogador){
+        ArrayList<Jogador> jogadoresCasa = new ArrayList<>();
+        jogadoresCasa = casa.getJogadores();
+        int indexJogadorNaCasa = -1;
+        for (int k = 0; k < jogadoresCasa.size(); k++){
+            if (jogadoresCasa.get(k).getNome().equals(jogador.getNome()))
+                indexJogadorNaCasa = k;
+        }
+        if (indexJogadorNaCasa == -1) return 0;
+        DesenhaJogador(casa, jogador, indexJogadorNaCasa);
+        return 1;
+    }
+    public static int DesenhaJogador(Casa casa, Jogador jogador, int indexJogadorNaCasa){
+        if (indexJogadorNaCasa == 0){
+            /*Vou fazer a funcao de desenhar os jogadores aqui de acordo com o numero de jogadores na casa */
+        }
+        return 1;
+    }
+        
 
 
 
