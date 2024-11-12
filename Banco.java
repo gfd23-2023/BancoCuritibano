@@ -1,20 +1,13 @@
 public class Banco {
-  private double capital;
-
-  /* Construtores */
-  Banco() {};
-
-  Banco (double capital) {
-    this.capital = capital;
-  }
+  private static Singleton instanciaUnica;
   
-  /* Getter e Setter */
-  double getCapital() {
-    return capital;
-  }
+  /* Construtores */
+  private Banco() {};
 
-   void setCapital(double capital) {
-    this.capital = capital;
+  public static synchronized Singleton getInstancia() {
+    if (instanciaUnica == null)
+    instanciaUnica = new Singleton();
+    return instanciaUnica;
   }
 
   /* Transferências */
@@ -30,11 +23,13 @@ public class Banco {
 
   void dinheiroParaJogador(Jogador destino, double valor) {
     destino.setDinheiro(destino.getDinheiro() + valor);
-    capital -= valor;
+  }
+
+  void dinheiroDeJogador(Jogador destino, double valor) {
+    destino.setDinheiro(destino.getDinheiro() - valor);
   }
 
   void dinheiroParaBanco(Jogador origem, double valor) {
-    capital += valor;
     origem.setDinheiro(origem.getDinheiro() - valor);
   }
 }
