@@ -1,6 +1,7 @@
 package main;
 
 import java.util.ArrayList;
+import Jogador.java;
 
 public class Casa {
     private String nome;
