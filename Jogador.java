@@ -1,21 +1,26 @@
 import java.io.*;
+import javax.swing.ImageIcon;
+import java.util.ArrayList;     //para o vetor de propriedades
 
 public class Jogador {
   private String nome;
-  private String foto;
+  private ImageIcon foto;
   private double dinheiro;
   private int casaAtual;
   private boolean falido;
+  private boolean preso;
+//  private ArrayList<> players = new ArrayList<>();
 
   /* Construtores */
   Jogador() {};
 
-  Jogador(String nome, String foto) {
+  Jogador(String nome, ImageIcon foto) {
     this.nome = nome;
     this.foto = foto;
     this.dinheiro = (double) 2000;
     this.casaAtual = 0;
     this.falido = false;
+	this.preso = false;
   }
 
   /* Getters e Setters */
@@ -27,11 +32,11 @@ public class Jogador {
     this.nome = nome;
   }
 
-  String getFoto() {
+  ImageIcon getFoto() {
     return foto;
   }
 
-  void setFoto(String foto) {
+  void setFoto(ImageIcon foto) {
     this.foto = foto;
   }
 
