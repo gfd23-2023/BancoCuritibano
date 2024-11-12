@@ -1,5 +1,4 @@
 package main;
-import java.io.*;
 
 public class Jogador {
   private String nome;

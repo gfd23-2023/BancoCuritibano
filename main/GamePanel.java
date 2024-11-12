@@ -123,8 +123,7 @@ public class GamePanel extends JPanel implements Runnable{
         }
 
     public static int EncontraEDesenhaJogador(Casa casa, Jogador jogador){
-        ArrayList<Jogador> jogadoresCasa = new ArrayList<>();
-        jogadoresCasa = casa.getJogadores();
+        ArrayList<Jogador> jogadoresCasa = casa.getJogadores();
         int indexJogadorNaCasa = -1;
         for (int k = 0; k < jogadoresCasa.size(); k++){
             if (jogadoresCasa.get(k).getNome().equals(jogador.getNome()))
