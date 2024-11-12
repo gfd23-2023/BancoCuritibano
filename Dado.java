@@ -7,7 +7,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-class Dado
+public class Dado
 {
 	public static int geraNumero ()
 	{
@@ -101,15 +101,5 @@ class janelaDado
         });
 
 		frame.setVisible(true);
-	}
-}
-
-public class dado
-{
-	public static void main (String agrs[])
-	{
-		janelaDado janela = new janelaDado();
-		janela.exibeBotoes();
-		janela.exibeAcao();
 	}
 }
