@@ -13,6 +13,8 @@ public class Main {
         ArrayList<Jogador> jogadores = new ArrayList<>();
         InicializaJogadores(jogadores);
 
+        Banco banco = new Banco();
+
         JFrame window = new JFrame();   
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Fecha no X
         window.setResizable(false);

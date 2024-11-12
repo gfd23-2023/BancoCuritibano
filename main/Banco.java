@@ -19,7 +19,7 @@ public class Banco {
     this.capital = capital;
   }
 
-  /* Transferências */
+  /* Transferências 
   void transferencia(Jogador origem, Jogador destino, double valor) {
     if (origem.getDinheiro() - valor >= 0) {
       origem.setDinheiro(origem.getDinheiro() - valor);
@@ -37,6 +37,5 @@ public class Banco {
 
   void dinheiroParaBanco(Jogador origem, double valor) {
     capital += valor;
-    origem.setDinheiro(origem.getDinheiro() - valor);
+    origem.setDinheiro(origem.getDinheiro() - valor);*/
   }
-}
