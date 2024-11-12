@@ -1,4 +1,3 @@
-import java.util.ArrayList;		//para o vetor de propriedades
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
