@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 
 
-public class GamePanel extends JPanel implements Runnable{
+public class GamePanel extends JPanel {
     // Screen settings
     final int originalTileSize = 16;    
     final int scale = 6;    
@@ -21,31 +21,23 @@ public class GamePanel extends JPanel implements Runnable{
     final int screenHeight = tileSize * maxScreenRow;   
     private ArrayList<Casa> casas = new ArrayList<>();
     private ArrayList<Jogador> jogadores = new ArrayList<>();
-    Thread gameThread;
+    private boolean printedOnce = false;
+    //Thread gameThread;
 
     public GamePanel(ArrayList<Casa> casas, ArrayList<Jogador> jogadores) {
+
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.darkGray);
         this.setDoubleBuffered(true); 
         this.casas = casas;
         this.jogadores = jogadores;
     }
-
-    public void startGameThread(){
-        gameThread = new Thread(this);
-        gameThread.start();
-    }    
-    
-    @Override
-    public void run(){}
-    
-    public void update () {}
-
+  
     @Override
     public void paintComponent(Graphics g) {
+
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
-
         g2.setColor(Color.white);
         
         for (int i = 0; i < casas.size(); i++) {
@@ -53,10 +45,78 @@ public class GamePanel extends JPanel implements Runnable{
                          casas.get(i).getCoordenadaY(),
                          tileSize, g2, casas.get(i).getNome());
         }
-        g2.dispose();
+        DesenhaJogadores(casas, jogadores, g2); 
     }
 
-    public void DesenhaBloco(int x, int y, int tileSize, Graphics2D g2, String nomelugar) {
+    //public void repaint ()
+
+    private void DesenhaJogadores(ArrayList<Casa> casas, ArrayList<Jogador> jogadores, Graphics2D g2){
+        for (int i = 0; i < 6; i++){
+            DesenhaJogador(casas.get(jogadores.get(i).getCasa()), jogadores.get(i), g2);
+        }
+    }
+
+    private int PosicaoJogadorNaCasa(Casa casa, Jogador jogador){
+        
+        for (int k = 0; k < casa.getJogadores().size(); k++){
+            if (casa.getJogadores().get(k).getNome().equals(jogador.getNome()))
+                return k;
+        }
+        return -1;
+    }
+
+    private void SetColorG2 (Jogador jogador, Graphics2D g2){
+        if (jogador.getNome().equals("Vermelho"))
+            g2.setColor(Color.red);
+        else if (jogador.getNome().equals("Verde"))
+            g2.setColor(Color.green);
+        else if (jogador.getNome().equals("Cinza"))
+            g2.setColor(Color.gray);    
+        else if (jogador.getNome().equals("Amarelo"))
+            g2.setColor(Color.yellow);    
+        else if (jogador.getNome().equals("Azul"))
+            g2.setColor(Color.blue);    
+        else if (jogador.getNome().equals("Roxo"))
+            g2.setColor(Color.magenta); 
+        else 
+            System.out.println("Error na decisao da cor do joagador");
+    }
+
+    private void DesenhaJogador(Casa casa, Jogador jogador, Graphics2D g2){
+        
+        int posicao = PosicaoJogadorNaCasa(casa, jogador);
+        if (posicao == -1) return;
+
+        SetColorG2(jogador, g2);
+        int compr = tileSize/7;
+            
+        switch (posicao) {
+            case 0:
+                g2.fillRect(casa.getCoordenadaX() + compr, casa.getCoordenadaY() + compr, compr, compr);
+                break;
+            case 1:
+                g2.fillRect(casa.getCoordenadaX() + 3 * compr, casa.getCoordenadaY() + compr, compr, compr);
+                break;
+            case 2:
+                g2.fillRect(casa.getCoordenadaX() + 5 * compr, casa.getCoordenadaY() + compr, compr, compr);
+                break;
+            case 3:
+                g2.fillRect(casa.getCoordenadaX() + compr, casa.getCoordenadaY() + 72, compr, compr);
+                break;
+            case 4:
+                g2.fillRect(casa.getCoordenadaX() + 3 * compr, casa.getCoordenadaY() + 72, compr, compr);
+                break;
+            case 5:
+                g2.fillRect(casa.getCoordenadaX() + 5 * compr, casa.getCoordenadaY() + 72, compr, compr);
+                break;
+            default:
+                System.out.println("Erro na Insercao da Peca\n");
+                break;
+        }       
+    }
+        
+        
+   private void DesenhaBloco(int x, int y, int tileSize, Graphics2D g2, String nomelugar) {
         // Desenhar o bloco branco
         g2.setColor(Color.white);
         g2.fillRect(x, y, tileSize, tileSize);
@@ -108,40 +168,5 @@ public class GamePanel extends JPanel implements Runnable{
         // Resetar a cor para o próximo bloco
         g2.setColor(Color.white);
     }
-    public static void DesenhaJogadores(ArrayList<Casa> casas, ArrayList<Jogador> jogadores){
-        int indexcasa;
-        Jogador jogador;
-        Casa casa;
-        for (int i = 0; i < jogadores.size(); i++){
-            jogador = jogadores.get(i);
-            indexcasa = jogador.getCasa();
-            casa = casas.get(indexcasa);
-            for (int j = 0; j< casa.getNumPessoasNaCasa(); j++){
-                EncontraEDesenhaJogador(casa, jogador);
-            }
-        }
-        }
-
-    public static int EncontraEDesenhaJogador(Casa casa, Jogador jogador){
-        ArrayList<Jogador> jogadoresCasa = casa.getJogadores();
-        int indexJogadorNaCasa = -1;
-        for (int k = 0; k < jogadoresCasa.size(); k++){
-            if (jogadoresCasa.get(k).getNome().equals(jogador.getNome()))
-                indexJogadorNaCasa = k;
-        }
-        if (indexJogadorNaCasa == -1) return 0;
-        DesenhaJogador(casa, jogador, indexJogadorNaCasa);
-        return 1;
-    }
-    public static int DesenhaJogador(Casa casa, Jogador jogador, int indexJogadorNaCasa){
-        if (indexJogadorNaCasa == 0){
-            /*Vou fazer a funcao de desenhar os jogadores aqui de acordo com o numero de jogadores na casa */
-        }
-        return 1;
-    }
-        
-
-
-
 }
 

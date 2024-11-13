@@ -1,15 +1,15 @@
-package main;
-
 /*Classe que gera números aleatórios para os deslocamentos*/
 /*Precisamos pensar em uma forma de impedir a ação dos botões dos
  *dados quando não for momento de girar os dados*/
+
+package main;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Dado
+class Dado
 {
 	public static int geraNumero ()
 	{
@@ -103,5 +103,15 @@ class janelaDado
         });
 
 		frame.setVisible(true);
+	}
+}
+
+public class dado
+{
+	public static void main (String agrs[])
+	{
+		janelaDado janela = new janelaDado();
+		janela.exibeBotoes();
+		janela.exibeAcao();
 	}
 }

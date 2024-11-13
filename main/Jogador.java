@@ -1,15 +1,11 @@
 package main;
 
-import java.io.*;
-
 public class Jogador {
   private String nome;
   private String foto;
   private double dinheiro;
   private int casaAtual;
   private boolean falido;
-  private boolean naCadeia;
-  private int rodadasNaCadeia;
 
   /* Construtores */
   Jogador() {};
@@ -20,8 +16,6 @@ public class Jogador {
     this.dinheiro = (double) 2000;
     this.casaAtual = 0;
     this.falido = false;
-    this.naCadeia = false;
-    this.rodadasNaCadeia = 0;
   }
 
   /* Getters e Setters */
@@ -65,25 +59,4 @@ public class Jogador {
     falido = true;
   }
 
-  public boolean estaNaCadeia() {
-    return naCadeia;
-  }
-
-  public void setNaCadeia(boolean naCadeia) {
-    this.naCadeia = naCadeia;
-  }
-
-  public int getRodadasNaCadeia() {
-    return rodadasNaCadeia;
-  }
-
-  public void setRodadasNaCadeia(int zerarOuAumentar) {
-    if (zerarOuAumentar == 0) {
-      rodadasNaCadeia = 0;
-    } else if (zerarOuAumentar == 1) {
-      rodadasNaCadeia++;
-    } else {
-      System.out.println("Erro. Código zerarOuAumentar inválido.");
-    }
-  }
 } 

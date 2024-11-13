@@ -1,7 +1,8 @@
 package main;
 
-import java.util.ArrayList;
+import java.util.*;
 import javax.swing.JFrame;
+
 
 public class Main {
   
@@ -12,6 +13,8 @@ public class Main {
 
         ArrayList<Jogador> jogadores = new ArrayList<>();
         InicializaJogadores(jogadores);
+
+        InicializaJogadoresNaCasaInicio(casas.get(0), jogadores);
 
         Banco banco = new Banco();
 
@@ -26,12 +29,31 @@ public class Main {
 
         window.setLocationRelativeTo(null); // Centraliza a janela na tela
         window.setVisible(true);
+        
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Escreva 1 para ver o jogador verde indo para casa \"Passeio Publico\":");
+        int numteclado = scanner.nextInt();
+        if (numteclado == 1){
+            MoveJogador(casas, jogadores.get(1),1);
+            gamePanel.repaint();
+        }
 
-        gamePanel.startGameThread();
+        System.out.println("Escreva 2 para ver o joagador amarelo indo para casa \"Parque Tangua\":");
+        numteclado = scanner.nextInt();
+        if (numteclado == 2){
+            MoveJogador(casas, jogadores.get(4),11);
+            gamePanel.repaint();
+        }
 
-
-    }
        
+    }
+
+    public static void MoveJogador(ArrayList <Casa> casas, Jogador jogador, int NovaCasa){
+        casas.get(jogador.getCasa()).removerJogador(jogador);
+        jogador.setCasa(NovaCasa);
+        casas.get(NovaCasa).adicionarJogador(jogador);
+    }
+
     public static void InicializaCasas(ArrayList<Casa> casas) {
         
         int tam = 96;
@@ -74,6 +96,22 @@ public class Main {
         jogadores.add(new Jogador("Amarelo", null));
         jogadores.add(new Jogador("Cinza", null));
       
+    }
+
+    public static void InicializaJogadoresNaCasaInicio(Casa casaInicio, ArrayList<Jogador> jogadores){
+        ArrayList<Jogador> jogtest;
+        System.out.println("Inicializando Jogadores nas Casas");
+        
+        for (int i = 0; i < jogadores.size(); i++){
+            casaInicio.adicionarJogador(jogadores.get(i));
+        }  
+        jogtest = casaInicio.getJogadores();
+        for (int i = 0; i < casaInicio.getNumPessoasNaCasa(); i++){
+            System.out.printf("%s\n", jogtest.get(i).getNome());
+
+
+        }    
+        
     }
 }
 
