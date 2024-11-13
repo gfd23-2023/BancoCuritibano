@@ -10,6 +10,8 @@ public class Jogador {
   private boolean falido;
   private boolean naCadeia;
   private int rodadasNaCadeia;
+  private boolean esperando;
+  private int rodadasEsperando;
 
   /* Construtores */
   Jogador() {};
@@ -22,6 +24,8 @@ public class Jogador {
     this.falido = false;
     this.naCadeia = false;
     this.rodadasNaCadeia = 0;
+    this.esperando = false;
+    this.rodadasEsperando = 0;
   }
 
   /* Getters e Setters */
@@ -82,6 +86,28 @@ public class Jogador {
       rodadasNaCadeia = 0;
     } else if (zerarOuAumentar == 1) {
       rodadasNaCadeia++;
+    } else {
+      System.out.println("Erro. Código zerarOuAumentar inválido.");
+    }
+  }
+
+  public boolean estaEsperando() {
+    return esperando;
+  }
+
+  public void setEsperando(boolean esperando) {
+    this.esperando = esperando;
+  }
+
+  public int getRodadasEsperando() {
+    return rodadasEsperando;
+  }
+
+  public void setRodadasEsperando(int zerarOuAumentar) {
+    if (zerarOuAumentar == 0) {
+      rodadasEsperando = 0;
+    } else if (zerarOuAumentar == 1) {
+      rodadasEsperando++;
     } else {
       System.out.println("Erro. Código zerarOuAumentar inválido.");
     }
