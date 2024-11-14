@@ -9,6 +9,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+//gera o número aleatório
 class Dado
 {
 	public static int geraNumero ()
@@ -29,6 +30,7 @@ class janelaDado
 	JButton dado2 = new JButton("Dado 2");
 	JPanel buttonPanel = new JPanel();
 	JPanel resultadoPanel = new JPanel();			//armazena o histórico dos dados
+	int retornos[] = new int[2];					//vetor que vai devolver o valor dos dados
 	
 	//Apenas mostra os botões dos dados na tela
 	public void exibeBotoes()
@@ -51,7 +53,8 @@ class janelaDado
 		frame.setVisible(true);
 	}
 
-	public void exibeAcao()
+	//Executa a ação dos botões
+	public int exibeAcao()
 	{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new FlowLayout());
@@ -65,6 +68,7 @@ class janelaDado
                 resultadoPanel.removeAll();
 
 				int deslocamento = Dado.geraNumero();
+				retornos[0] = deslocamento;
 
 				JLabel label = new JLabel(String.format("Dado 1: %d casas", deslocamento));
 				label.setHorizontalAlignment(SwingConstants.LEFT); // Alinha à esquerda
@@ -87,6 +91,7 @@ class janelaDado
                 //resultadoPanel.removeAll();
 
 				int deslocamento2 = Dado.geraNumero();
+				retornos[1] = deslocamento2;
 
 				JLabel label2 = new JLabel(String.format("Dado 2: %d casas", deslocamento2));
 				label2.setHorizontalAlignment(SwingConstants.LEFT); // Alinha à esquerda
@@ -103,6 +108,10 @@ class janelaDado
         });
 
 		frame.setVisible(true);
+		
+		int retorno = retornos[0] + retornos[1];
+		
+		return retorno;
 	}
 }
 
