@@ -1,3 +1,5 @@
+package main;
+
 public class Banco {
   private static Singleton instanciaUnica;
   
@@ -10,7 +12,8 @@ public class Banco {
     return instanciaUnica;
   }
 
-  /* Transferências */
+  
+  /*Transferências*/ 
   void transferencia(Jogador origem, Jogador destino, double valor) {
     if (origem.getDinheiro() - valor >= 0) {
       origem.setDinheiro(origem.getDinheiro() - valor);
@@ -27,9 +30,5 @@ public class Banco {
 
   void dinheiroDeJogador(Jogador destino, double valor) {
     destino.setDinheiro(destino.getDinheiro() - valor);
-  }
-
-  void dinheiroParaBanco(Jogador origem, double valor) {
-    origem.setDinheiro(origem.getDinheiro() - valor);
   }
 }

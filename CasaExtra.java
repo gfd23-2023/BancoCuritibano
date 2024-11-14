@@ -1,6 +1,6 @@
 import java.io.*;
 
-abstract class CasaExtra {
+public abstract class CasaExtra {
   private String nome;
   private int posicao;
   

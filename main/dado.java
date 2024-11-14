@@ -2,6 +2,8 @@
 /*Precisamos pensar em uma forma de impedir a ação dos botões dos
  *dados quando não for momento de girar os dados*/
 
+package main;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
