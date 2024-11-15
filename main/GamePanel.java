@@ -18,10 +18,13 @@ public class GamePanel extends JPanel {
     final int maxScreenCol = 8; 
     final int maxScreenRow = 8;
     final int screenWidth = tileSize * maxScreenCol;
-    final int screenHeight = tileSize * maxScreenRow;   
+    final int screenHeight = tileSize * maxScreenRow; 
+    private int rodada;  
+    private Jogador jogadorDaRodada;
+    private int valorDados;
     private ArrayList<Casa> casas = new ArrayList<>();
     private ArrayList<Jogador> jogadores = new ArrayList<>();
-    private boolean printedOnce = false;
+    //private boolean printedOnce = false;
     //Thread gameThread;
 
     public GamePanel(ArrayList<Casa> casas, ArrayList<Jogador> jogadores) {
@@ -31,6 +34,12 @@ public class GamePanel extends JPanel {
         this.setDoubleBuffered(true); 
         this.casas = casas;
         this.jogadores = jogadores;
+    }
+
+    public void setRodada(int rodada, Jogador jogadorDaRodada, int valorDados){
+        this.rodada = rodada;
+        this.jogadorDaRodada = jogadorDaRodada;
+        this.valorDados = valorDados;
     }
   
     @Override
@@ -46,9 +55,39 @@ public class GamePanel extends JPanel {
                          tileSize, g2, casas.get(i).getNome());
         }
         DesenhaJogadores(casas, jogadores, g2); 
+        if (rodada != 0){
+            DesenhaPainel(casas, g2, rodada, jogadorDaRodada, valorDados);
+        }
     }
 
+
+
     //public void repaint ()
+
+    private void DesenhaPainel(ArrayList<Casa> casas, Graphics2D g2, int rodada, Jogador jogadorDaRodada, int valorDados){
+        // Definir o estilo da fonte e cor para o texto
+        g2.setFont(new Font("Arial", Font.BOLD, 10));
+        g2.setColor(Color.BLACK);
+
+        // Caixa de texto no canto superior direito
+        int boxWidth = 190;
+        int boxHeight = 80;
+        int xPosition = 120;
+        int yPosition = 120;
+
+        // Desenhar a caixa de fundo para o texto
+        g2.setColor(new Color(220, 220, 220, 200)); // Fundo cinza com um pouco de transparência
+        g2.fillRect(xPosition, yPosition, boxWidth, boxHeight);
+
+        // Desenhar as informações na caixa de texto
+        g2.setColor(Color.BLACK);
+        String infoText = String.format("Rodada: %d\nJogador da Rodada: %s\nValor dos Dados: %d\nCasaAtual: %d", 
+        rodada, jogadorDaRodada.getNome(), valorDados, jogadorDaRodada.getCasa());
+        String[] lines = infoText.split("\n");
+        for (int i = 0; i < lines.length; i++) {
+            g2.drawString(lines[i], xPosition + 10, yPosition + 20 + (i * 15));
+        }
+    }
 
     private void DesenhaJogadores(ArrayList<Casa> casas, ArrayList<Jogador> jogadores, Graphics2D g2){
         for (int i = 0; i < 6; i++){
