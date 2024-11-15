@@ -17,6 +17,7 @@ public class Main {
         InicializaJogadoresNaCasaInicio(casas.get(0), jogadores);
 
         Banco banco = new Banco();
+        Dado dado = new Dado();
 
         JFrame window = new JFrame();   
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Fecha no X
@@ -33,6 +34,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Escreva 1 para ver o jogador verde indo para casa \"Passeio Publico\":");
         int numteclado = scanner.nextInt();
+        gamePanel.setRodada(1, jogadores.get(1), 0);
         if (numteclado == 1){
             MoveJogador(casas, jogadores.get(1),1);
             gamePanel.repaint();
@@ -40,6 +42,7 @@ public class Main {
 
         System.out.println("Escreva 2 para ver o joagador amarelo indo para casa \"Parque Tangua\":");
         numteclado = scanner.nextInt();
+        gamePanel.setRodada(2, jogadores.get(4), 0);
         if (numteclado == 2){
             MoveJogador(casas, jogadores.get(4),11);
             gamePanel.repaint();
