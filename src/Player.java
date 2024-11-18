@@ -26,7 +26,7 @@ class Player {
     }
 }
 
-public class player {
+public class Player {
     private JFrame frame;
     private JTextField nomeField;
     private JTextField caminhoField;

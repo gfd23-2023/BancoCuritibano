@@ -29,3 +29,4 @@ public abstract class Carta {
 
   abstract void acao(Jogador origem);
 }
+

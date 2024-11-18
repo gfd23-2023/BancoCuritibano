@@ -10,15 +10,10 @@ public class Jogador {
   private double dinheiro;
   private int casaAtual;
   private boolean falido;
-<<<<<<< HEAD
-  private boolean preso;
-//  private ArrayList<> players = new ArrayList<>();
-=======
   private boolean naCadeia;
   private int rodadasNaCadeia;
   private boolean esperando;
   private int rodadasEsperando;
->>>>>>> 1b73b5571b578e962bb26dde8ef2c51681d76502
 
   /* Construtores */
   Jogador() {};
@@ -29,14 +24,10 @@ public class Jogador {
     this.dinheiro = (double) 2000;
     this.casaAtual = 0;
     this.falido = false;
-<<<<<<< HEAD
-	this.preso = false;
-=======
     this.naCadeia = false;
     this.rodadasNaCadeia = 0;
     this.esperando = false;
     this.rodadasEsperando = 0;
->>>>>>> 1b73b5571b578e962bb26dde8ef2c51681d76502
   }
 
   /* Getters e Setters */
@@ -80,9 +71,6 @@ public class Jogador {
     falido = true;
   }
 
-<<<<<<< HEAD
-} 
-=======
   public boolean estaNaCadeia() {
     return naCadeia;
   }
@@ -127,4 +115,3 @@ public class Jogador {
     }
   }
 } 
->>>>>>> 1b73b5571b578e962bb26dde8ef2c51681d76502

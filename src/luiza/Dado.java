@@ -10,7 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 //gera o número aleatório
-class Dado
+public class Dado
 {
 	public static int geraNumero ()
 	{
@@ -112,15 +112,5 @@ class janelaDado
 		int retorno = retornos[0] + retornos[1];
 		
 		return retorno;
-	}
-}
-
-public class dado
-{
-	public static void main (String agrs[])
-	{
-		janelaDado janela = new janelaDado();
-		janela.exibeBotoes();
-		janela.exibeAcao();
 	}
 }
