@@ -1,5 +1,6 @@
 import java.util.Scanner;
 
+
 public class Cadeia extends CasaExtra {
   void acaoChegada(Jogador origem) {
     origem.setNaCadeia(true);

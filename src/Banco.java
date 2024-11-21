@@ -1,14 +1,12 @@
-package main;
-
 public class Banco {
-  private static Singleton instanciaUnica;
+  private static Banco instanciaUnica;
   
   /* Construtores */
   private Banco() {};
 
-  public static synchronized Singleton getInstancia() {
+  public static synchronized Banco getInstancia() {
     if (instanciaUnica == null)
-    instanciaUnica = new Singleton();
+    instanciaUnica = new Banco();
     return instanciaUnica;
   }
 

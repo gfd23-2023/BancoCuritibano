@@ -1,3 +1,5 @@
+import package_jogador.Jogador;
+
 public abstract class Carta {
   private int index;
   private String nome;

@@ -1,5 +1,3 @@
-import main.Jogador;
-
 public class CartaEspera extends Carta {
   private int turnosEspera;
 

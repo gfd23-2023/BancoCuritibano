@@ -1,4 +1,4 @@
-package main;
+package package_jogador;
 
 import java.io.*;
 import javax.swing.ImageIcon;
