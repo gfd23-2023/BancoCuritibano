@@ -1,5 +1,4 @@
-import main.Jogador;
-
+/* Faz o jogador perder rodadas */
 public class CartaEspera extends Carta {
   private int turnosEspera;
 
@@ -9,16 +8,13 @@ public class CartaEspera extends Carta {
     this.turnosEspera = turnosEspera;
   }
 
-  /* Getter e Setter */
+  /* Getter (não faz sentido ter um setter, ja que nunca muda) */
   public int getTurnosEspera() {
     return turnosEspera;
   }
 
-  public void setTurnosEspera(int turnosEspera) {
-    this.turnosEspera = turnosEspera;
-  }
-
-  void acao(Jogador origem) {
+  /* Função de ação */
+  public void acao(Jogador origem, int opcao) {
     origem.setEsperando(true);
   }
 

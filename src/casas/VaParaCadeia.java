@@ -1,3 +1,4 @@
+/* Coloca o jogador na cadeia */
 public class VaParaCadeia extends CasaExtra {
   private int posicaoPrisao;
 
@@ -13,7 +14,7 @@ public class VaParaCadeia extends CasaExtra {
     this.posicaoPrisao = posicaoPrisao;
   }
   
-  void acaoChegada(Jogador origem) {
+  void acaoChegada(Jogador origem, int opcao) {
     origem.setCasaAtual(posicaoPrisao);
     System.out.println(origem.getNome() + " vai para a prisão!");
   }

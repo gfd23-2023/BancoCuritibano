@@ -1,8 +1,17 @@
+/* Classe abstrata de cartas */
 public abstract class Carta {
   private int index;
   private String nome;
   private String descricao;
- 
+
+  /* Construtor */
+  Carta(int index, String nome, String descricao) {
+    this.index = index;
+    this.nome = nome;
+    this.descricao = descricao;
+  }
+
+  /* Getters e Setters */
   public int getIndex() {
     return index;
   }
@@ -27,6 +36,8 @@ public abstract class Carta {
     this.descricao = descricao;
   }
 
-  abstract void acao(Jogador origem);
+  // Cada carta específica implementa sua ação (quando o jogador recebe a carta)
+  // Quando a carta não tem opções a serem escolhidas, o parametro opcao nao é usado
+  abstract void acao(Jogador origem, int extra);
 }
 

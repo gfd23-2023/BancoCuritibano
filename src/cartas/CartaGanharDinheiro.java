@@ -1,3 +1,4 @@
+/* Dá dinheiro para o jogador */
 public class CartaGanharDinheiro extends Carta {
   private int valor;
 
@@ -7,19 +8,15 @@ public class CartaGanharDinheiro extends Carta {
     this.valor = valor;
   }
 
-  /* GETTER E SETTER */
+  /* Getter (não faz sentido ter um setter, ja que nunca muda) */
   public int getValor() {
     return valor;
   }
-
-  public void setValor(int valor) {
-    this.valor = valor;
-  }
   
   /* Função de ação no recebimento da carta */
-  void acao(Jogador origem) {
+  public void acao(Jogador origem, int opcao) {
     Banco banco = Banco.getInstancia();
     
-    banco.dinheiroParaJogador(origem, valor);
+    banco.alteraDinheiro(origem, valor);
   }
 }
