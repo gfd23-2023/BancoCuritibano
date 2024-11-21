@@ -16,7 +16,7 @@ public class Main {
 
         InicializaJogadoresNaCasaInicio(casas.get(0), jogadores);
 
-        Banco banco = new Banco();
+        //Banco banco = new Banco();
         Dado dado = new Dado();
 
         JFrame window = new JFrame();   
