@@ -1,8 +1,10 @@
 package modelo.casas;
-import java.io.*;
+import controlador.Banco;
+import modelo.*;
 
 
 public class PontoDePartida extends Casa {
+    @Override
     void acaoChegada(Jogador origem) {
         Banco banco = Banco.getInstancia();
 

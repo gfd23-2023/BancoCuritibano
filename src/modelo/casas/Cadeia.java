@@ -1,6 +1,6 @@
 package modelo.casas;
 import java.util.Scanner;
-import modelo.Jogador;
+import modelo.*;
 
 public class Cadeia extends Casa {
     void acaoChegada(Jogador origem) {

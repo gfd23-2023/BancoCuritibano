@@ -1,5 +1,5 @@
 package modelo.cartas;
-import modelo.Jogador;
+import modelo.*;
 
 /* Classe abstrata de cartas */
 public abstract class Carta {

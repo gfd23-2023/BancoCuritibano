@@ -1,5 +1,5 @@
 package modelo.cartas;
-import modelo.Jogador;
+import modelo.*;
 
 /* Volta casas no tabuleiro */
 public class CartaVoltar extends Carta {

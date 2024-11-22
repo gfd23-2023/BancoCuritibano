@@ -1,5 +1,4 @@
 package modelo.cartas;
-import modelo.Jogador;
 import java.io.*;
 import java.util.ArrayList;
 

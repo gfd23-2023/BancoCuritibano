@@ -1,5 +1,5 @@
 package modelo.cartas;
-import modelo.Jogador;
+import modelo.*;
 
 /* Faz o jogador perder rodadas */
 public class CartaEspera extends Carta {

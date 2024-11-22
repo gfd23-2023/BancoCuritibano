@@ -1,6 +1,6 @@
 package modelo.casas;
-import java.io.*;
-import modelo.Jogador;
+import controlador.*;
+import modelo.*;
 
 public class Propriedade extends Casa {
     private Jogador proprietario;
@@ -42,7 +42,8 @@ public class Propriedade extends Casa {
         Banco banco = Banco.getInstancia();
 
         if (comprador.getDinheiro() - valor >= 0) {
-            banco.dinheiroDeJogador(comprador, valor);
+            //comentei essa parte porque nao achei o metodo dinheiro de um jogador no Banco.java
+            //banco.dinheiroDeJogador(comprador, valor);
             proprietario = comprador;
         } else {
             System.out.println("Comprador não tem dinheiro para realizar compra.");

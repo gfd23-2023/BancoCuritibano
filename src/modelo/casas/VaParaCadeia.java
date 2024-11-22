@@ -1,6 +1,5 @@
 package modelo.casas;
-import java.io.*;
-import modelo.Jogador;
+import modelo.*;
 
 /* Coloca o jogador na cadeia */
 public class VaParaCadeia extends Casa {
@@ -14,12 +13,13 @@ public class VaParaCadeia extends Casa {
         this.posicaoPrisao = posicaoPrisao;
     }
 
-    VaParaCadeia(int posicaoPrisao) {
+    public VaParaCadeia(int posicaoPrisao) {
         this.posicaoPrisao = posicaoPrisao;
     }
 
-    void acaoChegada(Jogador origem, int opcao) {
-        origem.setCasaAtual(posicaoPrisao);
+    @Override
+    public void acaoChegada(Jogador origem) {
+        origem.setCasa(posicaoPrisao, 28);
         System.out.println(origem.getNome() + " vai para a prisão!");
     }
 

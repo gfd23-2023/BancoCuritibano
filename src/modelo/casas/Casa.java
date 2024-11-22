@@ -1,11 +1,10 @@
 package modelo.casas;
-import java.io.*;
-import modelo.Jogador;
+import modelo.*;
 
 
 public abstract class Casa {
-    private String nome;
-    private int posicao;
+    protected String nome;
+    protected int posicao;
 
     public String getNome() {
         return nome;

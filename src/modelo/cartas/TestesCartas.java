@@ -1,8 +1,8 @@
 /* Main para testes com as classes de cartas. APAGAR NA VERSÃO FINAL. */
 package modelo.cartas;
-import modelo.Jogador;
-
+import controlador.Banco;
 import java.util.ArrayList;
+import modelo.*;
 
 public class TestesCartas {
   public static void main(String[] args) {

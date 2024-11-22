@@ -1,5 +1,5 @@
 package modelo.cartas;
-import modelo.Jogador;
+import modelo.*;
 
 /* Avança casas no tabuleiro */
 public class CartaAvancar extends Carta {

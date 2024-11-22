@@ -1,5 +1,5 @@
 package controlador;
-import modelo.Jogador;
+import modelo.*;
 
 /* Classe banco (Singleton) */
 public class Banco {

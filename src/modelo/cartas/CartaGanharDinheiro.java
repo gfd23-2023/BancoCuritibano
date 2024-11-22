@@ -1,6 +1,6 @@
 package modelo.cartas;
-import modelo.Jogador;
 import controlador.Banco;
+import modelo.*;
 
 /* Dá dinheiro para o jogador */
 public class CartaGanharDinheiro extends Carta {

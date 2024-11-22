@@ -18,7 +18,7 @@ public class Jogador {
     private int rodadasEsperando;
 
     // Construtor 
-    Jogador(int id, String nome, ImageIcon foto) {
+    public Jogador(int id, String nome, ImageIcon foto) {
         this.id = id;
         this.nome = nome;
         this.foto = foto;
@@ -31,6 +31,18 @@ public class Jogador {
         this.rodadasEsperando = 0;
     }
 
+    public Jogador(String nome, ImageIcon foto) {
+        this.nome = nome;
+        this.foto = foto;
+        this.dinheiro = (double) 2000;
+        this.casaAtual = 0;
+        this.falido = false;
+        this.naCadeia = false;
+        this.rodadasNaCadeia = 0;
+        this.esperando = false;
+        this.rodadasEsperando = 0;
+    }
+    
     // Getters e Setters 
     public int getId() {
         return id;
