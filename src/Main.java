@@ -15,7 +15,7 @@ public class Main {
         ArrayList<Jogador> jogadores = new ArrayList<>();
         InicializaJogadores(jogadores);
 
-        InicializaJogadoresNaCasaInicio(casas.get(0), jogadores);
+        InicializaJogadoresNaCasaInicio(jogadores);
 
         //Banco banco = new Banco();
         Dado dado = new Dado();
@@ -101,17 +101,13 @@ public class Main {
       
     }
 
-    public static void InicializaJogadoresNaCasaInicio(CasaGrafica casaInicio, ArrayList<Jogador> jogadores){
-        ArrayList<Integer> jogtest;
+    public static void InicializaJogadoresNaCasaInicio( ArrayList<Jogador> jogadores){
         System.out.println("Inicializando Jogadores nas Casas");
         
         for (int i = 0; i < jogadores.size(); i++){
-            casaInicio.adicionarJogador(jogadores.get(i).getId());
+            jogadores.get(i).setCasa(0, 28);
+            System.out.printf("Jogador %d na Casa %d\n", jogadores.get(i).getId(), jogadores.get(i).getCasa());
         }  
-        jogtest = casaInicio.getJogadores();
-        for (int i = 0; i < casaInicio.getNumPessoasNaCasa(); i++){
-            System.out.printf("indice do jogador da casas %d\n", jogtest.get(i));
-        }    
         
     }
 }

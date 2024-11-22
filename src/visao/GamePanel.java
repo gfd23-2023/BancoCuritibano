@@ -53,7 +53,7 @@ public class GamePanel extends JPanel {
                          casas.get(i).getCoordenadaY(),
                          tileSize, g2, casas.get(i).getNome());
         }
-        //DesenhaJogadores(casas, jogadores, g2); 
+        DesenhaJogadores(casas, jogadores, g2); 
         if (rodada != 0){
             DesenhaPainel(casas, g2, rodada, jogadorDaRodada, valorDados);
         }
@@ -88,20 +88,6 @@ public class GamePanel extends JPanel {
         }
     }
 
-    /*private void DesenhaJogadores(ArrayList<CasaGrafica> casas, ArrayList<Jogador> jogadores, Graphics2D g2){
-        for (int i = 0; i < 6; i++){
-            DesenhaJogador(casas.get(jogadores.get(i).getCasa()), jogadores.get(i), g2);
-        }
-    }*/
-
-    /*private int PosicaoJogadorNaCasa(CasaGrafica casa, Jogador jogador){
-        
-        for (int k = 0; k < casa.getJogadores().size(); k++){
-            if (casa.getJogadores().get(k).getNome().equals(jogador.getNome()))
-                return k;
-        }
-        return -1;
-    }*/
 
     private void SetColorG2 (Jogador jogador, Graphics2D g2){
         if (jogador.getNome().equals("Vermelho"))
@@ -120,15 +106,12 @@ public class GamePanel extends JPanel {
             System.out.println("Error na decisao da cor do joagador");
     }
 
-    /*private void DesenhaJogador(CasaGrafica casa, Jogador jogador, Graphics2D g2){
+    private void DesenhaJogador(CasaGrafica casa, Jogador jogador, Graphics2D g2){
         
-        int posicao = PosicaoJogadorNaCasa(casa, jogador);
-        if (posicao == -1) return;
-
         SetColorG2(jogador, g2);
         int compr = tileSize/7;
             
-        switch (posicao) {
+        switch (jogador.getId()) {
             case 0 -> g2.fillRect(casa.getCoordenadaX() + compr, casa.getCoordenadaY() + compr, compr, compr);
             case 1 -> g2.fillRect(casa.getCoordenadaX() + 3 * compr, casa.getCoordenadaY() + compr, compr, compr);
             case 2 -> g2.fillRect(casa.getCoordenadaX() + 5 * compr, casa.getCoordenadaY() + compr, compr, compr);
@@ -137,10 +120,16 @@ public class GamePanel extends JPanel {
             case 5 -> g2.fillRect(casa.getCoordenadaX() + 5 * compr, casa.getCoordenadaY() + 72, compr, compr);
             default -> System.out.println("Erro na Insercao da Peca\n");
         }       
-    }*/
+    }
+
+    private void DesenhaJogadores (ArrayList <CasaGrafica> casas, ArrayList <Jogador> jogadores, Graphics2D g2){
+        for (int i = 0; i < 6; i++){
+            DesenhaJogador(casas.get(jogadores.get(i).getCasa()), jogadores.get(i), g2);
+        }
+    }
+
         
-        
-   private void DesenhaBloco(int x, int y, int tileSize, Graphics2D g2, String nomelugar) {
+    private void DesenhaBloco(int x, int y, int tileSize, Graphics2D g2, String nomelugar) {
         // Desenhar o bloco branco
         g2.setColor(Color.white);
         g2.fillRect(x, y, tileSize, tileSize);

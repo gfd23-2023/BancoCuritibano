@@ -1,18 +1,13 @@
 package modelo.casas;
-import java.util.ArrayList;
 import modelo.*;
 
 public class CasaGrafica extends Casa {
-    private int numPessoasNaCasa;
     private int coordenadaX;
     private int coordenadaY;
-    private ArrayList<Integer> IdJogadores; // Guarda os IDs dos jogadores que estão na casa
 
     public CasaGrafica(String nome, int index, int coordenadaX, int coordenadaY) {
         this.nome = nome; // Atributo herdado de Casa (deve ser protected na classe base)
         this.posicao = index; // Atributo herdado de Casa (deve ser protected na classe base)
-        this.IdJogadores = new ArrayList<>();
-        this.numPessoasNaCasa = 0;
         this.coordenadaX = coordenadaX;
         this.coordenadaY = coordenadaY;
     }
@@ -25,7 +20,7 @@ public class CasaGrafica extends Casa {
         return this.coordenadaY;
     }
 
-    public int getNumPessoasNaCasa() {
+    /*public int getNumPessoasNaCasa() {
         return this.numPessoasNaCasa;
     }
 
@@ -43,7 +38,7 @@ public class CasaGrafica extends Casa {
 
     public ArrayList<Integer> getJogadores() {
         return this.IdJogadores;
-    }
+    }*/
 
     //implemetação vazia pois CasaPosicao não usa esse método abstrato
     @Override
