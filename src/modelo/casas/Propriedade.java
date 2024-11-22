@@ -1,4 +1,4 @@
-package modelo.casas.Propriedade;
+package modelo.casas;
 import java.io.*;
 import modelo.Jogador;
 

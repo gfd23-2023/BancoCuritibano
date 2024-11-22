@@ -1,5 +1,6 @@
-package modelo.cartas.PagarOuCadeia;
+package modelo.cartas;
 import modelo.Jogador;
+import controlador.Banco;
 /* Obriga o jogador a pagar ou, se não quiser pagar ou não tiver o dinheiro, ir para a cadeia */
 public class PagarOuCadeia extends Carta {
   private int valor;

@@ -1,4 +1,4 @@
-package modelo.cartas.CartaEspera;
+package modelo.cartas;
 import modelo.Jogador;
 
 /* Faz o jogador perder rodadas */

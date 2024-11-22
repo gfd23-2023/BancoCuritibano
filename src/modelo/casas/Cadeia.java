@@ -1,4 +1,4 @@
-package modelo.casas.Cadeia;
+package modelo.casas;
 import java.util.Scanner;
 import modelo.Jogador;
 

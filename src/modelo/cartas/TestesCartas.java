@@ -1,5 +1,5 @@
 /* Main para testes com as classes de cartas. APAGAR NA VERSÃO FINAL. */
-package modelo.cartas.TestesCartas;
+package modelo.cartas;
 import modelo.Jogador;
 
 import java.util.ArrayList;

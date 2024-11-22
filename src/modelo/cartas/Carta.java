@@ -1,4 +1,4 @@
-package modelo.cartas.Carta;
+package modelo.cartas;
 import modelo.Jogador;
 
 /* Classe abstrata de cartas */

@@ -1,4 +1,4 @@
-package modelo.casas.VoltarPontoPartida;
+package modelo.casas;
 import java.io.*;
 import modelo.Jogador;
 

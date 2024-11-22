@@ -1,4 +1,4 @@
-package modelo.cartas.CartaVoltar;
+package modelo.cartas;
 import modelo.Jogador;
 
 /* Volta casas no tabuleiro */

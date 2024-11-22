@@ -5,23 +5,17 @@ JAVAC = javac
 SRC_DIR = src
 BIN_DIR = bin
 
-# Nome da classe principal
-MAIN_CLASS = Main
+# Nome da classe principal (com pacote, se aplicável)
+MAIN_CLASS = Main  # Alterar para algo como `app.Main` se estiver em um pacote
 
 # Busca por todos os arquivos .java no diretório src
 SOURCES = $(shell find $(SRC_DIR) -name "*.java")
 
-# Cria os nomes dos arquivos .class correspondentes no diretório bin
-CLASSES = $(patsubst $(SRC_DIR)/%.java, $(BIN_DIR)/%.class, $(SOURCES))
-
-# Alvo padrão
+# Alvo padrão: compila todos os .java
 .PHONY: all
-all: $(CLASSES)
-
-# Regra para compilar arquivos .java em .class
-$(BIN_DIR)/%.class: $(SRC_DIR)/%.java
+all:
 	mkdir -p $(BIN_DIR)
-	$(JAVAC) -d $(BIN_DIR) $<
+	$(JAVAC) -d $(BIN_DIR) $(SOURCES)
 
 # Alvo para rodar o programa
 .PHONY: run
@@ -31,5 +25,5 @@ run: all
 # Limpeza dos arquivos compilados
 .PHONY: clean
 clean:
-	rm -rf $(BIN_DIR)/*.class
+	rm -rf $(BIN_DIR)/*.class $(BIN_DIR)/*/*.class
 

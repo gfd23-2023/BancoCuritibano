@@ -1,6 +1,8 @@
 package visao;
-import modelo.*;
-import controlador;
+import modelo.casas.*;
+import modelo.cartas.*;
+import modelo.Jogador;
+import controlador.*;
 
 import java.awt.Color;
 import java.awt.Dimension;     

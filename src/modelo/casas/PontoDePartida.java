@@ -1,4 +1,4 @@
-package modelo.casas.PontoDePartida;
+package modelo.casas;
 import java.io.*;
 
 

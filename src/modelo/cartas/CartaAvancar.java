@@ -1,4 +1,4 @@
-package modelo.cartas.CartaAvancar;
+package modelo.cartas;
 import modelo.Jogador;
 
 /* Avança casas no tabuleiro */

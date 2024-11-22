@@ -1,6 +1,8 @@
-import modelo.*;
-import controlador;
-import visao;
+import modelo.Jogador;
+import modelo.casas.*;
+import modelo.cartas.*;
+import controlador.*;
+import visao.*;
 import java.util.*;
 import javax.swing.JFrame;
 
