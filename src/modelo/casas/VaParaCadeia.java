@@ -17,7 +17,6 @@ public class VaParaCadeia extends Casa {
         this.posicaoPrisao = posicaoPrisao;
     }
 
-    @Override
     public void acaoChegada(Jogador origem) {
         origem.setCasa(posicaoPrisao, 28);
         System.out.println(origem.getNome() + " vai para a prisão!");

@@ -10,7 +10,6 @@ import javax.swing.JPanel;
 import modelo.Jogador;
 import modelo.casas.*;
 
-
 public class GamePanel extends JPanel {
     // Screen settings
     final int originalTileSize = 16;    
@@ -23,10 +22,10 @@ public class GamePanel extends JPanel {
     private int rodada;  
     private Jogador jogadorDaRodada;
     private int valorDados;
-    private ArrayList<CasaGrafica> casas = new ArrayList<>();
+    private ArrayList<Casa> casas = new ArrayList<>();
     private ArrayList<Jogador> jogadores = new ArrayList<>();
 
-    public GamePanel(ArrayList<CasaGrafica> casas, ArrayList<Jogador> jogadores) {
+    public GamePanel(ArrayList<Casa> casas, ArrayList<Jogador> jogadores) {
 
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.darkGray);
@@ -63,7 +62,7 @@ public class GamePanel extends JPanel {
 
     //public void repaint ()
 
-    private void DesenhaPainel(ArrayList<CasaGrafica> casas, Graphics2D g2, int rodada, Jogador jogadorDaRodada, int valorDados){
+    private void DesenhaPainel(ArrayList<Casa> casas, Graphics2D g2, int rodada, Jogador jogadorDaRodada, int valorDados){
         // Definir o estilo da fonte e cor para o texto
         g2.setFont(new Font("Arial", Font.BOLD, 10));
         g2.setColor(Color.BLACK);
@@ -106,7 +105,7 @@ public class GamePanel extends JPanel {
             System.out.println("Error na decisao da cor do joagador");
     }
 
-    private void DesenhaJogador(CasaGrafica casa, Jogador jogador, Graphics2D g2){
+    private void DesenhaJogador(Casa casa, Jogador jogador, Graphics2D g2){
         
         SetColorG2(jogador, g2);
         int compr = tileSize/7;
@@ -122,7 +121,7 @@ public class GamePanel extends JPanel {
         }       
     }
 
-    private void DesenhaJogadores (ArrayList <CasaGrafica> casas, ArrayList <Jogador> jogadores, Graphics2D g2){
+    private void DesenhaJogadores (ArrayList <Casa> casas, ArrayList <Jogador> jogadores, Graphics2D g2){
         for (int i = 0; i < 6; i++){
             DesenhaJogador(casas.get(jogadores.get(i).getCasa()), jogadores.get(i), g2);
         }

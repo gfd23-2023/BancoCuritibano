@@ -9,7 +9,7 @@ public class Main {
   
     public static void main(String[] args) {
 
-        ArrayList<CasaGrafica> casas = new ArrayList<>();
+        ArrayList<Casa> casas = new ArrayList<>();
         InicializaCasas(casas);
 
         ArrayList<Jogador> jogadores = new ArrayList<>();
@@ -51,44 +51,47 @@ public class Main {
 
     }
 
-    /*public static void MoveJogador(ArrayList <CasaGrafica> casas, Jogador jogador, int NovaCasa){
+    /*public static void MoveJogador(ArrayList <Casa> casas, Jogador jogador, int NovaCasa){
         casas.get(jogador.getCasa()).removerJogador(jogador);
         jogador.setCasa(NovaCasa);
         casas.get(NovaCasa).adicionarJogador(jogador);
     }*/
 
-    public static void InicializaCasas(ArrayList<CasaGrafica> casas) {
+    public static void InicializaCasas(ArrayList<Casa> casas) {
         
         int tam = 96;
+        for (int i = 0; i < 28; i++)
+            casas.add(new Casa());
+            
         // Adiciona as casas com seus respectivos nomes, posições e valores
-        casas.add(new CasaGrafica("Início", 0,                 tam * 7, tam * 7));
-        casas.add(new CasaGrafica("Passeio Público", 1,        tam * 6, tam * 7));
-        casas.add(new CasaGrafica("Sorte ou    Azar?", 2,      tam * 5, tam * 7));
-        casas.add(new CasaGrafica("Calçadão R.XV", 3,          tam * 4, tam * 7));
-        casas.add(new CasaGrafica("Gibiteca", 4,               tam * 3, tam * 7));
-        casas.add(new CasaGrafica("UFPR Prédio Histórico", 5,  tam * 2, tam * 7));
-        casas.add(new CasaGrafica("Paço da Liberdade", 6,      tam * 1, tam * 7));
-        casas.add(new CasaGrafica("Cadeia", 7,                 tam * 0, tam * 7));
-        casas.add(new CasaGrafica("Sorte ou    Azar?", 8,      tam * 0, tam * 6));
-        casas.add(new CasaGrafica("Museu Oscar Niemeyer", 9,   tam * 0, tam * 5));
-        casas.add(new CasaGrafica("Santa Felicidade", 10,      tam * 0, tam * 4));
-        casas.add(new CasaGrafica("UFPR Politécnico", 11,      tam * 0, tam * 3));
-        casas.add(new CasaGrafica("UFPR Jardim Botânico", 12,  tam * 0, tam * 2));
-        casas.add(new CasaGrafica("Jardim Botânico", 13,       tam * 0, tam * 1));
-        casas.add(new CasaGrafica("Linha de Turismo (Volte para o Início)", 14, tam * 0, tam * 0));
-        casas.add(new CasaGrafica("Teatro Guaíra", 15,         tam * 1, tam * 0));
-        casas.add(new CasaGrafica("Shopping Barigui", 16,      tam * 2, tam * 0));
-        casas.add(new CasaGrafica("Parque Barigui", 17,        tam * 3, tam * 0));
-        casas.add(new CasaGrafica("Mercado Municipal", 18,     tam * 4, tam * 0));
-        casas.add(new CasaGrafica("Parque Tingui", 19,         tam * 5, tam * 0));
-        casas.add(new CasaGrafica("Bosque Alemão", 20,         tam * 6, tam * 0));
-        casas.add(new CasaGrafica("BLITZ (Pague R$100 ou vá preso)", 21, tam * 7, tam * 0));
-        casas.add(new CasaGrafica("Praça do Japão", 22,        tam * 7, tam * 1));
-        casas.add(new CasaGrafica("Sorte ou Azar?", 23,        tam * 7, tam * 2));
-        casas.add(new CasaGrafica("Torre Panorâmica", 24,      tam * 7, tam * 3));
-        casas.add(new CasaGrafica("Catedral Curitiba", 25,     tam * 7, tam * 4));
-        casas.add(new CasaGrafica("Shopping Pátio Batel", 26,  tam * 7, tam * 5));
-        casas.add(new CasaGrafica("Prefeitura de Curitiba", 27,tam * 7, tam * 6));
+        casas.get(0).setCasa("Início", 0,                 tam * 7, tam * 7);
+        casas.get(1).setCasa("Passeio Público", 1,        tam * 6, tam * 7);
+        casas.get(2).setCasa("Sorte ou    Azar?", 2,      tam * 5, tam * 7);
+        casas.get(3).setCasa("Calçadão R.XV", 3,          tam * 4, tam * 7);
+        casas.get(4).setCasa("Gibiteca", 4,               tam * 3, tam * 7);
+        casas.get(5).setCasa("UFPR Prédio Histórico", 5,  tam * 2, tam * 7);
+        casas.get(6).setCasa("Paço da Liberdade", 6,      tam * 1, tam * 7);
+        casas.get(7).setCasa("Cadeia", 7,                 tam * 0, tam * 7);
+        casas.get(8).setCasa("Sorte ou    Azar?", 8,      tam * 0, tam * 6);
+        casas.get(9).setCasa("Museu Oscar Niemeyer", 9,   tam * 0, tam * 5);
+        casas.get(10).setCasa("Santa Felicidade", 10,      tam * 0, tam * 4);
+        casas.get(11).setCasa("UFPR Politécnico", 11,      tam * 0, tam * 3);
+        casas.get(12).setCasa("UFPR Jardim Botânico", 12,  tam * 0, tam * 2);
+        casas.get(13).setCasa("Jardim Botânico", 13,       tam * 0, tam * 1);
+        casas.get(14).setCasa("Linha de Turismo (Volte para o Início)", 14, tam * 0, tam * 0);
+        casas.get(15).setCasa("Teatro Guaíra", 15,         tam * 1, tam * 0);
+        casas.get(16).setCasa("Shopping Barigui", 16,      tam * 2, tam * 0);
+        casas.get(17).setCasa("Parque Barigui", 17,        tam * 3, tam * 0);
+        casas.get(18).setCasa("Mercado Municipal", 18,     tam * 4, tam * 0);
+        casas.get(19).setCasa("Parque Tingui", 19,         tam * 5, tam * 0);
+        casas.get(20).setCasa("Bosque Alemão", 20,         tam * 6, tam * 0);
+        casas.get(21).setCasa("BLITZ (Pague R$100 ou vá preso)", 21, tam * 7, tam * 0);
+        casas.get(22).setCasa("Praça do Japão", 22,        tam * 7, tam * 1);
+        casas.get(23).setCasa("Sorte ou Azar?", 23,        tam * 7, tam * 2);
+        casas.get(24).setCasa("Torre Panorâmica", 24,      tam * 7, tam * 3);
+        casas.get(25).setCasa("Catedral Curitiba", 25,     tam * 7, tam * 4);
+        casas.get(26).setCasa("Shopping Pátio Batel", 26,  tam * 7, tam * 5);
+        casas.get(27).setCasa("Prefeitura de Curitiba", 27,tam * 7, tam * 6);
     }
 
     public static void InicializaJogadores(ArrayList<Jogador> jogadores){

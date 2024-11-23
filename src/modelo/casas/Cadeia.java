@@ -3,11 +3,11 @@ import java.util.Scanner;
 import modelo.*;
 
 public class Cadeia extends Casa {
-    void acaoChegada(Jogador origem) {
+    public void acaoChegada(Jogador origem) {
         origem.setNaCadeia(true);
     }
 
-    void tentativaSair(Jogador origem) {
+    public void tentativaSair(Jogador origem) {
         Scanner scanner = new Scanner(System.in);
         int opcao;
 

@@ -4,8 +4,8 @@ import modelo.*;
 
 
 public class PontoDePartida extends Casa {
-    @Override
-    void acaoChegada(Jogador origem) {
+
+    public void acaoChegada(Jogador origem) {
         Banco banco = Banco.getInstancia();
 
         banco.diaDoPagamento(origem);
