@@ -1,8 +1,7 @@
 /*Classe que gera números aleatórios para os deslocamentos*/
 /*Precisamos pensar em uma forma de impedir a ação dos botões dos
  *dados quando não for momento de girar os dados*/
-
-package main;
+package modelo;
 
 import javax.swing.*;
 import java.awt.*;

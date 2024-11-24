@@ -1,5 +1,4 @@
-package main;
-
+package visao;
 import java.awt.Color;
 import java.awt.Dimension;     
 import java.awt.Font;
@@ -8,7 +7,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import javax.swing.JPanel;
-
+import modelo.Jogador;
+import modelo.casas.*;
 
 public class GamePanel extends JPanel {
     // Screen settings
@@ -24,8 +24,6 @@ public class GamePanel extends JPanel {
     private int valorDados;
     private ArrayList<Casa> casas = new ArrayList<>();
     private ArrayList<Jogador> jogadores = new ArrayList<>();
-    //private boolean printedOnce = false;
-    //Thread gameThread;
 
     public GamePanel(ArrayList<Casa> casas, ArrayList<Jogador> jogadores) {
 
@@ -89,20 +87,6 @@ public class GamePanel extends JPanel {
         }
     }
 
-    private void DesenhaJogadores(ArrayList<Casa> casas, ArrayList<Jogador> jogadores, Graphics2D g2){
-        for (int i = 0; i < 6; i++){
-            DesenhaJogador(casas.get(jogadores.get(i).getCasa()), jogadores.get(i), g2);
-        }
-    }
-
-    private int PosicaoJogadorNaCasa(Casa casa, Jogador jogador){
-        
-        for (int k = 0; k < casa.getJogadores().size(); k++){
-            if (casa.getJogadores().get(k).getNome().equals(jogador.getNome()))
-                return k;
-        }
-        return -1;
-    }
 
     private void SetColorG2 (Jogador jogador, Graphics2D g2){
         if (jogador.getNome().equals("Vermelho"))
@@ -123,39 +107,28 @@ public class GamePanel extends JPanel {
 
     private void DesenhaJogador(Casa casa, Jogador jogador, Graphics2D g2){
         
-        int posicao = PosicaoJogadorNaCasa(casa, jogador);
-        if (posicao == -1) return;
-
         SetColorG2(jogador, g2);
         int compr = tileSize/7;
             
-        switch (posicao) {
-            case 0:
-                g2.fillRect(casa.getCoordenadaX() + compr, casa.getCoordenadaY() + compr, compr, compr);
-                break;
-            case 1:
-                g2.fillRect(casa.getCoordenadaX() + 3 * compr, casa.getCoordenadaY() + compr, compr, compr);
-                break;
-            case 2:
-                g2.fillRect(casa.getCoordenadaX() + 5 * compr, casa.getCoordenadaY() + compr, compr, compr);
-                break;
-            case 3:
-                g2.fillRect(casa.getCoordenadaX() + compr, casa.getCoordenadaY() + 72, compr, compr);
-                break;
-            case 4:
-                g2.fillRect(casa.getCoordenadaX() + 3 * compr, casa.getCoordenadaY() + 72, compr, compr);
-                break;
-            case 5:
-                g2.fillRect(casa.getCoordenadaX() + 5 * compr, casa.getCoordenadaY() + 72, compr, compr);
-                break;
-            default:
-                System.out.println("Erro na Insercao da Peca\n");
-                break;
+        switch (jogador.getId()) {
+            case 0 -> g2.fillRect(casa.getCoordenadaX() + compr, casa.getCoordenadaY() + compr, compr, compr);
+            case 1 -> g2.fillRect(casa.getCoordenadaX() + 3 * compr, casa.getCoordenadaY() + compr, compr, compr);
+            case 2 -> g2.fillRect(casa.getCoordenadaX() + 5 * compr, casa.getCoordenadaY() + compr, compr, compr);
+            case 3 -> g2.fillRect(casa.getCoordenadaX() + compr, casa.getCoordenadaY() + 72, compr, compr);
+            case 4 -> g2.fillRect(casa.getCoordenadaX() + 3 * compr, casa.getCoordenadaY() + 72, compr, compr);
+            case 5 -> g2.fillRect(casa.getCoordenadaX() + 5 * compr, casa.getCoordenadaY() + 72, compr, compr);
+            default -> System.out.println("Erro na Insercao da Peca\n");
         }       
     }
+
+    private void DesenhaJogadores (ArrayList <Casa> casas, ArrayList <Jogador> jogadores, Graphics2D g2){
+        for (int i = 0; i < 6; i++){
+            DesenhaJogador(casas.get(jogadores.get(i).getCasa()), jogadores.get(i), g2);
+        }
+    }
+
         
-        
-   private void DesenhaBloco(int x, int y, int tileSize, Graphics2D g2, String nomelugar) {
+    private void DesenhaBloco(int x, int y, int tileSize, Graphics2D g2, String nomelugar) {
         // Desenhar o bloco branco
         g2.setColor(Color.white);
         g2.fillRect(x, y, tileSize, tileSize);
