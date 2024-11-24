@@ -5,6 +5,20 @@ import modelo.casas.*;
 import modelo.cartas.*;
 import java.util.*;
 
+
+// enumeracao dos estados do jogo
+// funcionam como macros/defines
+// facil de adicionar/remover estados
+enum Estados {
+	MENU_INICIAL, 
+	MENU_JOGADORES, // escolha dos jogadores
+	JOGAR_DADOS, // momento para jogar os dados
+	JOGAR_MOVIMENTO, // momento para jogador vai se movimentar
+	JOGAR_CASA // momento para exibir em qual casa jogador caiu
+	// ...
+}
+
+
 public class Jogo {
 	// classe jogo eh singleton
 	private static Jogo instanciaUnica;
@@ -12,7 +26,7 @@ public class Jogo {
 	// retorna a unica instancia de jogo (cria uma se nao existir)
 	public static synchronized Jogo getInstancia() {
 		if (instanciaUnica == null) 
-			instanciaUnica = new Jogo;
+			instanciaUnica = new Jogo();
 		return instanciaUnica;
 	}
 		
@@ -28,7 +42,7 @@ public class Jogo {
 	
 	// construtor
 	public Jogo() {
-		this.estado = MENU_INICIAL;
+		this.estado = Estados.MENU_INICIAL;
 		this.rodada = 0;
 		this.jogada = 0;
 		this.jogadores = new ArrayList<>();
@@ -41,17 +55,3 @@ public class Jogo {
 	
 
 }
-
-// enumeracao dos estados do jogo
-// funcionam como macros/defines
-// facil de adicionar/remover estados
-enum Estados {
-	MENU_INICIAL, 
-	MENU_JOGADORES, // escolha dos jogadores
-	JOGAR_DADOS, // momento para jogar os dados
-	JOGAR_MOVIMENTO, // momento para jogador vai se movimentar
-	JOGAR_CASA // momento para exibir em qual casa jogador caiu
-	// ...
-}
-
-
