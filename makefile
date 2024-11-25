@@ -26,4 +26,3 @@ run: all
 .PHONY: clean
 clean:
 	find $(BIN_DIR) -name "*.class" -delete
-
