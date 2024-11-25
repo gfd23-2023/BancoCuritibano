@@ -35,14 +35,15 @@ class TelaInicial extends JPanel
 		super.paintComponent(g);
 		if (logo != null)
 		{
-			int larguraOriginal = logo.getWidth();
-            int alturaOriginal = logo.getHeight();
+			int larguraOriginal = logo.getWidth()/2;
+            int alturaOriginal = logo.getHeight()/2;
 
 			// Obtém as dimensões do painel e acha o meio
 			int larguraPainel = this.getWidth()/2;
 			int alturaPainel = this.getHeight()/2;
 
-			g.drawImage(logo, 150, 50, larguraOriginal, alturaOriginal, this);
+			g.drawImage(logo, larguraPainel - larguraOriginal, alturaPainel - alturaOriginal, 
+						larguraOriginal*2, 2*alturaOriginal, this);
 		}
 	}
 }
@@ -80,6 +81,7 @@ class CarregarJogo extends JPanel
 {
 	JButton carregarJogo = new JButton("Carregar Jogo");
 
+	//possivelmente vamos precisar passar um arquivo como parâmetro
 	public CarregarJogo()
 	{
 		carregarJogo.setFont(new Font("Times New Roman", Font.BOLD, 25));
@@ -125,7 +127,7 @@ class Sair extends JPanel
                 System.exit(0);
             }
         });
-		}
+	}
 }
 
 //manupulação dos botões Jogar/Carregar Jogo/Sair
@@ -170,6 +172,11 @@ public class Menu
 		janela.add(painelBotoes, BorderLayout.SOUTH);
 		janela.revalidate();
 		janela.repaint();
+
+		//ações dos botões
+		jogar.BotaoJogar();
+		carregarJogo.BotaoCarregarJogo();
+		sair.BotaoSair(janela);
 
 		//torna visível
 		janela.setVisible(true);
