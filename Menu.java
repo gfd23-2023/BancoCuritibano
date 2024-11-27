@@ -53,6 +53,8 @@ class TelaInicial extends JPanel
 class Jogar extends JPanel
 {
 	JButton jogar = new JButton("Jogar!");
+	JLabel texto = new JLabel(String.format("Digite seu nome!"));
+	JPanel painelTexto = new JPanel();
 
 	public Jogar()
 	{
@@ -63,13 +65,33 @@ class Jogar extends JPanel
 		add(jogar);
 	}
 
-	public void BotaoJogar()
+	public void BotaoJogar(JFrame janela)
 	{
 		jogar.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                //Dar um jeito de concectar esse botão com o código principal
+				//limpa a tela
+				janela.getContentPane().removeAll();
+				
+				//define cor de fundo para o painel
+				painelTexto.setBackground(new Color(255, 228, 225));
+
+				//cor de fundo
+                janela.getContentPane().setBackground(new Color(255, 228, 225));
+
+				//personaliza a label
+				texto.setHorizontalAlignment(SwingConstants.CENTER);
+				texto.setFont(new Font("Times New Roman", Font.BOLD, 30));
+				texto.setForeground(new Color(250,128,114));
+
+				//adiciona o texto no painel e o painel na tela
+				painelTexto.add(texto);
+				janela.getContentPane().add(painelTexto);
+
+				//atualiza a tela
+				janela.revalidate();
+				janela.repaint();
             }
 
         });
@@ -141,22 +163,23 @@ class ManipulaMenu
  *(acho que ser da visão é mais adequado, não pensei muito sobre ainda)*/
 public class Menu
 {
+
 	public static void main (String args[])
 	{
 		JFrame janela = new JFrame("Banco Curitibano");
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		janela.setSize(1000, 1000);
+
+		//cria os botões
+        Jogar jogar = new Jogar();
+        CarregarJogo carregarJogo = new CarregarJogo();
+        Sair sair = new Sair();
 		
 		String caminho = "logo2.png";
 
 		//adiciona o painel com a imagem à janela
 		TelaInicial painel = new TelaInicial(caminho);
 		janela.add(painel, BorderLayout.CENTER);
-
-		//cria os botões
-		Jogar jogar = new Jogar();
-		CarregarJogo carregarJogo = new CarregarJogo();
-		Sair sair = new Sair();
 
 		//cria um painel para acomodar os botões
 		JPanel painelBotoes = new JPanel();
@@ -174,7 +197,7 @@ public class Menu
 		janela.repaint();
 
 		//ações dos botões
-		jogar.BotaoJogar();
+		jogar.BotaoJogar(janela);
 		carregarJogo.BotaoCarregarJogo();
 		sair.BotaoSair(janela);
 
