@@ -1,26 +1,16 @@
-/* Main para testes com as classes de cartas. APAGAR NA VERSÃO FINAL. */
-package modelo.cartas;
 import controlador.Banco;
 import java.util.ArrayList;
 import modelo.*;
+import modelo.cartas.*;
 
+/* CLASSE USADA APENAS PARA TESTES. APAGAR NA VERSÃO FINAL. */
 public class TestesCartas {
   public static void main(String[] args) {
-    /* TESTES PARA TIPOS ESPECÍFICOS DE CARTAS (no final do arquivo tem os testes que ja foram feitos e os que faltam) */
-    CartaEspera carta = new CartaEspera(0, null, null, 50);
-    Jogador jogador = new Jogador("ana", null);
-    Banco banco = Banco.getInstancia();
-
-    System.out.println("Testes feitos para um tipo especifico de carta:");
-    System.out.printf("Estado do jogador é espera = %b\n", jogador.estaEsperando());
-    carta.acao(jogador, 1);
-    System.out.printf("Estado do jogador é espera = %b\n", jogador.estaEsperando());
-  
     /* TESTES COM A CLASSE ListaCartas */
-    ArrayList<Carta> cartas = ListaCartas.geraLista("cartas.csv", ",");
+    ArrayList<Carta> cartas = ListaCartas.geraLista("modelo/cartas/cartas.csv", ";");
   
-    System.out.println("Testes feitos para a classe ListaCartas:");
-    for (int i = 0; i < cartas.size(); i++) {
+	System.out.println("Testes feitos para a classe ListaCartas:");
+	for (int i = 0; i < cartas.size(); i++) {
       // Imprime os atributos que qualquer carta tem: id, nome, descricao
       System.out.printf("Carta %d:\n", i);
       System.out.printf("- id: %d\n", cartas.get(i).getIndex());
@@ -40,26 +30,16 @@ public class TestesCartas {
       } else if (cartas.get(i) instanceof CartaPerderDinheiro) {
         CartaPerderDinheiro cartaPerder = (CartaPerderDinheiro) cartas.get(i);
         System.out.printf("- dinheiro perdido: %d\n", cartaPerder.getValor());
-      }
+      } else if (cartas.get(i) instanceof CartaPagarOuCadeia) {
+        CartaPagarOuCadeia cartaCadeia = (CartaPagarOuCadeia) cartas.get(i);
+        System.out.printf("- pagar: %d\n", cartaCadeia.getValor());
+      } else if (cartas.get(i) instanceof CartaEspera) {
+    	CartaEspera cartaEspera = (CartaEspera) cartas.get(i);
+		System.out.printf("- rodadas a esperar: %d\n", cartaEspera.getTurnosEspera());
+      } else if (cartas.get(i) instanceof CartaHabeasCorpus) {
+		CartaHabeasCorpus cartaHabeasCorpus = (CartaHabeasCorpus) cartas.get(i);
+		System.out.println("- habeas corpus");
+	  }
     }
   }
 }
-
-
-/* Cartas já testadas e organizadas:
- * - avançar
- * - voltar
- * - ganhar dinheiro
- * - perder dinheiro
- * - pagar ou cadeia
- * 
- * Falta verificar:
- * - Espera
- * 
- * Falta fazer:
- * - Habeas Corpus
- * - Lista de cartas
- * - Lista de cartas do jogador 
- * - Espera: monitorar rodadas esperando
- * - adicionar um exemplo de PagarOuCadeia em cartas.csv
- */
