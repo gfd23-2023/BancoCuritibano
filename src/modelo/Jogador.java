@@ -8,7 +8,7 @@ import javax.swing.ImageIcon;
 public class Jogador {
     private int id;
     private String nome;
-    private ImageIcon foto;
+    //private ImageIcon foto;
     private double dinheiro;
     private int casaAtual;
     private boolean falido;
@@ -18,10 +18,10 @@ public class Jogador {
     private int rodadasEsperando;
 
     // Construtor 
-    public Jogador(int id, String nome, ImageIcon foto) {
+    public Jogador(int id, String nome) {
         this.id = id;
         this.nome = nome;
-        this.foto = foto;
+        //this.foto = foto;
         this.dinheiro = (double) 2000;
         this.casaAtual = 0;
         this.falido = false;
@@ -47,7 +47,7 @@ public class Jogador {
     public void setNome(String nome) {
         this.nome = nome;
     }
-
+/*
     public ImageIcon getFoto() {
         return foto;
     }
@@ -55,7 +55,7 @@ public class Jogador {
     public void setFoto(ImageIcon foto) {
         this.foto = foto;
     }
-
+*/
     public double getDinheiro() {
         return dinheiro;
     }

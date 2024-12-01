@@ -11,7 +11,7 @@ import java.util.*;
 // facil de adicionar/remover estados
 enum Estados {
 	MENU_INICIAL, 
-	MENU_JOGADORES, // escolha dos jogadores
+	MENU_REGISTRO_JOGADORES, // escolha dos jogadores
 	JOGAR_DADOS, // momento para jogar os dados
 	JOGAR_MOVIMENTO, // momento para jogador vai se movimentar
 	JOGAR_CASA // momento para exibir em qual casa jogador caiu
@@ -39,6 +39,7 @@ public class Jogo {
 	ArrayList<Casa> casas;
 	LinkedList<Carta> cartas; // lista ligada (FIFO)
 	Dado dado1, dado2;
+	Banco banco;
 	
 	// construtor
 	public Jogo() {
@@ -50,6 +51,7 @@ public class Jogo {
 		this.cartas = new LinkedList<>();
 		this.dado1 = new Dado();
 		this.dado2 = new Dado();
+		this.banco = banco.getInstancia();
 	}
 
 	
