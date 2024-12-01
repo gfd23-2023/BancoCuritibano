@@ -1,6 +1,4 @@
-import controlador.Banco;
 import java.util.ArrayList;
-import modelo.*;
 import modelo.cartas.*;
 
 /* CLASSE USADA APENAS PARA TESTES. APAGAR NA VERSÃO FINAL. */

@@ -1,6 +1,4 @@
 package modelo.cartas;
-import controlador.Banco;
-import modelo.*;
 
 // Quando recebida por um jogador, pode ser usada para sair da cadeia ou vendida para outro jogador
 public class CartaHabeasCorpus extends Carta {

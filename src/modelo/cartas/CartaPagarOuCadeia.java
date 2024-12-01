@@ -1,6 +1,4 @@
 package modelo.cartas;
-import controlador.Banco;
-import modelo.*;
 
 // Obriga o jogador a pagar ou, se não quiser pagar ou não tiver o dinheiro, ir para a cadeia 
 public class CartaPagarOuCadeia extends Carta {

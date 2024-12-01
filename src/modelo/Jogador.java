@@ -12,9 +12,10 @@ public class Jogador {
 	private ImageIcon foto;
 	
 	// Informações sobre o estado do jogador
-	private double dinheiro;
+	private int dinheiro;
 	private int casaAtual;
 	private boolean falido;
+	private boolean pontoDePartida;
 
 	// Relação do jogador com Cadeia
 	private boolean naCadeia;
@@ -26,20 +27,39 @@ public class Jogador {
 	private int rodadasEsperando;
 	private int rodadasEsperar; // se o jogador está inativo, usada para saber quantas rodadas deve ficar. Se não está, é -1.
 
-	// Construtor 
+	// Construtores
+	// Inicializador (para jogo novo)
 	public Jogador(int id, String nome, ImageIcon foto) {
 	    this.id = id;
 	    this.nome = nome;
 	    this.foto = foto;
-	    this.dinheiro = (double) 2000;
+	    this.dinheiro = 2000;
 	    this.casaAtual = 0;
 	    this.falido = false;
+		this.pontoDePartida = false;
 	    this.naCadeia = false;
 	    this.rodadasNaCadeia = 0;
 		this.habeasCorpus = false;
 	    this.esperando = false;
 	    this.rodadasEsperando = 0;
 		this.rodadasEsperar = -1;
+	}
+
+	// Recebe todos os parametros (para jogo carregado)
+	public Jogador(int id, String nome, ImageIcon foto, int dinheiro, int casaAtual, boolean falido, boolean pontoDePartida, boolean naCadeia, int rodadasNaCadeia, boolean habeasCorpus, boolean esperando, int rodadasEsperando, int rodadasEsperar) {
+	    this.id = id;
+	    this.nome = nome;
+	    this.foto = foto;
+	    this.dinheiro = dinheiro;
+	    this.casaAtual = casaAtual;
+	    this.falido = falido;
+		this.pontoDePartida = pontoDePartida;
+	    this.naCadeia = naCadeia;
+	    this.rodadasNaCadeia = rodadasNaCadeia;
+		this.habeasCorpus = habeasCorpus;
+	    this.esperando = esperando;
+	    this.rodadasEsperando = rodadasEsperando;
+		this.rodadasEsperar = rodadasEsperar;
 	}
     
 	// Getters e Setters 
@@ -67,11 +87,11 @@ public class Jogador {
 	    this.foto = foto;
 	}
 
-	public double getDinheiro() {
+	public int getDinheiro() {
 	    return dinheiro;
 	}
 
-	public void setDinheiro(double dinheiro) {
+	public void setDinheiro(int dinheiro) {
 	    this.dinheiro = dinheiro;
 	}
 
@@ -80,13 +100,17 @@ public class Jogador {
 	}
 
 	// Adiciona a quantidade armazenada em casasAndar na casa atual do jogador. Usa quantCasas para "dar a volta"
-	public void setCasa(int casasAndar, int quantCasas) {
-		if (casaAtual + casasAndar >= quantCasas) {
-			casaAtual = (casaAtual + casasAndar) % quantCasas;
-		} else if (casaAtual + casasAndar < 0) {
-			casaAtual = quantCasas + (casaAtual + casasAndar);
+	public void setCasa(int casaNova, int quantCasas) {
+		if (casaNova >= quantCasas) {
+			casaAtual = casaNova % quantCasas;
+			setPontoDePartida(true);
+		} else if (casaNova < 0) {
+			casaAtual = quantCasas + casaNova;
 		} else {
-			casaAtual += casasAndar;
+			casaAtual = casaNova;
+			if (casaAtual == 0) {
+				setPontoDePartida(true);
+			}
 		}
 	}
 
@@ -96,6 +120,14 @@ public class Jogador {
 
 	public void setFalido() {
 	    falido = true;
+	}
+
+	public boolean passouPontoDePartida() {
+		return pontoDePartida;
+	}
+
+	public void setPontoDePartida(boolean pontoDePartida) {
+		this.pontoDePartida = pontoDePartida;
 	}
 
 	public boolean estaNaCadeia() {

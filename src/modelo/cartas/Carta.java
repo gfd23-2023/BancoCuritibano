@@ -1,5 +1,4 @@
 package modelo.cartas;
-import modelo.*;
 
 // Classe de cartas 
 public class Carta {
