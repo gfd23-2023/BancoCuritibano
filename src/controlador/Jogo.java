@@ -6,19 +6,6 @@ import modelo.cartas.*;
 import java.util.*;
 
 
-// enumeracao dos estados do jogo
-// funcionam como macros/defines
-// facil de adicionar/remover estados
-enum Estados {
-	MENU_INICIAL, 
-	MENU_REGISTRO_JOGADORES, // escolha dos jogadores
-	JOGAR_DADOS, // momento para jogar os dados
-	JOGAR_MOVIMENTO, // momento para jogador vai se movimentar
-	JOGAR_CASA // momento para exibir em qual casa jogador caiu
-	// ...
-}
-
-
 public class Jogo {
 	// classe jogo eh singleton
 	private static Jogo instanciaUnica;
@@ -31,7 +18,7 @@ public class Jogo {
 	}
 		
 	// (ainda nao sei se deixo tudo publico ou privado...)
-	public Estados estado; // guarda estado atual do jogo
+	private Estados estado; // guarda estado atual do jogo
 	public int rodada; // numero da rodada
 	public int jogada; // id do jogador que deve jogar
 	
@@ -52,6 +39,14 @@ public class Jogo {
 		this.dado1 = new Dado();
 		this.dado2 = new Dado();
 		this.banco = banco.getInstancia();
+	}
+
+	public void setEstado(Estados estado) {
+		this.estado = estado;
+	}
+
+	public Estados getEstado() {
+		return estado;
 	}
 
 	

@@ -9,14 +9,18 @@ import java.io.IOException;
 import javax.swing.*;
 import java.io.File;
 import java.awt.*;
+import java.util.*;
 
+// CLASSE TABULEIRO / DISPLAY
+// responsável por trocar a exibição da tela com base no estado do jogo
+// contem as configurações padrões da janela/display
 public class Tabuleiro {
 	
-	public Jogo jogo; // cria novo jogo
-	public Janela janela;	
+	public Jogo jogo; // contem a instancia do jogo
+	public Janela janela; // Jframe 
 	
 	// definicoes da tela
-	final int escala = 8;
+	final int escala = 6; // altere o valor da escala como quiser
 	final int X_SCREEN = 100 * escala;
 	final int Y_SCREEN = 100 * escala;
 
@@ -24,6 +28,26 @@ public class Tabuleiro {
 	public Tabuleiro() {
 		this.jogo = jogo.getInstancia(); // cria jogo
 		this.janela = new Janela(X_SCREEN, Y_SCREEN);
+	}
+	
+	
+	// cria objetos das classes de exibição
+	// assim é possível chamar seus métodos
+	MenuInicial menu = new MenuInicial();
+	MenuRegistro registro = new MenuRegistro();
+
+	// dependendo do estado do jogo, exibe o menu correspondente
+	public void atualizaTabuleiro() {
+
+		switch (jogo.getEstado()) {
+
+			case MENU_INICIAL:
+				menu.exibeMenu(this);
+				break;
+			case MENU_REGISTRO_JOGADORES:
+				registro.exibeRegistro(this);
+				break;
+		}
 	}
 }
 
@@ -36,10 +60,10 @@ class Janela extends JFrame {
 		this.setTitle("Banco Curitibano");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(X_SCREEN, Y_SCREEN);
-		this.setVisible(true);
 		// cria icone com a logo do jogo
 		ImageIcon logo = new ImageIcon("../assets/logoBC.png");
 		this.setIconImage(logo.getImage()); 
 		this.setBackground(new Color(255, 228, 225));
+		this.setVisible(true);
 	}
 }
