@@ -1,26 +1,41 @@
 package modelo.casas;
-import controlador.*;
-import modelo.*;
 
+// Classe de Propriedades
 public class Propriedade extends Casa {
-    private Jogador proprietario;
-    private double valor;
-    private double aluguel;
+    private int idProprietario; // -1 quando não foi comprada ainda
+    private int valor;
+    private int aluguel;
 
-    /* GETTERS E SETTERS */
-    public Jogador getProprietario() {
-        return proprietario;
+	// Construtores
+	public Propriedade(String nome, int index, int coordenadaX, int coordenadaY, int valor, int aluguel) {
+		super(nome, index, coordenadaX, coordenadaY);
+		this.idProprietario = -1; 
+		this.valor = valor;
+		this.aluguel = aluguel;
+	}
+
+	public Propriedade(String nome, int index, int coordenadaX, int coordenadaY, int idProprietario, int valor, int aluguel) {
+		super(nome, index, coordenadaX, coordenadaY);
+		this.idProprietario = idProprietario;
+		this.valor = valor;
+		this.aluguel = aluguel;
+	}
+
+
+    // Getters e setters 
+    public int getIdProprietario() {
+        return idProprietario;
     }
 
-    public void setProprietario(Jogador proprietario) {
-        this.proprietario = proprietario;
+    public void setIdProprietario(int idProprietario) {
+        this.idProprietario = idProprietario;
     }
 
     public double getValor() {
         return valor;
     }
 
-    public void setValor(double valor) {
+    public void setValor(int valor) {
         this.valor = valor;
     }
 
@@ -28,11 +43,12 @@ public class Propriedade extends Casa {
         return aluguel;
     }
 
-    public void setAluguel(double aluguel) {
+    public void setAluguel(int aluguel) {
         this.aluguel = aluguel;
     }
 
-    // Realiza a compra da propriedade pelo comprador
+	/*
+	// Realiza a compra da propriedade pelo comprador
     public void comprar(Jogador comprador) {
         if (proprietario != null) {
             System.out.println("Propriedade já tem um proprietário.");
@@ -75,4 +91,6 @@ public class Propriedade extends Casa {
             pagarAluguel(origem);
         }
     }
+*/
+
 }

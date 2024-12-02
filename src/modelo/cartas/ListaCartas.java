@@ -2,7 +2,7 @@ package modelo.cartas;
 import java.io.*;
 import java.util.ArrayList;
 
-/* Classe que gera a lista de cartas usadas no jogo a partir de um arquivo csv */
+// Classe que gera a lista de cartas usadas no jogo a partir de um arquivo csv 
 public class ListaCartas {
     /* Retorna a lista de cartas do jogo descritas no arquivo passado em caminhoCSV 
      * DEFINIÇÃO DOS TIPOS:
@@ -11,10 +11,12 @@ public class ListaCartas {
      * - 2: Carta de ganhar dinheiro
      * - 3: Carta de perder dinheiro
      * - 4: Carta de pagar ou ir para a cadeia
+     * - 5: Carta de espera
+     * - 6: Carta Habeas Corpus
      */
     public static ArrayList<Carta> geraLista(String caminhoCSV, String separadorCSV) {
-        // Armazena as cartas - retorno do metodo
-        ArrayList<Carta> cartas = new ArrayList<>();
+    	// Armazena as cartas - retorno do metodo
+    	ArrayList<Carta> cartas = new ArrayList<>();
         int i = 0;
 
         // Usadas para leitura do CSV
@@ -44,10 +46,14 @@ public class ListaCartas {
                 } else if (carta[0].equals("3")) { // Carta perder dinheiro
                     cartaAtual = new CartaPerderDinheiro(i, carta[1], carta[2], Integer.parseInt(carta[3]));
                 } else if (carta[0].equals("4")) { // Carta pagar ou ir para a cadeia
-                    cartaAtual = new PagarOuCadeia(i, carta[1], carta[2], Integer.parseInt(carta[3]));
-                } else {
-                    System.out.printf("Tipo nao definido: %s\n", carta[0]);
-                    return null;
+                    cartaAtual = new CartaPagarOuCadeia(i, carta[1], carta[2], Integer.parseInt(carta[3]));
+                } else if (carta[0].equals("5")) { // Carta de espera
+					cartaAtual = new CartaEspera(i, carta[1], carta[2], Integer.parseInt(carta[3]));
+                } else if (carta[0].equals("6")) { // Carta Habeas Corpus
+					cartaAtual = new CartaHabeasCorpus(i, carta[1], carta[2]);
+				} else {
+                	System.out.printf("Tipo nao definido: %s\n", carta[0]);
+                	return null;
                 }
 
                 cartas.add(cartaAtual);

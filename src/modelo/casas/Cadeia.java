@@ -1,8 +1,14 @@
 package modelo.casas;
-import java.util.Scanner;
-import modelo.*;
 
+// Classe que representa a cadeia do jogo.
 public class Cadeia extends Casa {
+
+	// Construtor
+	public Cadeia(String nome, int index, int coordenadaX, int coordenadaY) {
+		super(nome, index, coordenadaX, coordenadaY);
+	}
+
+	/*
     public void acaoChegada(Jogador origem) {
         origem.setNaCadeia(true);
     }
@@ -61,6 +67,6 @@ public class Cadeia extends Casa {
         }
 
         scanner.close();
-    }
+    }*/
 
 }
