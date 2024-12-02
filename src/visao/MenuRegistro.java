@@ -97,6 +97,7 @@ public class MenuRegistro {
 		//adiciona  o painel na tela
 		tabuleiro.janela.getContentPane().add(painelTexto);
 
+
 		//atualiza a tela
 		tabuleiro.janela.revalidate();
 		tabuleiro.janela.repaint();

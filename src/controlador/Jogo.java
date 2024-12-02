@@ -6,7 +6,14 @@ import modelo.cartas.*;
 import java.util.*;
 
 
+// CLASSE JOGO
+// responsável por instanciar todos os componentes do jogo BC
+// possui atributos para controlar o estado, rodadas e jogador da vez
+// ela cria a conexao entre visao e modelo
+// só pode existir UM jogo no programa, logo eh uma classe Singleton
+
 public class Jogo {
+
 	// classe jogo eh singleton
 	private static Jogo instanciaUnica;
 
@@ -17,10 +24,9 @@ public class Jogo {
 		return instanciaUnica;
 	}
 		
-	// (ainda nao sei se deixo tudo publico ou privado...)
 	private Estados estado; // guarda estado atual do jogo
-	public int rodada; // numero da rodada
-	public int jogada; // id do jogador que deve jogar
+	private int rodada; // numero da rodada
+	private int jogada; // id do jogador que deve jogar
 	
 	ArrayList<Jogador> jogadores;
 	ArrayList<Casa> casas;
@@ -41,14 +47,39 @@ public class Jogo {
 		this.banco = banco.getInstancia();
 	}
 
-	public void setEstado(Estados estado) {
-		this.estado = estado;
-	}
+	// getters e setters ---------------------------
 
 	public Estados getEstado() {
 		return estado;
 	}
 
-	
+	public void setEstado(Estados estado) {
+		this.estado = estado;
+	}
 
+	public int getRodada() {
+		return rodada;
+	}
+
+	public int getJogada() {
+		return jogada;
+	}
+/*
+	public void proximaJogada() {
+		++jogada; // incrementa jogada
+	
+		int quant = jogadores.size(); // quantidade de jogadores
+		// se todos os jogadores ja jogaram, vai para proxima rodada
+		if (jogada > quant) {
+			++rodada;
+			jogada = 0;
+		}
+
+		// verifica se jogador pode jogar
+		// colocar se esta esperando
+		if (jogadores.get(jogada).estaFalido() || jogadores.get(jogada).estaNaCadeia()) {
+			this.proximaJogada();
+		}
+	}
+*/
 }

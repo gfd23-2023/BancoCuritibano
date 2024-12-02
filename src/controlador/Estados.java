@@ -1,4 +1,5 @@
 package controlador;
+
 // enumeracao dos estados do jogo
 // funcionam como macros/defines
 // facil de adicionar/remover estados
