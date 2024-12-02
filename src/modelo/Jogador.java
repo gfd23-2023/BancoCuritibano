@@ -83,12 +83,16 @@ public class Jogador {
     public void setCasa(int casaNova, int ultimaCasa) {
         // Se a casa ultrapassa o limite superior do tabuleiro, roda para 0
         if (casaNova > ultimaCasa) {
-            this.casaAtual = casaNova % (ultimaCasa + 1);
+            do { 
+                casaNova = casaNova - ultimaCasa -1;
+            } while (casaNova > ultimaCasa);
+            this.casaAtual = casaNova;
         } else if (casaNova < 0) { // Se a casa ultrapassa o limite inferior do tabuleiro, roda para o limite superior
             this.casaAtual = (ultimaCasa + casaNova + 1);
         } else { // Se está dentro do intervalo, só atribui
             this.casaAtual = casaNova;
         }
+        System.out.printf("FUNCAO casaAtual = %d\n", this.casaAtual);
     }
 
     public boolean ehFalido() {

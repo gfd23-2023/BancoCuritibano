@@ -1,27 +1,67 @@
-/*Classe que gera números aleatórios para os deslocamentos*/
-/*Precisamos pensar em uma forma de impedir a ação dos botões dos
- *dados quando não for momento de girar os dados*/
 package modelo;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-//gera o número aleatório
 public class Dado
 {
-	public static int geraNumero ()
-	{
-		int dados = (int) (Math.random () * 6) + 1;			//gera números de 1 ate 12
+	private int valor; // valor atual do dado
+	// coordenadas (mudei para "pos" pq eh mais curto hihih)
+	private int posX; 
+	private int posY;	
+	//private boolean pressionado = false;
 
-		return dados;
+
+	// getters e setters
+	public int getValor() {
+		return valor;
 	}
+
+	public int getPosX() {
+		return posX;
+	}
+
+	public void setPosX(int x) {
+		this.posX = x;
+	}
+
+	public int getPosY() {
+		return posY;
+	}
+
+	public void setPosY(int y) {
+		this.posY = y;
+	}
+
+
+	// muda o valor do dado para um numero aleatorio entre 1 e 6
+	public void jogaDados() {
+			int dados = (int) (Math.random() * 6) + 1;
+			this.valor = dados;
+	}
+
+	// verifica se jogou dois dados iguais
+	public static boolean dadosIguais(Dado dado1, Dado dado2) {
+		if (dado1.valor == dado2.valor)
+			return true;
+		else
+			return false;
+	}
+
+	/*public void setPressionadoTrue(){
+		this.pressionado = true;
+	}
+
+	public void setPressionadoFalse(){
+		this.pressionado = false;
+	}
+
+	public boolean getPressionado(){
+		return pressionado;
+	}*/
 }
 
 //Ideia: ser um botão que fica o tempo todo no tabuleiro
 /*Só deve ser possível mexer os dados quando as compras forem feitas,
- *aluguéis pagos, não estiver preso e não estiver de férias*/
+ *aluguéis pagos, não estiver preso e não estiver de férias
 class janelaDado
 {
 	JFrame frame = new JFrame("Dados");
@@ -113,3 +153,4 @@ class janelaDado
 		return retorno;
 	}
 }
+*/

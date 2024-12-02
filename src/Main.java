@@ -1,3 +1,4 @@
+import java.lang.*;
 import java.util.*;
 import javax.swing.JFrame;
 import modelo.*;
@@ -10,52 +11,74 @@ public class Main {
     public static void main(String[] args) {
 
         ArrayList<Casa> casas = new ArrayList<>();
-        InicializaCasas(casas);
-
         ArrayList<Jogador> jogadores = new ArrayList<>();
-        InicializaJogadores(jogadores);
 
+        InicializaCasas(casas);
+        InicializaJogadores(jogadores);
         InicializaJogadoresNaCasaInicio(jogadores);
 
-        //Banco banco = new Banco();
-        Dado dado = new Dado();
+        //JFrame window = new JFrame();   
+        GamePanel gamePanel = InicializaTabuleiro(casas, jogadores);
 
+        WhileDoJogo(gamePanel, jogadores);
+
+    }
+
+    public static void WhileDoJogo(GamePanel gamePanel, ArrayList<Jogador> jogadores){
+
+        Jogador jogRodada;
+        int valorDados = -1;
+
+            while (true) {
+                if (gamePanel.getContinuar()) {              // Espera até que o botão seja clicado
+                    gamePanel.SetContinuar(false); // Reseta a variável para o próximo ciclo
+                    
+                    System.out.println("-\n");
+                    jogRodada = jogadores.get((gamePanel.getRodada()-1)%6);
+
+                    gamePanel.setRodada(gamePanel.getRodada(), jogRodada);
+                    //System.out.printf("Rodada=%d\nJogador=%d\nCasa Jogador=%d\n", gamePanel.getRodada(), jogRodada.getId(), jogRodada.getCasa());
+            
+                    if (gamePanel.getDadosRolados()){
+                        valorDados = gamePanel.RetornaValorDados();
+                        try {Thread.sleep(100);} // Evita ocupar 100% da CPU no loop}
+                        catch (InterruptedException ex) {ex.printStackTrace();}
+                    }
+                    
+                    gamePanel.setValorDados(valorDados);
+                    MoveJogador(jogRodada, valorDados);
+                    gamePanel.atualizarTela();
+
+                    //System.out.printf("Casa Jogador=%d\n" ,jogRodada.getCasa());
+                    gamePanel.setFalseDadosRolados();
+                    valorDados = 0;
+                
+                }
+                try { Thread.sleep(100); } 
+                catch (InterruptedException ex) {ex.printStackTrace();}
+            }
+    }
+    
+    public static GamePanel InicializaTabuleiro(ArrayList<Casa> casas, ArrayList<Jogador> jogadores){
         JFrame window = new JFrame();   
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Fecha no X
         window.setResizable(false);
         window.setTitle("Monopoly");
-
+    
         GamePanel gamePanel = new GamePanel(casas, jogadores);
         window.add(gamePanel);
         window.pack(); // Ajusta o JFrame ao tamanho do JPanel
-
+    
         window.setLocationRelativeTo(null); // Centraliza a janela na tela
         window.setVisible(true);
-        
-        /*Scanner scanner = new Scanner(System.in);
-        System.out.println("Escreva 1 para ver o jogador verde indo para casa \"Passeio Publico\":");
-        int numteclado = scanner.nextInt();
-        gamePanel.setRodada(1, jogadores.get(1), 0);
-        if (numteclado == 1){
-            MoveJogador(casas, jogadores.get(1),1);
-            gamePanel.repaint();
-        }
 
-        System.out.println("Escreva 2 para ver o joagador amarelo indo para casa \"Parque Tangua\":");
-        numteclado = scanner.nextInt();
-        gamePanel.setRodada(2, jogadores.get(4), 0);
-        if (numteclado == 2){
-            MoveJogador(casas, jogadores.get(4),11);
-            gamePanel.repaint();
-        }*/
-
+        return gamePanel;
     }
 
-    /*public static void MoveJogador(ArrayList <Casa> casas, Jogador jogador, int NovaCasa){
-        casas.get(jogador.getCasa()).removerJogador(jogador);
-        jogador.setCasa(NovaCasa);
-        casas.get(NovaCasa).adicionarJogador(jogador);
-    }*/
+    public static void MoveJogador(Jogador jogador, int valorDados){
+        System.out.printf("casa nova = %d\n", jogador.getCasa() + valorDados );
+        jogador.setCasa( jogador.getCasa()+ valorDados, 27);
+    }
 
     public static void InicializaCasas(ArrayList<Casa> casas) {
         
@@ -108,7 +131,7 @@ public class Main {
         System.out.println("Inicializando Jogadores nas Casas");
         
         for (int i = 0; i < jogadores.size(); i++){
-            jogadores.get(i).setCasa(0, 28);
+            jogadores.get(i).setCasa(0, 27);
             System.out.printf("Jogador %d na Casa %d\n", jogadores.get(i).getId(), jogadores.get(i).getCasa());
         }  
         
