@@ -21,8 +21,9 @@ public class Tabuleiro {
 	
 	// definicoes da tela
 	final int escala = 6; // altere o valor da escala como quiser
-	final int X_SCREEN = 100 * escala;
-	final int Y_SCREEN = 100 * escala;
+	GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+	final int X_SCREEN = gd.getDisplayMode().getWidth();		//obtem a largura do display DISPONÍVEL 
+	final int Y_SCREEN = gd.getDisplayMode().getHeight();
 
 	// construtor
 	public Tabuleiro() {

@@ -26,8 +26,8 @@ public class MenuInicial {
 		// talvez criar alguma classe com um metodo que faça isso
 		ImageIcon logo = new ImageIcon("src/assets/logoBC.png");
 		Image image = logo.getImage();
-		int scale = tabuleiro.escala * 60;
-		Image logoRes = image.getScaledInstance(scale, scale, Image.SCALE_SMOOTH);
+		int scale = tabuleiro.escala * 100;
+		Image logoRes = image.getScaledInstance(scale, scale + 100, Image.SCALE_SMOOTH);
 		logo = new ImageIcon(logoRes);
 		// adiciona a logo no menu usando uma label
 		JLabel imagem = new JLabel();

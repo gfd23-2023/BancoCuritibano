@@ -11,6 +11,32 @@ import javax.swing.*;
 import java.io.File;
 import java.awt.*;
 
+//Botão de continuar jogo
+class ContinuarJogo extends JPanel
+{
+    JButton continuar = new JButton("Continuar!");
+
+    //personalização do botão
+    public ContinuarJogo()
+    {
+		continuar.setFont(new Font("Times New Roman", Font.BOLD, 25));
+		continuar.setBackground(new Color(255,192,203));
+		continuar.setForeground(new Color(250,128,114));
+        add(continuar);
+    }
+
+    public void acaoContinuar()
+    {
+        continuar.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                //linkar com o tabuleiro
+            }
+        });
+	}
+}
+
 public class MenuRegistro {
 	
 	JLabel texto = new JLabel(String.format("Digite seu nome!"));
@@ -22,6 +48,8 @@ public class MenuRegistro {
 	private JTextField jogador4 = new JTextField(20);
 	private JTextField jogador5 = new JTextField(20);
 	private JTextField jogador6 = new JTextField(20);
+	//botão para continuar jogo
+	private ContinuarJogo continuar = new ContinuarJogo();
 
 	public void PersonalizaCampos()
 	{
@@ -94,9 +122,21 @@ public class MenuRegistro {
 		gbc.gridy = 6;
 		painelTexto.add(jogador6, gbc);
 
+		//posicionamento do botão continuar
+		gbc.gridy = 8;
+		painelTexto.add(continuar, gbc);
+
 		//adiciona  o painel na tela
 		tabuleiro.janela.getContentPane().add(painelTexto);
 
+		//chama o controle para guardar os nomes escritos:
+		tabuleiro.jogo.registroJogador(jogador1);
+		tabuleiro.jogo.registroJogador(jogador2);
+		tabuleiro.jogo.registroJogador(jogador3);
+		tabuleiro.jogo.registroJogador(jogador4);
+		tabuleiro.jogo.registroJogador(jogador5);
+		tabuleiro.jogo.registroJogador(jogador6);
+		//talvez precise alterar o estado do jogo
 
 		//atualiza a tela
 		tabuleiro.janela.revalidate();

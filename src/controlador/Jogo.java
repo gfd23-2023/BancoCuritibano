@@ -5,6 +5,13 @@ import modelo.casas.*;
 import modelo.cartas.*;
 import java.util.*;
 
+//imports para o registro
+//----------------------------------------
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+//----------------------------------------
 
 // CLASSE JOGO
 // responsável por instanciar todos os componentes do jogo BC
@@ -25,10 +32,12 @@ public class Jogo {
 	}
 		
 	private Estados estado; // guarda estado atual do jogo
-	private int rodada; // numero da rodada
-	private int jogada; // id do jogador que deve jogar
+	private int rodada;		// numero da rodada
+	private int jogada;		// id do jogador que deve jogar
+	int participantes = 0;	//quantidade de jogadores
+	int id = 0;				//identificação do jogador
 	
-	ArrayList<Jogador> jogadores;
+	ArrayList<Jogador> jogadores = new ArrayList<>();
 	ArrayList<Casa> casas;
 	LinkedList<Carta> cartas; // lista ligada (FIFO)
 	Dado dado1, dado2;
@@ -63,6 +72,30 @@ public class Jogo {
 
 	public int getJogada() {
 		return jogada;
+	}
+
+	public void registroJogador(JTextField campo)
+	{
+		campo.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				//captura o nome escrito no JTextField em uma variável
+				String nome = campo.getText();
+
+				//se o nome não for vazio...
+				if(!nome.isEmpty())
+				{
+					//adiciona-o à lista, incrementa o número de participantes e o id
+					jogadores.add(new Jogador(id, nome));
+					participantes++;
+					//System.out.printf("%s\n", jogadores.get(id).getNome());	(funcionou)
+
+					//depois que tirar o printf posso subir esse id++
+					id++;
+				}
+			}
+		});
 	}
 /*
 	public void proximaJogada() {
