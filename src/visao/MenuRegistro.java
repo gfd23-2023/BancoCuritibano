@@ -11,34 +11,6 @@ import javax.swing.*;
 import java.io.File;
 import java.awt.*;
 
-//Botão de continuar jogo
-class ContinuarJogo extends JPanel
-{
-    JButton continuar = new JButton("Continuar!");
-
-    //personalização do botão
-    public ContinuarJogo()
-    {
-		continuar.setFont(new Font("Times New Roman", Font.BOLD, 25));
-		continuar.setBackground(new Color(255,192,203));
-		continuar.setForeground(new Color(250,128,114));
-        add(continuar);
-    }
-
-    public void acaoContinuar(Tabuleiro tabuleiro)
-    {
-        continuar.addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-				if (tabuleiro.jogo.registroValido()) {
-					tabuleiro.jogo.setEstado(Estados.JOGANDO);
-					tabuleiro.atualizaTabuleiro();
-				}
-            }
-        });
-	}
-}
 
 public class MenuRegistro {
 	
@@ -51,8 +23,11 @@ public class MenuRegistro {
 	private JTextField jogador4 = new JTextField(20);
 	private JTextField jogador5 = new JTextField(20);
 	private JTextField jogador6 = new JTextField(20);
-	//botão para continuar jogo
+
+	//botoes
 	private ContinuarJogo continuar = new ContinuarJogo();
+    private Voltar voltar = new Voltar();
+    private Sair sair = new Sair();
 
 	public void PersonalizaCampos()
 	{
@@ -120,9 +95,9 @@ public class MenuRegistro {
 		//utiliza o gridbaglayout para empilhar os paineis verticalmente
 		painelTexto.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();//pelo que eu entendi esse layout é como uma matriz
-		gbc.gridx = 0;							//coluna
+		gbc.gridx = 1;							//coluna
 		gbc.gridy = 0;							//linha
-		gbc.insets =  new Insets(10, 0, 10, 0);	//espaçamento (topo, esquerda, baixo, direita)
+		gbc.insets =  new Insets(10, 1, 10, 1);	//espaçamento (topo, esquerda, baixo, direita)
 
 		//adiciona o texto no painel
 		painelTexto.add(texto, gbc);
@@ -146,7 +121,19 @@ public class MenuRegistro {
 
 		//posicionamento do botão continuar
 		gbc.gridy = 8;
+        gbc.gridx = 1;
 		painelTexto.add(continuar, gbc);
+
+        continuar.acaoContinuar(tabuleiro);
+
+		//posicionamento e ação do boão voltar
+		gbc.gridx = 0;
+		painelTexto.add(voltar, gbc);
+		voltar.BotaoVoltar(tabuleiro);
+		//posicionamento e ação do botão sair
+		gbc.gridx = 2;
+		painelTexto.add(sair, gbc);
+		sair.BotaoSair(tabuleiro);
 
 		//adiciona  o painel na tela
 		tabuleiro.janela.getContentPane().add(painelTexto);
@@ -165,3 +152,61 @@ public class MenuRegistro {
 		tabuleiro.janela.repaint();
 	}
 }
+
+//Botão de continuar jogo
+class ContinuarJogo extends JPanel
+{
+    JButton continuar = new JButton("Continuar!");
+
+    //personalização do botão
+    public ContinuarJogo()
+    {
+		continuar.setFont(new Font("Times New Roman", Font.BOLD, 25));
+		continuar.setBackground(new Color(255,192,203));
+		continuar.setForeground(new Color(250,128,114));
+        add(continuar);
+    }
+
+    public void acaoContinuar(Tabuleiro tabuleiro)
+    {
+        continuar.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+				if (tabuleiro.jogo.registroValido()) {
+					tabuleiro.jogo.setEstado(Estados.JOGANDO);
+					tabuleiro.atualizaTabuleiro();
+				}
+            }
+        });
+	}
+}
+
+class Voltar extends JPanel
+{
+	JButton voltar = new JButton("Voltar");
+	//personalização do botão
+	public Voltar()
+	{
+		voltar.setFont(new Font("Times New Roman", Font.BOLD, 25));
+		voltar.setBackground(new Color(255,192,203));
+		voltar.setForeground(new Color(250,128,114));
+		add(voltar);
+	}
+	//ação do botão
+	public void BotaoVoltar(Tabuleiro tabuleiro)
+	{
+		voltar.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				//limpa a tela
+				tabuleiro.janela.getContentPane().removeAll();
+                // atualiza estado
+                tabuleiro.jogo.setEstado(Estados.MENU_INICIAL);
+                tabuleiro.atualizaTabuleiro();
+			}
+		});
+	}
+}
+
