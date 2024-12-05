@@ -5,7 +5,6 @@ import modelo.casas.*;
 import modelo.cartas.*;
 import java.util.*;
 
-
 // CLASSE JOGO
 // responsável por instanciar todos os componentes do jogo BC
 // possui atributos para controlar o estado, rodadas e jogador da vez
@@ -25,8 +24,8 @@ public class Jogo {
 	}
 		
 	private Estados estado; // guarda estado atual do jogo
-	private int rodada; // numero da rodada
-	private int jogada; // id do jogador que deve jogar
+	private int rodada;		// numero da rodada
+	private int jogada;		// id do jogador que deve jogar
 	
 	ArrayList<Jogador> jogadores;
 	ArrayList<Casa> casas;
@@ -64,6 +63,47 @@ public class Jogo {
 	public int getJogada() {
 		return jogada;
 	}
+
+	// métodos de controle -----------------------------------------------------
+
+	// recebe um nome de um jogador e adiciona ele na lista
+	public void registroJogadores(String nome, int id) {
+
+		// vamos ver quantos jogadores já existem
+		int num = jogadores.size(); 
+
+		if (id == num) {
+			// jogador ainda não foi adicionado
+			this.jogadores.add(new Jogador(id, nome));
+		}
+		else {
+			// jogador já existe, vamos atualizar
+			this.jogadores.get(id).setNome(nome);
+		}
+
+		System.out.printf("%d: %s\n", id, jogadores.get(id).getNome());
+	}
+		
+	// verifica se foram registrados jogadores suficientes
+	public boolean registroValido() {
+		// numero total de jogadores
+		int num = jogadores.size();
+		if (num < 2) 
+			return false;
+		else
+			return true;
+	}
+
+    //public void iniciaJogo() {
+        
+
+
+
+
+
+
+
+
 /*
 	public void proximaJogada() {
 		++jogada; // incrementa jogada
