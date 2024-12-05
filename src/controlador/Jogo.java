@@ -67,14 +67,33 @@ public class Jogo {
 	// métodos de controle -----------------------------------------------------
 
 	// recebe um nome de um jogador e adiciona ele na lista
-	public void registroJogadores(String nome) {
+	public void registroJogadores(String nome, int id) {
 
-		// vamos adicionar um novo jogador
-		int id = jogadores.size() + 1; 
-		jogadores.add(new Jogador(id, nome));
-		System.out.printf("%s\n", jogadores.get(id).getNome());
+		// vamos ver quantos jogadores já existem
+		int num = jogadores.size(); 
+
+		if (id == num) {
+			// jogador ainda não foi adicionado
+			this.jogadores.add(new Jogador(id, nome));
+		}
+		else {
+			// jogador já existe, vamos atualizar
+			this.jogadores.get(id).setNome(nome);
+		}
+
+		System.out.printf("%d: %s\n", id, jogadores.get(id).getNome());
 	}
 		
+	// verifica se foram registrados jogadores suficientes
+	public boolean registroValido() {
+		// numero total de jogadores
+		int num = jogadores.size();
+		if (num < 2) 
+			return false;
+		else
+			return true;
+	}
+
 
 
 

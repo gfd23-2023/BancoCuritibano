@@ -25,13 +25,16 @@ class ContinuarJogo extends JPanel
         add(continuar);
     }
 
-    public void acaoContinuar()
+    public void acaoContinuar(Tabuleiro tabuleiro)
     {
         continuar.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                //linkar com o tabuleiro
+				if (tabuleiro.jogo.registroValido()) {
+					tabuleiro.jogo.setEstado(Estados.JOGANDO);
+					tabuleiro.atualizaTabuleiro();
+				}
             }
         });
 	}
@@ -91,7 +94,7 @@ public class MenuRegistro {
 		jogador6.setBackground(new Color(250,240,230));
 	}
 
-	public void registraNomes(Tabuleiro tabuleiro, JTextField campo)
+	public void registraNomes(Tabuleiro tabuleiro, JTextField campo, int id)
 	{
 		campo.addActionListener(new ActionListener(){
 			@Override
@@ -104,7 +107,7 @@ public class MenuRegistro {
 				if(!nome.isEmpty())
 				{
 					//adiciona-o à lista de jogadores
-					tabuleiro.jogo.registroJogadores(nome);
+					tabuleiro.jogo.registroJogadores(nome, id);
 				}
 			}
 		});
@@ -149,12 +152,12 @@ public class MenuRegistro {
 		tabuleiro.janela.getContentPane().add(painelTexto);
 
 		//chama o controle para guardar os nomes escritos:
-		registraNomes(tabuleiro, jogador1);
-		registraNomes(tabuleiro, jogador2);
-		registraNomes(tabuleiro, jogador3);
-		registraNomes(tabuleiro, jogador4);
-		registraNomes(tabuleiro, jogador5);
-		registraNomes(tabuleiro, jogador6);
+		registraNomes(tabuleiro, jogador1, 0);
+		registraNomes(tabuleiro, jogador2, 1);
+		registraNomes(tabuleiro, jogador3, 2);
+		registraNomes(tabuleiro, jogador4, 3);
+		registraNomes(tabuleiro, jogador5, 4);
+		registraNomes(tabuleiro, jogador6, 5);
 		//talvez precise alterar o estado do jogo
 
 		//atualiza a tela
