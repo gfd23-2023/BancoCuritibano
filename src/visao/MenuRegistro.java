@@ -37,6 +37,33 @@ class ContinuarJogo extends JPanel
 	}
 }
 
+//Botão de voltar para a tela inicial
+class Voltar extends JPanel
+{
+	JButton voltar = new JButton("Voltar");
+
+	//personalização do botão
+	public Voltar()
+	{
+		voltar.setFont(new Font("Times New Roman", Font.BOLD, 25));
+		voltar.setBackground(new Color(255,192,203));
+		voltar.setForeground(new Color(250,128,114));
+		add(voltar);
+	}
+
+	//ação do botão
+	public void BotaoVoltar()
+	{
+		voltar.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				//mudar o estado
+			}
+		});
+	}
+}
+
 public class MenuRegistro {
 	
 	JLabel texto = new JLabel(String.format("Digite seu nome!"));
@@ -48,8 +75,11 @@ public class MenuRegistro {
 	private JTextField jogador4 = new JTextField(20);
 	private JTextField jogador5 = new JTextField(20);
 	private JTextField jogador6 = new JTextField(20);
-	//botão para continuar jogo
+
+	//botões
 	private ContinuarJogo continuar = new ContinuarJogo();
+	private Voltar voltar = new Voltar();
+	private Sair sair = new Sair();
 
 	public void PersonalizaCampos()
 	{
@@ -98,9 +128,9 @@ public class MenuRegistro {
 		//utiliza o gridbaglayout para empilhar os paineis verticalmente
 		painelTexto.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();//pelo que eu entendi esse layout é como uma matriz
-		gbc.gridx = 0;							//coluna
+		gbc.gridx = 1;							//coluna
 		gbc.gridy = 0;							//linha
-		gbc.insets =  new Insets(10, 0, 10, 0);	//espaçamento (topo, esquerda, baixo, direita)
+		gbc.insets =  new Insets(10, 1, 10, 1);	//espaçamento (topo, esquerda, baixo, direita)
 
 		//adiciona o texto no painel
 		painelTexto.add(texto, gbc);
@@ -122,9 +152,21 @@ public class MenuRegistro {
 		gbc.gridy = 6;
 		painelTexto.add(jogador6, gbc);
 
-		//posicionamento do botão continuar
+		//posicionamento e ação do botão continuar
 		gbc.gridy = 8;
+		gbc.gridx = 1;
 		painelTexto.add(continuar, gbc);
+		continuar.acaoContinuar();
+
+		//posicionamento e ação do boão voltar
+		gbc.gridx = 0;
+		painelTexto.add(voltar, gbc);
+		voltar.BotaoVoltar();
+
+		//posicionamento e ação do botão sair
+		gbc.gridx = 2;
+		painelTexto.add(sair, gbc);
+		sair.BotaoSair(tabuleiro);
 
 		//adiciona  o painel na tela
 		tabuleiro.janela.getContentPane().add(painelTexto);
