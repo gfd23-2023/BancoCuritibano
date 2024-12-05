@@ -91,6 +91,25 @@ public class MenuRegistro {
 		jogador6.setBackground(new Color(250,240,230));
 	}
 
+	public void registraNomes(Tabuleiro tabuleiro, JTextField campo)
+	{
+		campo.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				//captura o nome escrito no JTextField em uma variável
+				String nome = campo.getText();
+
+				//se o nome não for vazio...
+				if(!nome.isEmpty())
+				{
+					//adiciona-o à lista de jogadores
+					tabuleiro.jogo.registroJogadores(nome);
+				}
+			}
+		});
+	}
+
 	public void exibeRegistro(Tabuleiro tabuleiro) {
 
 		painelTexto.setBackground(new Color(255, 228, 225));
@@ -130,12 +149,12 @@ public class MenuRegistro {
 		tabuleiro.janela.getContentPane().add(painelTexto);
 
 		//chama o controle para guardar os nomes escritos:
-		tabuleiro.jogo.registroJogador(jogador1);
-		tabuleiro.jogo.registroJogador(jogador2);
-		tabuleiro.jogo.registroJogador(jogador3);
-		tabuleiro.jogo.registroJogador(jogador4);
-		tabuleiro.jogo.registroJogador(jogador5);
-		tabuleiro.jogo.registroJogador(jogador6);
+		registraNomes(tabuleiro, jogador1);
+		registraNomes(tabuleiro, jogador2);
+		registraNomes(tabuleiro, jogador3);
+		registraNomes(tabuleiro, jogador4);
+		registraNomes(tabuleiro, jogador5);
+		registraNomes(tabuleiro, jogador6);
 		//talvez precise alterar o estado do jogo
 
 		//atualiza a tela
