@@ -162,8 +162,8 @@ class PaineisAuxiliares{
 
         int boxWidth = 222; // Largura da caixa de texto
         int boxHeight = 100; // Altura da caixa de texto
-        int xPosition = 122; // Posição X da caixa de texto
-        int yPosition = 112; // Posição Y da caixa de texto
+        int xPosition = 132; // Posição X da caixa de texto
+        int yPosition = 122; // Posição Y da caixa de texto
 
         g2.setColor(new Color(220, 220, 220, 200)); // Define a cor do fundo da caixa com transparência
         g2.fillRect(xPosition, yPosition, boxWidth, boxHeight); // Desenha o fundo da caixa de texto
@@ -186,8 +186,8 @@ class PaineisAuxiliares{
 
         int boxWidth = 222; // Largura da caixa de texto
         int boxHeight = 80; // Altura da caixa de texto
-        int xPosition = 122; // Posição X da caixa de texto
-        int yPosition = 240; // Posição Y da caixa de texto
+        int xPosition = 132; // Posição X da caixa de texto
+        int yPosition = 250; // Posição Y da caixa de texto
 
         g2.setColor(new Color(220, 220, 220, 200)); // Define a cor do fundo da caixa com transparência
         g2.fillRect(xPosition, yPosition, boxWidth, boxHeight); // Desenha o fundo da caixa de texto
@@ -325,7 +325,7 @@ class BotaoRodada{
     public void Exibe(PainelDoJogo painelJogo){
         // Use HTML para exibir o texto em duas linhas
         JButton btnRodada = new JButton("<html>Próxima<br>Rodada</html>");
-        Font fontePersonalizada = new Font("Arial", Font.PLAIN, 8); //Define a fonte que vai ser usada 
+        Font fontePersonalizada = new Font("Arial", Font.PLAIN, 9); //Define a fonte que vai ser usada 
         btnRodada.setFont(fontePersonalizada); 
         btnRodada.setBackground(new Color(255, 182, 193)); // Rosa claro (Light Pink)
 
@@ -342,7 +342,7 @@ class BotaoRodada{
         });
         
         painelJogo.setLayout(null); // Usar layout nulo para posicionamento manual
-        btnRodada.setBounds(painelJogo.tamanhoTile * 4 + 130, painelJogo.tamanhoTile + 120, 60, 50); // Ajuste a posição e tamanho, se necessário
+        btnRodada.setBounds(painelJogo.tamanhoTile * 4 + 145, painelJogo.tamanhoTile + 140, 65, 40); // Ajuste a posição e tamanho, se necessário
         painelJogo.add(btnRodada);
     }
 }
@@ -403,8 +403,8 @@ class BotoesDado{
 
         // Adicionar botões ao painel
         painelJogo.setLayout(null); // Usar layout nulo para posicionar manualmente
-        btnDado1.setBounds(painelJogo.tamanhoTile*4 , painelJogo.tamanhoTile + 16, 100, 50); // Posição do botão 1
-        btnDado2.setBounds(painelJogo.tamanhoTile*4 + 100,  painelJogo.tamanhoTile + 16 , 100, 50); // Posição do botão 2
+        btnDado1.setBounds(painelJogo.tamanhoTile*4 +30, painelJogo.tamanhoTile + 46, 100, 60); // Posição do botão 1
+        btnDado2.setBounds(painelJogo.tamanhoTile*4 + 130,  painelJogo.tamanhoTile + 46 , 100, 60); // Posição do botão 2
 
         painelJogo.add(btnDado1);
         painelJogo.add(btnDado2);
@@ -419,8 +419,8 @@ class BotoesDado{
         String dado2Text = "Dado 2: " + painelJogo.dado2.getValor();
 
         // Desenha as strings de texto nas posições especificadas
-        g2.drawString(dado1Text, painelJogo.getTamanhoTile() * 4 +7 , painelJogo.getTamanhoTile() * 2); // Desenha o valor do Dado 1 em uma posição visível
-        g2.drawString(dado2Text, painelJogo.getTamanhoTile() * 4 + 107, painelJogo.getTamanhoTile() * 2); // Desenha o valor do Dado 2 um pouco à direita do Dado 1
+        g2.drawString(dado1Text, painelJogo.getTamanhoTile() * 4 +38 , painelJogo.getTamanhoTile() * 2 +30); // Desenha o valor do Dado 1 em uma posição visível
+        g2.drawString(dado2Text, painelJogo.getTamanhoTile() * 4 + 138, painelJogo.getTamanhoTile() * 2 + 30); // Desenha o valor do Dado 2 um pouco à direita do Dado 1
     
     }
 
