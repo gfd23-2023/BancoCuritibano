@@ -11,31 +11,6 @@ import javax.swing.*;
 import java.io.File;
 import java.awt.*;
 
-//Botão de continuar jogo
-class ContinuarJogo extends JPanel
-{
-    JButton continuar = new JButton("Continuar!");
-
-    //personalização do botão
-    public ContinuarJogo()
-    {
-		continuar.setFont(new Font("Times New Roman", Font.BOLD, 25));
-		continuar.setBackground(new Color(255,192,203));
-		continuar.setForeground(new Color(250,128,114));
-        add(continuar);
-    }
-
-    public void acaoContinuar()
-    {
-        continuar.addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-                //linkar com o tabuleiro
-            }
-        });
-	}
-}
 
 //Botão de voltar para a tela inicial
 class Voltar extends JPanel
@@ -76,10 +51,10 @@ public class MenuRegistro {
 	private JTextField jogador5 = new JTextField(20);
 	private JTextField jogador6 = new JTextField(20);
 
-	//botões
+	//botoes
 	private ContinuarJogo continuar = new ContinuarJogo();
-	private Voltar voltar = new Voltar();
-	private Sair sair = new Sair();
+    private Voltar voltar = new Voltar();
+    private Sair sair = new Sair();
 
 	public void PersonalizaCampos()
 	{
@@ -121,6 +96,25 @@ public class MenuRegistro {
 		jogador6.setBackground(new Color(250,240,230));
 	}
 
+	public void registraNomes(Tabuleiro tabuleiro, JTextField campo, int id)
+	{
+		campo.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				//captura o nome escrito no JTextField em uma variável
+				String nome = campo.getText();
+
+				//se o nome não for vazio...
+				if(!nome.isEmpty())
+				{
+					//adiciona-o à lista de jogadores
+					tabuleiro.jogo.registroJogadores(nome, id);
+				}
+			}
+		});
+	}
+
 	public void exibeRegistro(Tabuleiro tabuleiro) {
 
 		painelTexto.setBackground(new Color(255, 228, 225));
@@ -154,7 +148,7 @@ public class MenuRegistro {
 
 		//posicionamento e ação do botão continuar
 		gbc.gridy = 8;
-		gbc.gridx = 1;
+        gbc.gridx = 1;
 		painelTexto.add(continuar, gbc);
 		continuar.acaoContinuar();
 
@@ -168,16 +162,27 @@ public class MenuRegistro {
 		painelTexto.add(sair, gbc);
 		sair.BotaoSair(tabuleiro);
 
+        continuar.acaoContinuar(tabuleiro);
+
+		//posicionamento e ação do boão voltar
+		gbc.gridx = 0;
+		painelTexto.add(voltar, gbc);
+		voltar.BotaoVoltar(tabuleiro);
+		//posicionamento e ação do botão sair
+		gbc.gridx = 2;
+		painelTexto.add(sair, gbc);
+		sair.BotaoSair(tabuleiro);
+
 		//adiciona  o painel na tela
 		tabuleiro.janela.getContentPane().add(painelTexto);
 
 		//chama o controle para guardar os nomes escritos:
-		tabuleiro.jogo.registroJogador(jogador1);
-		tabuleiro.jogo.registroJogador(jogador2);
-		tabuleiro.jogo.registroJogador(jogador3);
-		tabuleiro.jogo.registroJogador(jogador4);
-		tabuleiro.jogo.registroJogador(jogador5);
-		tabuleiro.jogo.registroJogador(jogador6);
+		registraNomes(tabuleiro, jogador1, 0);
+		registraNomes(tabuleiro, jogador2, 1);
+		registraNomes(tabuleiro, jogador3, 2);
+		registraNomes(tabuleiro, jogador4, 3);
+		registraNomes(tabuleiro, jogador5, 4);
+		registraNomes(tabuleiro, jogador6, 5);
 		//talvez precise alterar o estado do jogo
 
 		//atualiza a tela
@@ -185,3 +190,61 @@ public class MenuRegistro {
 		tabuleiro.janela.repaint();
 	}
 }
+
+//Botão de continuar jogo
+class ContinuarJogo extends JPanel
+{
+    JButton continuar = new JButton("Continuar!");
+
+    //personalização do botão
+    public ContinuarJogo()
+    {
+		continuar.setFont(new Font("Times New Roman", Font.BOLD, 25));
+		continuar.setBackground(new Color(255,192,203));
+		continuar.setForeground(new Color(250,128,114));
+        add(continuar);
+    }
+
+    public void acaoContinuar(Tabuleiro tabuleiro)
+    {
+        continuar.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+				if (tabuleiro.jogo.registroValido()) {
+					tabuleiro.jogo.setEstado(Estados.JOGANDO);
+					tabuleiro.atualizaTabuleiro();
+				}
+            }
+        });
+	}
+}
+
+class Voltar extends JPanel
+{
+	JButton voltar = new JButton("Voltar");
+	//personalização do botão
+	public Voltar()
+	{
+		voltar.setFont(new Font("Times New Roman", Font.BOLD, 25));
+		voltar.setBackground(new Color(255,192,203));
+		voltar.setForeground(new Color(250,128,114));
+		add(voltar);
+	}
+	//ação do botão
+	public void BotaoVoltar(Tabuleiro tabuleiro)
+	{
+		voltar.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				//limpa a tela
+				tabuleiro.janela.getContentPane().removeAll();
+                // atualiza estado
+                tabuleiro.jogo.setEstado(Estados.MENU_INICIAL);
+                tabuleiro.atualizaTabuleiro();
+			}
+		});
+	}
+}
+

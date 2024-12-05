@@ -1,6 +1,6 @@
 package modelo.cartas;
 import java.io.*;
-import java.util.ArrayList;
+import java.util.*;
 
 // Classe que gera a lista de cartas usadas no jogo a partir de um arquivo csv 
 public class ListaCartas {
@@ -14,9 +14,9 @@ public class ListaCartas {
      * - 5: Carta de espera
      * - 6: Carta Habeas Corpus
      */
-    public static ArrayList<Carta> geraLista(String caminhoCSV, String separadorCSV) {
-    	// Armazena as cartas - retorno do metodo
-    	ArrayList<Carta> cartas = new ArrayList<>();
+    public static LinkedList<Carta> geraLista(String caminhoCSV, String separadorCSV) {
+        // Armazena as cartas - retorno do metodo
+        LinkedList<Carta> cartas = new ArrayList<>();
         int i = 0;
 
         // Usadas para leitura do CSV
@@ -56,7 +56,8 @@ public class ListaCartas {
                 	return null;
                 }
 
-                cartas.add(cartaAtual);
+                // adiciona carta no "final do baralho"
+                cartas.addLast(cartaAtual);
                 i++;
             } 
         } // Tratamento de exceções
