@@ -69,7 +69,7 @@ public class MenuRegistro {
 		jogador6.setBackground(new Color(250,240,230));
 	}
 
-	public void registraNomes(Tabuleiro tabuleiro, JTextField campo, int id)
+	public void registraNomes(Display display, JTextField campo, int id)
 	{
 		campo.addActionListener(new ActionListener(){
 			@Override
@@ -82,13 +82,13 @@ public class MenuRegistro {
 				if(!nome.isEmpty())
 				{
 					//adiciona-o à lista de jogadores
-					tabuleiro.jogo.registroJogadores(nome, id);
+					display.jogo.registroJogadores(nome, id);
 				}
 			}
 		});
 	}
 
-	public void exibeRegistro(Tabuleiro tabuleiro) {
+	public void exibeRegistro(Display display) {
 
 		painelTexto.setBackground(new Color(255, 228, 225));
 
@@ -124,32 +124,32 @@ public class MenuRegistro {
         gbc.gridx = 1;
 		painelTexto.add(continuar, gbc);
 
-        continuar.acaoContinuar(tabuleiro);
+        continuar.acaoContinuar(display);
 
 		//posicionamento e ação do boão voltar
 		gbc.gridx = 0;
 		painelTexto.add(voltar, gbc);
-		voltar.BotaoVoltar(tabuleiro);
+		voltar.BotaoVoltar(display);
 		//posicionamento e ação do botão sair
 		gbc.gridx = 2;
 		painelTexto.add(sair, gbc);
-		sair.BotaoSair(tabuleiro);
+		sair.BotaoSair(display);
 
 		//adiciona  o painel na tela
-		tabuleiro.janela.getContentPane().add(painelTexto);
+		display.janela.getContentPane().add(painelTexto);
 
 		//chama o controle para guardar os nomes escritos:
-		registraNomes(tabuleiro, jogador1, 0);
-		registraNomes(tabuleiro, jogador2, 1);
-		registraNomes(tabuleiro, jogador3, 2);
-		registraNomes(tabuleiro, jogador4, 3);
-		registraNomes(tabuleiro, jogador5, 4);
-		registraNomes(tabuleiro, jogador6, 5);
+		registraNomes(display, jogador1, 0);
+		registraNomes(display, jogador2, 1);
+		registraNomes(display, jogador3, 2);
+		registraNomes(display, jogador4, 3);
+		registraNomes(display, jogador5, 4);
+		registraNomes(display, jogador6, 5);
 		//talvez precise alterar o estado do jogo
 
 		//atualiza a tela
-		tabuleiro.janela.revalidate();
-		tabuleiro.janela.repaint();
+		display.janela.revalidate();
+		display.janela.repaint();
 	}
 }
 
@@ -167,15 +167,15 @@ class ContinuarJogo extends JPanel
         add(continuar);
     }
 
-    public void acaoContinuar(Tabuleiro tabuleiro)
+    public void acaoContinuar(Display display)
     {
         continuar.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e)
             {
-				if (tabuleiro.jogo.registroValido()) {
-					tabuleiro.jogo.setEstado(Estados.JOGANDO);
-					tabuleiro.atualizaTabuleiro();
+				if (display.jogo.registroValido()) {
+					display.jogo.setEstado(Estados.JOGANDO);
+					display.atualizaDisplay();
 				}
             }
         });
@@ -194,17 +194,17 @@ class Voltar extends JPanel
 		add(voltar);
 	}
 	//ação do botão
-	public void BotaoVoltar(Tabuleiro tabuleiro)
+	public void BotaoVoltar(Display display)
 	{
 		voltar.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
 				//limpa a tela
-				tabuleiro.janela.getContentPane().removeAll();
+				display.janela.getContentPane().removeAll();
                 // atualiza estado
-                tabuleiro.jogo.setEstado(Estados.MENU_INICIAL);
-                tabuleiro.atualizaTabuleiro();
+                display.jogo.setEstado(Estados.MENU_INICIAL);
+                display.atualizaDisplay();
 			}
 		});
 	}

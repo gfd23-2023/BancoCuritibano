@@ -14,7 +14,7 @@ import java.util.*;
 // CLASSE TABULEIRO / DISPLAY
 // responsável por trocar a exibição da tela com base no estado do jogo
 // contem as configurações padrões da janela/display
-public class Tabuleiro {
+public class Display {
 	
 	public Jogo jogo; // contem a instancia do jogo
 	public Janela janela; // Jframe 
@@ -26,7 +26,7 @@ public class Tabuleiro {
 	final int Y_SCREEN = gd.getDisplayMode().getHeight();
 
 	// construtor
-	public Tabuleiro() {
+	public Display() {
 		this.jogo = jogo.getInstancia(); // cria jogo
 		this.janela = new Janela(X_SCREEN, Y_SCREEN);
 	}
@@ -38,7 +38,7 @@ public class Tabuleiro {
 	MenuRegistro registro = new MenuRegistro();
 
 	// dependendo do estado do jogo, exibe o menu correspondente
-	public void atualizaTabuleiro() {
+	public void atualizaDisplay() {
 
 		switch (jogo.getEstado()) {
 

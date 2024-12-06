@@ -29,7 +29,7 @@ public class Jogador {
 
 	// Construtores
 	// Inicializador (para jogo novo)
-	public Jogador(int id, String nome, ImageIcon foto) {
+	public Jogador(int id, String nome) {
 	    this.id = id;
 	    this.nome = nome;
 	    this.foto = foto;

@@ -15,7 +15,7 @@ import java.awt.Dimension;
 
 public class MenuInicial {
 
-	public void exibeMenu(Tabuleiro tabuleiro) {
+	public void exibeMenu(Display display) {
 
 		//cria os botões
         Jogar jogar = new Jogar();
@@ -26,7 +26,7 @@ public class MenuInicial {
 		// talvez criar alguma classe com um metodo que faça isso
 		ImageIcon logo = new ImageIcon("src/assets/logoBC.png");
 		Image image = logo.getImage();
-		int scale = tabuleiro.escala * 100;
+		int scale = display.escala * 100;
 		Image logoRes = image.getScaledInstance(scale, scale + 100, Image.SCALE_SMOOTH);
 		logo = new ImageIcon(logoRes);
 		// adiciona a logo no menu usando uma label
@@ -36,7 +36,7 @@ public class MenuInicial {
 		imagem.setHorizontalAlignment(JLabel.CENTER);
 		imagem.setBackground(new Color (255, 228, 225));
 		imagem.setOpaque(true);
-		tabuleiro.janela.add(imagem);
+		display.janela.add(imagem);
 
 		//cria um painel para acomodar os botões
 		JPanel painelBotoes = new JPanel();
@@ -49,17 +49,17 @@ public class MenuInicial {
 		painelBotoes.add(sair);
 
 		//adiciona o painel à parte inferior da janela
-		tabuleiro.janela.add(painelBotoes, BorderLayout.SOUTH);
-		tabuleiro.janela.revalidate();
-		tabuleiro.janela.repaint();
+		display.janela.add(painelBotoes, BorderLayout.SOUTH);
+		display.janela.revalidate();
+		display.janela.repaint();
 
 		//ações dos botões
-		jogar.BotaoJogar(tabuleiro);
+		jogar.BotaoJogar(display);
 		carregarJogo.BotaoCarregarJogo();
-		sair.BotaoSair(tabuleiro);
+		sair.BotaoSair(display);
 
 		//torna visível
-		tabuleiro.janela.setVisible(true);
+		display.janela.setVisible(true);
 	}
 }
 
@@ -79,17 +79,17 @@ class Jogar extends JPanel
 	}
 
 
-	public void BotaoJogar(Tabuleiro tabuleiro)
+	public void BotaoJogar(Display display)
 	{
 		jogar.addActionListener(new ActionListener(){
 			// ação do botao jogar
             @Override
             public void actionPerformed(ActionEvent e) {
 				//limpa a tela
-				tabuleiro.janela.getContentPane().removeAll();
+				display.janela.getContentPane().removeAll();
 				// muda estado do jogo para registro dos jogadores
-				tabuleiro.jogo.setEstado(Estados.MENU_REGISTRO_JOGADORES);
-				tabuleiro.atualizaTabuleiro();
+				display.jogo.setEstado(Estados.MENU_REGISTRO_JOGADORES);
+				display.atualizaDisplay();
             }
 
         });
@@ -137,13 +137,13 @@ class Sair extends JPanel
 		add(sair);
 	}
 
-	public void BotaoSair (Tabuleiro tabuleiro)
+	public void BotaoSair (Display display)
 	{
 		sair.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                tabuleiro.janela.dispose();
+                display.janela.dispose();
                 System.exit(0);
             }
         });
