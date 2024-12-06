@@ -11,7 +11,7 @@ import java.io.File;
 import java.awt.*;
 import java.util.*;
 
-// CLASSE TABULEIRO / DISPLAY
+// CLASSE DISPLAY
 // responsável por trocar a exibição da tela com base no estado do jogo
 // contem as configurações padrões da janela/display
 public class Display {

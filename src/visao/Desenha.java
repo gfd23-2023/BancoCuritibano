@@ -58,6 +58,8 @@ public class Desenha {
 		// centraliza o texto
 		bloco.setHorizontalTextPosition(JLabel.CENTER);
 		bloco.setVerticalTextPosition(JLabel.CENTER);
+		bloco.setHorizontalAlignment(JLabel.CENTER);
+		bloco.setVerticalAlignment(JLabel.CENTER);
 
 		// define a cor da casa
 		Color cor1 = new Color(245, 54, 102);
@@ -68,9 +70,6 @@ public class Desenha {
 		bloco.setBounds(x, y, tam, tam);
 
 		Border borda = new LineBorder(cor1, 3);
-		//Border ajuste = new EmptyBorder(1, 1, 1, 1);
-		//Border bordaComp = new CompoundBorder(ajuste, borda);
-		//bloco.setBorder(bordaComp);
 		bloco.setBorder(borda);
 		bloco.setBackground(cor2);
 		bloco.setOpaque(true);
@@ -79,6 +78,33 @@ public class Desenha {
     }
 
 
+	public static void desenhaRodada(Display display) {
 
+		// melhor criar dois textos e add no panel
 
+		String texto = String.format("Rodada: %d\nJogador: %s", display.jogo.getRodada(), display.jogo.getJogada());
+		JLabel infoRodada = new JLabel(texto);
+		// centraliza o texto
+		infoRodada.setHorizontalTextPosition(JLabel.CENTER);
+		infoRodada.setVerticalTextPosition(JLabel.CENTER);
+		infoRodada.setHorizontalAlignment(JLabel.CENTER);
+		infoRodada.setVerticalAlignment(JLabel.CENTER);
+		
+
+		// define a cor da casa
+		Color cor1 = new Color(245, 54, 102);
+		Color cor2 = new Color(255,212,219);
+
+		infoRodada.setForeground(cor1);
+		infoRodada.setFont(new Font("CourierNew", Font.BOLD, 15));
+		int tam = display.Y_SCREEN/10;
+		infoRodada.setBounds(display.Y_SCREEN, tam/2, 4*tam, tam);
+
+		Border borda = new LineBorder(cor1, 3);
+		infoRodada.setBorder(borda);
+		infoRodada.setBackground(cor2);
+		infoRodada.setOpaque(true);
+
+		display.janela.add(infoRodada);
+	}
 }

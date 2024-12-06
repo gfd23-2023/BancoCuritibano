@@ -22,7 +22,7 @@ public class Tabuleiro {
 	public void exibeTabuleiro(Display display) {
 		
 		Desenha.desenhaCasas(display);
-
+		Desenha.desenhaRodada(display);
 		display.janela.repaint();
 	}
 
