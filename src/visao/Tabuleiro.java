@@ -17,19 +17,15 @@ import java.awt.*;
 // tem métodos de exibição para cada informação do jogo
 // chama métodos de outras classes auxiliares da visão
 
-public class Tabuleiro extends JPanel {
-	
-	@Override
-	public void paintComponent(Graphics g) {
-		super.paintComponent(g);
-		Display display = Display.getInstancia();
-		Graphics2D g2 = (Graphics2D) g;
-		Desenha.desenhaCasas(display, g2);
-	}
+public class Tabuleiro {
 
 	public void exibeTabuleiro(Display display) {
+		
+		Desenha.desenhaCasas(display);
+
 		display.janela.repaint();
 	}
+
 
 
 

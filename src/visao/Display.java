@@ -57,7 +57,7 @@ public class Display {
 				registro.exibeRegistro(this);
 				break;
 			case JOGANDO:
-				janela.add(tabuleiro);
+				jogo.iniciaCasas();
 				tabuleiro.exibeTabuleiro(this);
 				break;
 		}
