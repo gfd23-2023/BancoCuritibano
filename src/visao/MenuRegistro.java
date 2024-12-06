@@ -13,7 +13,7 @@ import java.awt.*;
 
 
 //Botão de voltar para a tela inicial
-class Voltar extends JPanel
+/*class Voltar extends JPanel
 {
 	JButton voltar = new JButton("Voltar");
 
@@ -37,7 +37,7 @@ class Voltar extends JPanel
 			}
 		});
 	}
-}
+}*/
 
 public class MenuRegistro {
 	
@@ -150,12 +150,12 @@ public class MenuRegistro {
 		gbc.gridy = 8;
         gbc.gridx = 1;
 		painelTexto.add(continuar, gbc);
-		continuar.acaoContinuar();
+		continuar.acaoContinuar(tabuleiro);
 
 		//posicionamento e ação do boão voltar
 		gbc.gridx = 0;
 		painelTexto.add(voltar, gbc);
-		voltar.BotaoVoltar();
+		voltar.BotaoVoltar(tabuleiro);
 
 		//posicionamento e ação do botão sair
 		gbc.gridx = 2;
@@ -213,6 +213,12 @@ class ContinuarJogo extends JPanel
             {
 				if (tabuleiro.jogo.registroValido()) {
 					tabuleiro.jogo.setEstado(Estados.JOGANDO);
+					//limpa a tela
+					tabuleiro.janela.getContentPane().removeAll();
+					//atualiza a janela
+					tabuleiro.janela.getContentPane().revalidate();
+					tabuleiro.janela.getContentPane().repaint();
+					//atualiza o tabuleiro
 					tabuleiro.atualizaTabuleiro();
 				}
             }

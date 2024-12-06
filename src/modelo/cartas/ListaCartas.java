@@ -16,7 +16,7 @@ public class ListaCartas {
      */
     public static LinkedList<Carta> geraLista(String caminhoCSV, String separadorCSV) {
         // Armazena as cartas - retorno do metodo
-        LinkedList<Carta> cartas = new ArrayList<>();
+        LinkedList<Carta> cartas = new LinkedList<>();
         int i = 0;
 
         // Usadas para leitura do CSV
