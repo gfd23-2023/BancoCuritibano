@@ -66,7 +66,7 @@ public class Desenha {
 		Color cor2 = new Color(255,212,219);
 
 		bloco.setForeground(cor1);
-		bloco.setFont(new Font("CourierNew", Font.BOLD, tam/8));
+		bloco.setFont(new Font("CourierNew", Font.BOLD, tam/6));
 		bloco.setBounds(x, y, tam, tam);
 
 		Border borda = new LineBorder(cor1, 3);
@@ -80,31 +80,94 @@ public class Desenha {
 
 	public static void desenhaRodada(Display display) {
 
-		// melhor criar dois textos e add no panel
+		display.janela.setLayout(null);
+		// painel da rodada e jogador da vez
+		JPanel painel = new JPanel();
+		painel.setLayout(new GridLayout(2,1)); // duas linhas, uma coluna
 
-		String texto = String.format("Rodada: %d\nJogador: %s", display.jogo.getRodada(), display.jogo.getJogada());
-		JLabel infoRodada = new JLabel(texto);
+		// cria labels para guardar o texto
+		JLabel rodada = new JLabel();
+		JLabel jogador = new JLabel();
+
+		// adiciona textos
+		rodada.setText(String.format("Rodada: %d", display.jogo.getRodada()));
+		// nome do jogador da vez
+		String nome = display.jogo.jogadores.get(display.jogo.getJogada()).getNome();
+		jogador.setText(String.format("Jogador: %s", nome));
+
 		// centraliza o texto
-		infoRodada.setHorizontalTextPosition(JLabel.CENTER);
-		infoRodada.setVerticalTextPosition(JLabel.CENTER);
-		infoRodada.setHorizontalAlignment(JLabel.CENTER);
-		infoRodada.setVerticalAlignment(JLabel.CENTER);
+		rodada.setHorizontalTextPosition(JLabel.CENTER);
+		rodada.setVerticalTextPosition(JLabel.TOP);
+		rodada.setHorizontalAlignment(JLabel.CENTER);
+		rodada.setVerticalAlignment(JLabel.TOP);
+		jogador.setHorizontalTextPosition(JLabel.CENTER);
+		jogador.setVerticalTextPosition(JLabel.BOTTOM);
+		jogador.setHorizontalAlignment(JLabel.CENTER);
+		jogador.setVerticalAlignment(JLabel.BOTTOM);
 		
-
-		// define a cor da casa
+		// define as cores
 		Color cor1 = new Color(245, 54, 102);
 		Color cor2 = new Color(255,212,219);
 
-		infoRodada.setForeground(cor1);
-		infoRodada.setFont(new Font("CourierNew", Font.BOLD, 15));
-		int tam = display.Y_SCREEN/10;
-		infoRodada.setBounds(display.Y_SCREEN, tam/2, 4*tam, tam);
+		// seta cores dos textos
+		rodada.setForeground(cor1);
+		rodada.setFont(new Font("CourierNew", Font.BOLD, 20));
+		jogador.setForeground(cor1);
+		jogador.setFont(new Font("CourierNew", Font.BOLD, 20));
 
-		Border borda = new LineBorder(cor1, 3);
-		infoRodada.setBorder(borda);
-		infoRodada.setBackground(cor2);
-		infoRodada.setOpaque(true);
+		int pos = display.X_SCREEN*3/5;
+		int tam = display.Y_SCREEN/20;
+		painel.setBounds(pos, tam, 8*tam, 2*tam);
 
-		display.janela.add(infoRodada);
+		Border ajuste = new EmptyBorder(10, 10, 10, 10);
+		rodada.setBorder(ajuste);
+		jogador.setBorder(ajuste);
+		painel.setBackground(cor2);
+
+		painel.add(rodada);
+		painel.add(jogador);
+
+		display.janela.add(painel);
+		display.janela.revalidate();
 	}
+
+	public static void desenhaDados(Display display) {
+
+		// guarda caminho da imagem do dado atual
+		String caminho1 = String.format("src/assets/dado%d.png", display.jogo.dado1.getValor());
+		String caminho2 = String.format("src/assets/dado%d.png", display.jogo.dado2.getValor());
+
+		// carrega imagem e redimensiona o seu tamanho
+		ImageIcon imgDado1 = new ImageIcon(caminho1);
+		Image image = imgDado1.getImage();
+		int tam = display.Y_SCREEN/15;
+		Image imgDadoRes = image.getScaledInstance(tam, tam, Image.SCALE_SMOOTH);
+		imgDado1 = new ImageIcon(imgDadoRes);
+
+		ImageIcon imgDado2 = new ImageIcon(caminho2);
+		image = imgDado2.getImage();
+		imgDadoRes = image.getScaledInstance(tam, tam, Image.SCALE_SMOOTH);
+		imgDado2 = new ImageIcon(imgDadoRes);
+
+		JLabel dado1 = new JLabel(imgDado1);
+		JLabel dado2 = new JLabel(imgDado2);
+
+		Border ajuste = new EmptyBorder(10, 10, 10, 10);
+		dado1.setBorder(ajuste);
+		dado2.setBorder(ajuste);
+
+		JPanel painel = new JPanel();
+		painel.setLayout(new GridLayout(1,2));
+
+		painel.setBounds(6*tam, 3*tam, 4*tam, 2*tam);
+
+		painel.add(dado1);
+		painel.add(dado2);
+
+		display.janela.add(painel);
+		display.janela.revalidate();
+
+	}
+
+
 }
