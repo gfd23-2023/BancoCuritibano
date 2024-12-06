@@ -4,11 +4,18 @@ package modelo.casas;
 public class Casa {
     private String nome;
     private int index;
-    private int coordenadaX;
-    private int coordenadaY;
+	private int coordenadaX;
+	private int coordenadaY;
+
 
 	// Construtor
 	public Casa() {}
+
+
+    public Casa(String nome, int index) {
+        this.nome = nome; 
+        this.index = index;
+	}
 
     public Casa(String nome, int index, int coordenadaX, int coordenadaY) {
         this.nome = nome; 
@@ -36,4 +43,8 @@ public class Casa {
     public int getCoordenadaY() {
         return this.coordenadaY;
     }
+    public void setCasa(String nome, int index) {
+        this.nome = nome; 
+        this.index = index;
+	}
 }

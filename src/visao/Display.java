@@ -30,12 +30,20 @@ public class Display {
 		this.jogo = jogo.getInstancia(); // cria jogo
 		this.janela = new Janela(X_SCREEN, Y_SCREEN);
 	}
+
+	// display é singleton
+	private static Display instanciaUnica;
+	// retorna a unica instancia do display (cria uma se nao existir)
+	public static synchronized Display getInstancia() {
+		if (instanciaUnica == null) 
+			instanciaUnica = new Display();
+		return instanciaUnica;
+	}
 	
-	
-	// cria objetos das classes de exibição
-	// assim é possível chamar seus métodos
 	MenuInicial menu = new MenuInicial();
 	MenuRegistro registro = new MenuRegistro();
+	Tabuleiro tabuleiro = new Tabuleiro();
+	
 
 	// dependendo do estado do jogo, exibe o menu correspondente
 	public void atualizaDisplay() {
@@ -47,6 +55,10 @@ public class Display {
 				break;
 			case MENU_REGISTRO_JOGADORES:
 				registro.exibeRegistro(this);
+				break;
+			case JOGANDO:
+				janela.add(tabuleiro);
+				tabuleiro.exibeTabuleiro(this);
 				break;
 		}
 	}
