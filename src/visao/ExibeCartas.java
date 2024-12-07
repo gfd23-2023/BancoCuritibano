@@ -3,6 +3,7 @@
 package visao;
 
 import controlador.*;
+import modelo.cartas.*;
 import modelo.*;
 
 //Imports para desenhar o retângulo da carta
@@ -25,12 +26,19 @@ import java.awt.AlphaComposite;
 import java.awt.image.BufferedImage;
 /*----------------------------------------*/
 
+//Import para o texto
+/*----------------------------------------*/
+import java.util.ArrayList;
+import javax.swing.*;
+import java.awt.*;
+/*----------------------------------------*/
+
 public class ExibeCartas extends JPanel
 {
 	private BufferedImage logoFundo;				//imagem que vai ficar no fundo da carta
-	//talvez colocar o texto aqui, não sei
+	String mensagem;								//mensagem da carta
 
-	public void exibeCartas(Tabuleiro tabuleiro)
+	public void exibeCartas(Tabuleiro tabuleiro, Carta carta)
 	{
 		/*cor do painel ATUAL (talvez isso precise mudar)*/
         setBackground(new Color(255, 228, 225));
@@ -41,6 +49,9 @@ public class ExibeCartas extends JPanel
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
+		//pega a mesagem da carta
+		mensagem = carta.getDescricao();
 
 		//adiciona o painel ATUAL à janela
 		tabuleiro.janela.getContentPane().add(this);
@@ -91,14 +102,60 @@ public class ExibeCartas extends JPanel
 			int coordY = (alturaPainel - alturaLogo)/2;
 
 			Composite originalComposite = g2d.getComposite();
-			float opacidade = 0.2f;							//0.0 transparente, 1.0 opaco
+			float opacidade = 0.1f;							//0.0 transparente, 1.0 opaco
 			g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacidade));
 			g2d.drawImage(logoFundo, coordX, coordY, larguraLogo, alturaLogo, this);
 			g2d.setComposite(originalComposite);			//restaura o composite original
 		}
 		/*----------------------------------------------------------------------------------*/
+
+		// Ajusta dinamicamente o texto para ficar centralizado
+		FontMetrics fm = g2d.getFontMetrics();
+		ArrayList<String> linhas = new ArrayList<>(); // Lista que armazenará as linhas quebradas
+		StringBuilder linhaAtual = new StringBuilder();
+		int larguraMaxima = larguraCarta - 10;
+
+		for (String palavra : mensagem.split(" ")) 
+		{
+			// Cria uma linha temporária juntando a linha atual com a próxima palavra
+			String linhaTemp = linhaAtual.toString() + (linhaAtual.length() > 0 ? " " : "") + palavra;
+
+			// Verifica se a largura da linha temporária excede o limite
+			if (fm.stringWidth(linhaTemp) > larguraMaxima) {
+			// Adiciona a linha atual à lista
+			linhas.add(linhaAtual.toString());
+			// Começa uma nova linha com a palavra atual
+			linhaAtual = new StringBuilder(palavra);
+			} 
+			else 
+			{
+				// Adiciona a palavra à linha atual
+				if (linhaAtual.length() > 0) {
+					linhaAtual.append(" ");
+				}
+				linhaAtual.append(palavra);
+			}
+		}
+
+		// Adiciona a última linha, se existir
+		if (linhaAtual.length() > 0) {
+			linhas.add(linhaAtual.toString());
+		}
+
+		// Centraliza e desenha as linhas na carta
+		int linhaAltura = fm.getHeight();
+		int startY = posY + (alturaCarta - (linhas.size() * linhaAltura)) / 2;
+
+		for (int i = 0; i < linhas.size(); i++) 
+		{
+			int linhaLargura = fm.stringWidth(linhas.get(i));
+			int linhaX = posX + (larguraCarta - linhaLargura) / 2;
+			int linhaY = startY + (i * linhaAltura);
+			g2d.drawString(linhas.get(i), linhaX, linhaY);
+		}
 	}
 
+	//passar a casa como parâmetro e usar o texto e descrição dela
 	public void desenhaCarta(Tabuleiro tabuleiro)
 	{
 		tabuleiro.janela.revalidate();

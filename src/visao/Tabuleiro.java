@@ -1,6 +1,7 @@
 package visao;
 import controlador.*;
 import modelo.*;
+import modelo.cartas.*;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.awt.event.ActionEvent;
@@ -40,6 +41,8 @@ public class Tabuleiro {
 	//constroi o painel de cartas
 	ExibeCartas cartaVisual = new ExibeCartas();
 
+	//cartas: tabuleiro.jogo.cartas (pra acessar - trocar tabuleiro po display)
+
 	// dependendo do estado do jogo, exibe o menu correspondente
 	public void atualizaTabuleiro() {
 
@@ -51,7 +54,7 @@ public class Tabuleiro {
 			case MENU_REGISTRO_JOGADORES:
 				registro.exibeRegistro(this);
 			case JOGANDO:
-				cartaVisual.exibeCartas(this);
+				cartaVisual.exibeCartas(this, this.jogo.cartas.get(12));
 				cartaVisual.desenhaCarta(this);
 				break;
 		}
