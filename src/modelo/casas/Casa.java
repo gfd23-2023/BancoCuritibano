@@ -26,4 +26,9 @@ public class Casa {
     public void setIndex(int index) {
         this.index = index;
     }
+
+    public void setCasa(String nome, int index) {
+        this.nome = nome; 
+        this.index = index;
+    }
 }

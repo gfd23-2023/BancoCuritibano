@@ -27,16 +27,16 @@ public class Jogo {
 	private int rodada;		// numero da rodada
 	private int jogada;		// id do jogador que deve jogar
 	
-	ArrayList<Jogador> jogadores;
-	ArrayList<Casa> casas;
+	public ArrayList<Jogador> jogadores;
+	public ArrayList<Casa> casas;
 	public LinkedList<Carta> cartas; // lista ligada (FIFO)
-	Dado dado1, dado2;
-	Banco banco;
+	public Dado dado1, dado2;
+	public Banco banco;
 	
 	// construtor
 	public Jogo() {
 		this.estado = Estados.MENU_INICIAL;
-		this.rodada = 0;
+		this.rodada = 1;
 		this.jogada = 0;
 		this.jogadores = new ArrayList<>();
 		this.casas = new ArrayList<>();
@@ -44,7 +44,47 @@ public class Jogo {
 		this.dado1 = new Dado();
 		this.dado2 = new Dado();
 		this.banco = banco.getInstancia();
+		this.iniciaCasas();
 	}
+
+	// função provisória
+	public void iniciaCasas() {
+		for (int i = 0; i < 28; i++)
+            casas.add(new Casa());
+
+        // Adiciona as casas com seus respectivos nomes, posições e valores
+        casas.get(0).setCasa("Início", 0);
+        casas.get(1).setCasa("Passeio Público", 1);
+        casas.get(2).setCasa("Sorte ou    Azar?", 2);
+        casas.get(3).setCasa("Calçadão R.XV", 3);
+        casas.get(4).setCasa("Gibiteca", 4);
+        casas.get(5).setCasa("UFPR Prédio Histórico", 5);
+        casas.get(6).setCasa("Paço da Liberdade", 6);
+        casas.get(7).setCasa("Cadeia", 7);
+        casas.get(8).setCasa("Sorte ou Azar?", 8);
+        casas.get(9).setCasa("Museu Oscar Niemeyer", 9);
+        casas.get(10).setCasa("Santa Felicidade", 10);
+        casas.get(11).setCasa("UFPR Politécnico", 11);
+        casas.get(12).setCasa("UFPR Jardim Botânico", 12);
+        casas.get(13).setCasa("Jardim Botânico", 13);
+        casas.get(14).setCasa("Linha de Turismo (Volte para o Início)", 14);
+        casas.get(15).setCasa("Teatro Guaíra", 15);
+        casas.get(16).setCasa("Shopping Barigui", 16);
+        casas.get(17).setCasa("Parque Barigui", 17);
+        casas.get(18).setCasa("Mercado Municipal", 18);
+        casas.get(19).setCasa("Parque Tingui", 19);
+        casas.get(20).setCasa("Bosque Alemão", 20);
+        casas.get(21).setCasa("BLITZ (Pague R$100 ou vá preso)", 21);
+        casas.get(22).setCasa("Praça do Japão", 22);
+        casas.get(23).setCasa("Sorte ou Azar?", 23);
+        casas.get(24).setCasa("Torre Panorâmica", 24);
+        casas.get(25).setCasa("Catedral Curitiba", 25);
+        casas.get(26).setCasa("Shopping Pátio Batel", 26);
+        casas.get(27).setCasa("Prefeitura de Curitiba", 27);
+    }
+
+		
+
 
 	// getters e setters ---------------------------
 
@@ -94,7 +134,23 @@ public class Jogo {
 			return true;
 	}
 
-    //public void iniciaJogo() {
+	public void jogaDados() {
+		dado1.jogaDados();
+		dado2.jogaDados();
+	}
+
+	public int valorDados() {
+		int valor = dado1.getValor() + dado2.getValor();
+		return valor;
+	}
+
+	// movimenta jogador da vez 1 casa
+	public void movimentaJogador() {	
+		int casaAtual = jogadores.get(jogada).getCasa();
+		jogadores.get(jogada).setCasa(casaAtual+1, casas.size());
+	}
+
+
         
 
 

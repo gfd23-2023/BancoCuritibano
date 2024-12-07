@@ -150,6 +150,7 @@ public class MenuRegistro {
 		gbc.gridy = 8;
         gbc.gridx = 1;
 		painelTexto.add(continuar, gbc);
+
 		continuar.acaoContinuar(display);
 
 		//posicionamento e ação do boão voltar
@@ -212,13 +213,8 @@ class ContinuarJogo extends JPanel
             public void actionPerformed(ActionEvent e)
             {
 				if (display.jogo.registroValido()) {
-					display.jogo.setEstado(Estados.JOGANDO);
-					//limpa a tela
 					display.janela.getContentPane().removeAll();
-					//atualiza a janela
-					display.janela.getContentPane().revalidate();
-					display.janela.getContentPane().repaint();
-					//atualiza o display
+					display.jogo.setEstado(Estados.JOGAR_DADOS);
 					display.atualizaDisplay();
 				}
             }

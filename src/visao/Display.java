@@ -1,7 +1,6 @@
 package visao;
 import controlador.*;
 import modelo.*;
-import modelo.cartas.*;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.awt.event.ActionEvent;
@@ -12,7 +11,7 @@ import java.io.File;
 import java.awt.*;
 import java.util.*;
 
-// CLASSE TABULEIRO / DISPLAY
+// CLASSE DISPLAY
 // responsável por trocar a exibição da tela com base no estado do jogo
 // contem as configurações padrões da janela/display
 public class Display {
@@ -31,17 +30,20 @@ public class Display {
 		this.jogo = jogo.getInstancia(); // cria jogo
 		this.janela = new Janela(X_SCREEN, Y_SCREEN);
 	}
+
+	// display é singleton
+	private static Display instanciaUnica;
+	// retorna a unica instancia do display (cria uma se nao existir)
+	public static synchronized Display getInstancia() {
+		if (instanciaUnica == null) 
+			instanciaUnica = new Display();
+		return instanciaUnica;
+	}
 	
-	
-	// cria objetos das classes de exibição
-	// assim é possível chamar seus métodos
 	MenuInicial menu = new MenuInicial();
 	MenuRegistro registro = new MenuRegistro();
-
-	//constroi o painel de cartas
-	ExibeCartas cartaVisual = new ExibeCartas();
-
-	//cartas: display.jogo.cartas (pra acessar - trocar display po display)
+	Tabuleiro tabuleiro = new Tabuleiro();
+	
 
 	// dependendo do estado do jogo, exibe o menu correspondente
 	public void atualizaDisplay() {
@@ -53,9 +55,13 @@ public class Display {
 				break;
 			case MENU_REGISTRO_JOGADORES:
 				registro.exibeRegistro(this);
-			case JOGANDO:
-				cartaVisual.exibeCartas(this, this.jogo.cartas.get(12));
-				cartaVisual.desenhaCarta(this);
+				break;
+			case JOGAR_DADOS:
+				BotoesJogo.exibeJogarDados(this);
+				tabuleiro.exibeTabuleiro(this);
+				break;
+			case JOGAR_MOVIMENTO:
+				tabuleiro.movimentoTabuleiro(this);
 				break;
 		}
 	}
@@ -70,7 +76,6 @@ class Janela extends JFrame {
 		this.setTitle("Banco Curitibano");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(X_SCREEN, Y_SCREEN);
-
 		// cria icone com a logo do jogo
 		ImageIcon logo = new ImageIcon("../assets/logoBC.png");
 		this.setIconImage(logo.getImage()); 
