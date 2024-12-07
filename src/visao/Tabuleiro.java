@@ -22,11 +22,12 @@ public class Tabuleiro {
 	// jogando dados
 	public void exibeTabuleiro(Display display) {
 		// desenha infos do tabuleiro
+		Desenha.desenhaCarta(display, false);
 		Desenha.desenhaJogadores(display);
 		Desenha.desenhaCasas(display);
-		Desenha.desenhaRodada(display);
+		DesenhaInfo.desenhaInfoRodada(display);
 		Desenha.desenhaDados(display);
-		Desenha.desenhaInfoJogadores(display);
+		DesenhaInfo.desenhaInfoJogadores(display);
 		display.janela.repaint();
 	}
 

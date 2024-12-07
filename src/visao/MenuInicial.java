@@ -23,7 +23,6 @@ public class MenuInicial {
         Sair sair = new Sair();
 		
 		// carrega imagem da logo e redimensiona o seu tamanho
-		// talvez criar alguma classe com um metodo que faça isso
 		ImageIcon logo = new ImageIcon("src/assets/logoBC.png");
 		Image image = logo.getImage();
 		int scale = display.escala * 100;
