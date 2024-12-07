@@ -4,6 +4,8 @@
 
 package modelo;
 import javax.swing.ImageIcon;
+import java.util.ArrayList;
+import modelo.casas.*;
 
 public class Jogador {
 	// Características do jogador
@@ -16,6 +18,7 @@ public class Jogador {
 	private int casaAtual;
 	private boolean falido;
 	private boolean pontoDePartida;
+	private ArrayList<Propriedade> propriedades;
 
 	// Relação do jogador com Cadeia
 	private boolean naCadeia;
@@ -46,7 +49,7 @@ public class Jogador {
 	}
 
 	// Recebe todos os parametros (para jogo carregado)
-	public Jogador(int id, String nome, ImageIcon foto, int dinheiro, int casaAtual, boolean falido, boolean pontoDePartida, boolean naCadeia, int rodadasNaCadeia, boolean habeasCorpus, boolean esperando, int rodadasEsperando, int rodadasEsperar) {
+	public Jogador(int id, String nome, ImageIcon foto, int dinheiro, int casaAtual, boolean falido, boolean pontoDePartida, ArrayList<Propriedade> propriedades, boolean naCadeia, int rodadasNaCadeia, boolean habeasCorpus, boolean esperando, int rodadasEsperando, int rodadasEsperar) {
 	    this.id = id;
 	    this.nome = nome;
 	    this.foto = foto;
@@ -54,6 +57,7 @@ public class Jogador {
 	    this.casaAtual = casaAtual;
 	    this.falido = falido;
 		this.pontoDePartida = pontoDePartida;
+		this.propriedades = propriedades;
 	    this.naCadeia = naCadeia;
 	    this.rodadasNaCadeia = rodadasNaCadeia;
 		this.habeasCorpus = habeasCorpus;
@@ -130,6 +134,14 @@ public class Jogador {
 		this.pontoDePartida = pontoDePartida;
 	}
 
+	public ArrayList<Propriedade> getListaPropriedades() {
+		return propriedades;
+	}
+
+	public void adicionaPropriedade(Propriedade propriedade) {
+		propriedades.add(propriedade);
+	}
+	
 	public boolean estaNaCadeia() {
 	    return naCadeia;
 	}
