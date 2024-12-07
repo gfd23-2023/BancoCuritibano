@@ -140,7 +140,7 @@ public class Desenha {
 		// carrega imagem e redimensiona o seu tamanho
 		ImageIcon imgDado1 = new ImageIcon(caminho1);
 		Image image = imgDado1.getImage();
-		int tam = display.Y_SCREEN/15;
+		int tam = display.Y_SCREEN/10;
 		Image imgDadoRes = image.getScaledInstance(tam, tam, Image.SCALE_SMOOTH);
 		imgDado1 = new ImageIcon(imgDadoRes);
 
@@ -159,7 +159,7 @@ public class Desenha {
 		JPanel painel = new JPanel();
 		painel.setLayout(new GridLayout(1,2));
 
-		painel.setBounds(6*tam, 3*tam, 4*tam, 2*tam);
+		painel.setBounds(2*tam, 2*tam, 4*tam, 2*tam);
 
 		painel.add(dado1);
 		painel.add(dado2);
@@ -179,10 +179,7 @@ public class Desenha {
 		int quant = display.jogo.jogadores.size();
 		for (int i = 0; i < quant; i++) {
 			JPanel painel = criaPainelJogador(display, display.jogo.jogadores.get(i));
-			if (i % 2 == 0)
-				painel.setBounds(x, y+(i*tam), 4*tam, 2*tam);
-			else
-				painel.setBounds(x+4*tam, y+((i-1)*tam), 4*tam, 2*tam);
+			painel.setBounds(x, y+(i*2*tam), 4*tam, 2*tam);
 			display.janela.add(painel);
 		}
 		
@@ -264,6 +261,90 @@ public class Desenha {
 		return painel;
 	}
 
+	public static void desenhaJogadores(Display display) {
+		// calcula disposição das casas no tabuleiro
+		int quant = display.jogo.casas.size() / 4; // quantidade por lado
+		int tam = (display.Y_SCREEN * 8/10) / quant; // tamanho das casas
+													 //
+		
+		int num = display.jogo.jogadores.size();
+		for (int i = 0; i < num; i++) {
+			JPanel painel = posicaoJogador(display, display.jogo.jogadores.get(i));
+			int casa = display.jogo.jogadores.get(i).getCasa();
+			// ajusta tamanho e posicao no tabuleiro
+			if (casa < quant) 
+				painel.setBounds(casa*tam, 0, tam, tam);
+			else if (casa < 2*quant)
+				painel.setBounds((quant%casa)*tam, casa*tam, tam, tam);
+			else if (casa < 3*quant)
+				painel.setBounds((quant - quant%casa)*tam, quant*tam, tam, tam);
+			else
+				painel.setBounds(0, (quant - quant%casa)*tam, tam, tam);
 
+
+			painel.setBackground(Color.black);
+			display.janela.add(painel);
+		}
+
+		display.janela.revalidate();
+		display.janela.repaint();
+	}
+
+	private static JPanel posicaoJogador(Display display, Jogador jogador) {
+
+		// painel da posição do jogador
+		JPanel painel = new JPanel();
+		painel.setLayout(new GridLayout(3,3));
+		GridBagConstraints pos = new GridBagConstraints(); // posicao do grid
+		pos.gridx = 0;	//coluna
+		pos.gridy = 0;	//linha
+		// quadradinho jogador
+		JLabel quad = new JLabel();
+		Color cor = new Color(0,0,0);
+
+		switch (jogador.getId()) {
+			case 0: // vermelho
+				cor = new Color(219, 68, 68);
+				pos.gridx = 0;
+				pos.gridy = 0;
+				painel.add(quad, pos);
+				break;
+			case 1: // laranja
+				cor = new Color(230, 145, 67);
+				pos.gridx = 1;
+				pos.gridy = 0;
+				painel.add(quad, pos);
+				break;
+			case 2: // amarelo
+				cor = new Color(224, 197, 58);
+				pos.gridx = 2;
+				pos.gridy = 0;
+				painel.add(quad, pos);
+				break;
+			case 3: // verde
+				cor = new Color(72, 214, 54);
+				pos.gridx = 0;
+				pos.gridy = 2;
+				painel.add(quad, pos);
+				break;
+			case 4: // azul
+				cor = new Color(38, 181, 189);
+				pos.gridx = 1;
+				pos.gridy = 2;
+				painel.add(quad, pos);
+				break;
+			case 5: // roxo
+				cor = new Color(74, 54, 163);
+				pos.gridx = 2;
+				pos.gridy = 2;
+				painel.add(quad, pos);
+				break;
+		}
+
+		quad.setBackground(cor);
+		quad.setOpaque(true);
+
+		return painel;
+	}
 
 }
