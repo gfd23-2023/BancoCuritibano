@@ -269,80 +269,87 @@ public class Desenha {
 		
 		int num = display.jogo.jogadores.size();
 		for (int i = 0; i < num; i++) {
-			JPanel painel = posicaoJogador(display, display.jogo.jogadores.get(i));
+			
+			int x, y;
 			int casa = display.jogo.jogadores.get(i).getCasa();
 			// ajusta tamanho e posicao no tabuleiro
-			if (casa < quant) 
-				painel.setBounds(casa*tam, 0, tam, tam);
-			else if (casa < 2*quant)
-				painel.setBounds((quant%casa)*tam, casa*tam, tam, tam);
-			else if (casa < 3*quant)
-				painel.setBounds((quant - quant%casa)*tam, quant*tam, tam, tam);
-			else
-				painel.setBounds(0, (quant - quant%casa)*tam, tam, tam);
+			if (casa < quant) {
+				x = casa*tam;
+				y = 0;
+			} else if (casa < 2*quant) {
+				x = (quant%casa)*tam;
+				y = casa*tam;
+			} else if (casa < 3*quant) {
+				x = (quant - quant%casa)*tam;
+				y = quant*tam;
+			} else {
+				x = 0;
+				y = (quant - quant%casa)*tam;
+			}
 
+			JPanel painel = posicaoJogador(display, display.jogo.jogadores.get(i).getId(), tam);
+			painel.setBounds(x, y, tam, tam);
 
-			painel.setBackground(Color.black);
 			display.janela.add(painel);
 		}
 
+		display.janela.setLayout(null);
 		display.janela.revalidate();
 		display.janela.repaint();
 	}
 
-	private static JPanel posicaoJogador(Display display, Jogador jogador) {
+	private static JPanel posicaoJogador(Display display, int id, int tam) {
 
 		// painel da posição do jogador
 		JPanel painel = new JPanel();
-		painel.setLayout(new GridLayout(3,3));
-		GridBagConstraints pos = new GridBagConstraints(); // posicao do grid
-		pos.gridx = 0;	//coluna
-		pos.gridy = 0;	//linha
+		painel.setLayout(null);
+
 		// quadradinho jogador
 		JLabel quad = new JLabel();
 		Color cor = new Color(0,0,0);
+		// unidade de posicao
+		int un = tam/3;
 
-		switch (jogador.getId()) {
+		switch (id) {
 			case 0: // vermelho
 				cor = new Color(219, 68, 68);
-				pos.gridx = 0;
-				pos.gridy = 0;
-				painel.add(quad, pos);
+				quad.setBounds(0, 0, un, un);
 				break;
 			case 1: // laranja
 				cor = new Color(230, 145, 67);
-				pos.gridx = 1;
-				pos.gridy = 0;
-				painel.add(quad, pos);
+				quad.setBounds(un, 0, un, un);
 				break;
 			case 2: // amarelo
 				cor = new Color(224, 197, 58);
-				pos.gridx = 2;
-				pos.gridy = 0;
-				painel.add(quad, pos);
+				quad.setBounds(2*un, 0, un, un);
 				break;
 			case 3: // verde
 				cor = new Color(72, 214, 54);
-				pos.gridx = 0;
-				pos.gridy = 2;
-				painel.add(quad, pos);
+				quad.setBounds(0, 2*un, un, un);
 				break;
 			case 4: // azul
 				cor = new Color(38, 181, 189);
-				pos.gridx = 1;
-				pos.gridy = 2;
-				painel.add(quad, pos);
+				quad.setBounds(un, 2*un, un, un);
 				break;
 			case 5: // roxo
 				cor = new Color(74, 54, 163);
-				pos.gridx = 2;
-				pos.gridy = 2;
-				painel.add(quad, pos);
+				quad.setBounds(2*un, 2*un, un, un);
 				break;
 		}
 
 		quad.setBackground(cor);
 		quad.setOpaque(true);
+		quad.setText("+");
+		quad.setForeground(cor);
+		quad.setFont(new Font("CourierNew", Font.BOLD, 20));
+
+		painel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+		quad.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+
+
+		System.out.println("Posição do jogador " + id + ": " + quad.getBounds());
+
+		painel.add(quad);
 
 		return painel;
 	}

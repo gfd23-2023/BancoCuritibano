@@ -21,11 +21,11 @@ public class Tabuleiro {
 
 	public void exibeTabuleiro(Display display) {
 		
+		Desenha.desenhaJogadores(display);
 		Desenha.desenhaCasas(display);
 		Desenha.desenhaRodada(display);
 		Desenha.desenhaDados(display);
 		Desenha.desenhaInfoJogadores(display);
-		Desenha.desenhaJogadores(display);
 		display.janela.repaint();
 	}
 
