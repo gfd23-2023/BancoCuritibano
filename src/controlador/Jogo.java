@@ -43,7 +43,7 @@ public class Jogo {
 		this.cartas = ListaCartas.geraLista("src/modelo/cartas/cartas.csv", ";");
 		this.dado1 = new Dado();
 		this.dado2 = new Dado();
-		this.banco = banco.getInstancia();
+		this.banco = Banco.getInstancia();
 		this.iniciaCasas();
 	}
 
