@@ -179,7 +179,10 @@ public class Desenha {
 		int quant = display.jogo.jogadores.size();
 		for (int i = 0; i < quant; i++) {
 			JPanel painel = criaPainelJogador(display, display.jogo.jogadores.get(i));
-			painel.setBounds(x, y+(i*2*tam), 6*tam, 2*tam);
+			if (i % 2 == 0)
+				painel.setBounds(x, y+(i*tam), 4*tam, 2*tam);
+			else
+				painel.setBounds(x+4*tam, y+((i-1)*tam), 4*tam, 2*tam);
 			display.janela.add(painel);
 		}
 		
