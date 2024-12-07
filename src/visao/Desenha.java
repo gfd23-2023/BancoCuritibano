@@ -287,53 +287,48 @@ public class Desenha {
 				y = (quant - quant%casa)*tam;
 			}
 
-			JPanel painel = posicaoJogador(display, display.jogo.jogadores.get(i).getId(), tam);
-			painel.setBounds(x, y, tam, tam);
+			posicionaJogador(display, display.jogo.jogadores.get(i).getId(), x, y, tam);
 
-			display.janela.add(painel);
 		}
 
-		display.janela.setLayout(null);
-		display.janela.revalidate();
 		display.janela.repaint();
 	}
 
-	private static JPanel posicaoJogador(Display display, int id, int tam) {
-
-		// painel da posição do jogador
-		JPanel painel = new JPanel();
-		painel.setLayout(null);
+	private static void posicionaJogador(Display display, int id, int x, int y, int tam) {
 
 		// quadradinho jogador
 		JLabel quad = new JLabel();
 		Color cor = new Color(0,0,0);
 		// unidade de posicao
 		int un = tam/3;
+		int lado = tam/4;
+		int offset = (un - lado)/2;
+
 
 		switch (id) {
 			case 0: // vermelho
 				cor = new Color(219, 68, 68);
-				quad.setBounds(0, 0, un, un);
+				quad.setBounds(x+offset, y, lado, lado);
 				break;
 			case 1: // laranja
 				cor = new Color(230, 145, 67);
-				quad.setBounds(un, 0, un, un);
+				quad.setBounds(x+un+offset, y, lado, lado);
 				break;
 			case 2: // amarelo
 				cor = new Color(224, 197, 58);
-				quad.setBounds(2*un, 0, un, un);
+				quad.setBounds(x+2*un+offset, y, lado, lado);
 				break;
 			case 3: // verde
 				cor = new Color(72, 214, 54);
-				quad.setBounds(0, 2*un, un, un);
+				quad.setBounds(x+offset, y+2*un, lado, lado);
 				break;
 			case 4: // azul
 				cor = new Color(38, 181, 189);
-				quad.setBounds(un, 2*un, un, un);
+				quad.setBounds(x+offset+un, y+2*un, lado, lado);
 				break;
 			case 5: // roxo
 				cor = new Color(74, 54, 163);
-				quad.setBounds(2*un, 2*un, un, un);
+				quad.setBounds(x+2*un+offset, y+2*un, lado, lado);
 				break;
 		}
 
@@ -343,15 +338,9 @@ public class Desenha {
 		quad.setForeground(cor);
 		quad.setFont(new Font("CourierNew", Font.BOLD, 20));
 
-		painel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
-		quad.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
-
-
 		System.out.println("Posição do jogador " + id + ": " + quad.getBounds());
 
-		painel.add(quad);
-
-		return painel;
+		display.janela.add(quad);
 	}
 
 }
