@@ -36,7 +36,7 @@ public class Jogo {
 	// construtor
 	public Jogo() {
 		this.estado = Estados.MENU_INICIAL;
-		this.rodada = 0;
+		this.rodada = 1;
 		this.jogada = 0;
 		this.jogadores = new ArrayList<>();
 		this.casas = new ArrayList<>();
@@ -138,6 +138,19 @@ public class Jogo {
 		dado1.jogaDados();
 		dado2.jogaDados();
 	}
+
+	public int valorDados() {
+		int valor = dado1.getValor() + dado2.getValor();
+		return valor;
+	}
+
+	// movimenta jogador da vez 1 casa
+	public void movimentaJogador() {	
+		int casaAtual = jogadores.get(jogada).getCasa();
+		jogadores.get(jogada).setCasa(casaAtual+1, casas.size());
+	}
+
+
         
 
 

@@ -54,7 +54,7 @@ class BJogarDados extends JPanel
             {
 				display.jogo.jogaDados();
 				display.janela.getContentPane().removeAll();
-				//display.jogo.setEstado(Estados.JOGAR_MOVIMENTO);
+				display.jogo.setEstado(Estados.JOGAR_MOVIMENTO);
 				display.atualizaDisplay();
             }
         });

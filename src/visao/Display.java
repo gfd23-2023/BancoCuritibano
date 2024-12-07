@@ -60,6 +60,9 @@ public class Display {
 				BotoesJogo.exibeJogarDados(this);
 				tabuleiro.exibeTabuleiro(this);
 				break;
+			case JOGAR_MOVIMENTO:
+				tabuleiro.movimentoTabuleiro(this);
+				break;
 		}
 	}
 }

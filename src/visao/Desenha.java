@@ -98,12 +98,8 @@ public class Desenha {
 		// centraliza o texto
 		rodada.setHorizontalTextPosition(JLabel.CENTER);
 		rodada.setVerticalTextPosition(JLabel.TOP);
-		rodada.setHorizontalAlignment(JLabel.CENTER);
-		rodada.setVerticalAlignment(JLabel.TOP);
 		jogador.setHorizontalTextPosition(JLabel.CENTER);
 		jogador.setVerticalTextPosition(JLabel.BOTTOM);
-		jogador.setHorizontalAlignment(JLabel.CENTER);
-		jogador.setVerticalAlignment(JLabel.BOTTOM);
 		
 		// define as cores
 		Color cor1 = new Color(245, 54, 102);
@@ -159,7 +155,7 @@ public class Desenha {
 		JPanel painel = new JPanel();
 		painel.setLayout(new GridLayout(1,2));
 
-		painel.setBounds(2*tam, 2*tam, 4*tam, 2*tam);
+		painel.setBounds(tam*5/2, 2*tam, 4*tam, 2*tam);
 
 		painel.add(dado1);
 		painel.add(dado2);
@@ -179,7 +175,11 @@ public class Desenha {
 		int quant = display.jogo.jogadores.size();
 		for (int i = 0; i < quant; i++) {
 			JPanel painel = criaPainelJogador(display, display.jogo.jogadores.get(i));
-			painel.setBounds(x, y+(i*2*tam), 4*tam, 2*tam);
+			if (i < 3)
+				painel.setBounds(x, y+(2*i*tam), 4*tam, 2*tam);
+			else
+				painel.setBounds(x+4*tam, y+(2*(i-3)*tam), 4*tam, 2*tam);
+
 			display.janela.add(painel);
 		}
 		
@@ -277,10 +277,10 @@ public class Desenha {
 				x = casa*tam;
 				y = 0;
 			} else if (casa < 2*quant) {
-				x = (quant%casa)*tam;
-				y = casa*tam;
+				x = quant*tam;
+				y = (casa%quant)*tam;
 			} else if (casa < 3*quant) {
-				x = (quant - quant%casa)*tam;
+				x = (quant - casa%quant)*tam;
 				y = quant*tam;
 			} else {
 				x = 0;
