@@ -166,8 +166,101 @@ public class Desenha {
 
 		display.janela.add(painel);
 		display.janela.revalidate();
-
 	}
+
+
+	
+	public static void desenhaInfoJogadores(Display display) {
+		// seta tamanhos proporcionais
+		int x = display.X_SCREEN *3/5;
+		int y = display.Y_SCREEN *1/5;
+		int tam = display.Y_SCREEN/20;
+
+		int quant = display.jogo.jogadores.size();
+		for (int i = 0; i < quant; i++) {
+			JPanel painel = criaPainelJogador(display, display.jogo.jogadores.get(i));
+			painel.setBounds(x, y+(i*2*tam), 6*tam, 2*tam);
+			display.janela.add(painel);
+		}
+		
+		display.janela.revalidate();
+		display.janela.repaint();
+	}
+
+	private static JPanel criaPainelJogador(Display display, Jogador jogador) {
+
+		// cria campos para infos
+		JLabel nome = new JLabel(jogador.getNome());
+		JLabel dinheiro = new JLabel(String.format("Dinheiro: %d", jogador.getDinheiro()));
+		JLabel estado = new JLabel();
+
+		// escolhe cor com base nos ids
+		Color cor1 = new Color(0,0,0);
+		Color cor2 = new Color(0,0,0);
+
+		switch (jogador.getId()) {
+			case 0: // vermelho
+				cor1 = new Color(219, 68, 68);
+				cor2 = new Color(235, 176, 176);
+				break;
+			case 1: // laranja
+				cor1 = new Color(230, 145, 67);
+				cor2 = new Color(245, 207, 171);
+				break;
+			case 2: // amarelo
+				cor1 = new Color(224, 197, 58);
+				cor2 = new Color(255, 244, 189);
+				break;
+			case 3: // verde
+				cor1 = new Color(72, 214, 54);
+				cor2 = new Color(164, 232, 155);
+				break;
+			case 4: // azul
+				cor1 = new Color(38, 181, 189);
+				cor2 = new Color(148, 223, 227);
+				break;
+			case 5: // roxo
+				cor1 = new Color(74, 54, 163);
+				cor2 = new Color(164, 150, 227);
+				break;
+		}
+
+		// seta fontes e cores
+		nome.setForeground(cor1);
+		nome.setFont(new Font("CourierNew", Font.BOLD, 20));
+		dinheiro.setForeground(cor1);
+		dinheiro.setFont(new Font("CourierNew", Font.BOLD, 15));
+		estado.setForeground(cor2);
+		estado.setFont(new Font("CourierNew", Font.BOLD, 15));
+		estado.setOpaque(true);
+
+		if (jogador.getId() == display.jogo.getJogada()) {
+			estado.setText("JOGANDO");
+			estado.setBackground(cor1);
+		}
+		else if (jogador.estaFalido()) {
+			estado.setText("FALIDO");
+			estado.setBackground(cor1);
+		}
+		else {
+			estado.setText("");
+			estado.setBackground(cor2);
+		}
+
+		JPanel painel = new JPanel();
+		painel.setLayout(new GridLayout(3,1)); // 3 linhas, 1 coluna
+		
+		painel.add(nome);
+		painel.add(dinheiro);
+		painel.add(estado);
+
+		painel.setBackground(cor2);
+		Border borda = new LineBorder(cor1, 5);
+		painel.setBorder(borda);
+
+		return painel;
+	}
+
 
 
 }

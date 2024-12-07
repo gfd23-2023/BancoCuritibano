@@ -24,6 +24,7 @@ public class Tabuleiro {
 		Desenha.desenhaCasas(display);
 		Desenha.desenhaRodada(display);
 		Desenha.desenhaDados(display);
+		Desenha.desenhaInfoJogadores(display);
 		display.janela.repaint();
 	}
 
