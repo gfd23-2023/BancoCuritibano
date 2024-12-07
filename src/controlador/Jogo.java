@@ -40,7 +40,6 @@ public class Jogo {
 		this.jogada = 0;
 		this.jogadores = new ArrayList<>();
 		this.casas = new ArrayList<>();
-		this.cartas = new LinkedList<>();
 		this.cartas = ListaCartas.geraLista("src/modelo/cartas/cartas.csv", ";");
 		this.dado1 = new Dado();
 		this.dado2 = new Dado();

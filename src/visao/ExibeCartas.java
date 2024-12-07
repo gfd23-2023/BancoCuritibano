@@ -38,7 +38,7 @@ public class ExibeCartas extends JPanel
 	private BufferedImage logoFundo;				//imagem que vai ficar no fundo da carta
 	String mensagem;								//mensagem da carta
 
-	public void exibeCartas(Tabuleiro tabuleiro, Carta carta)
+	public void exibeCartas(Display display, Carta carta)
 	{
 		/*cor do painel ATUAL (talvez isso precise mudar)*/
         setBackground(new Color(255, 228, 225));
@@ -54,7 +54,7 @@ public class ExibeCartas extends JPanel
 		mensagem = carta.getDescricao();
 
 		//adiciona o painel ATUAL à janela
-		tabuleiro.janela.getContentPane().add(this);
+		display.janela.getContentPane().add(this);
 	}
 
 	@Override
@@ -113,7 +113,7 @@ public class ExibeCartas extends JPanel
 		FontMetrics fm = g2d.getFontMetrics();
 		ArrayList<String> linhas = new ArrayList<>(); // Lista que armazenará as linhas quebradas
 		StringBuilder linhaAtual = new StringBuilder();
-		int larguraMaxima = larguraCarta - 10;
+		int larguraMaxima = larguraCarta - 30;
 
 		for (String palavra : mensagem.split(" ")) 
 		{
@@ -156,9 +156,9 @@ public class ExibeCartas extends JPanel
 	}
 
 	//passar a casa como parâmetro e usar o texto e descrição dela
-	public void desenhaCarta(Tabuleiro tabuleiro)
+	public void desenhaCarta(Display display)
 	{
-		tabuleiro.janela.revalidate();
-		tabuleiro.janela.repaint();
+		display.janela.revalidate();
+		display.janela.repaint();
 	}
 }

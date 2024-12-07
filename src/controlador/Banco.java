@@ -3,9 +3,9 @@ package controlador;
 // Classe banco (Singleton) 
 public class Banco {
 	private static Banco instanciaUnica;
-	private Jogo instanciaJogo;
+	private static Jogo instanciaJogo;
 	
-	private Banco() {
+	public void getInstanciaJogo() {
 		this.instanciaJogo = Jogo.getInstancia();
 	}
 
