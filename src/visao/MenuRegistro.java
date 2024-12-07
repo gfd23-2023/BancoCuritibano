@@ -12,6 +12,33 @@ import java.io.File;
 import java.awt.*;
 
 
+//Botão de voltar para a tela inicial
+/*class Voltar extends JPanel
+{
+	JButton voltar = new JButton("Voltar");
+
+	//personalização do botão
+	public Voltar()
+	{
+		voltar.setFont(new Font("Times New Roman", Font.BOLD, 25));
+		voltar.setBackground(new Color(255,192,203));
+		voltar.setForeground(new Color(250,128,114));
+		add(voltar);
+	}
+
+	//ação do botão
+	public void BotaoVoltar()
+	{
+		voltar.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				//mudar o estado
+			}
+		});
+	}
+}*/
+
 public class MenuRegistro {
 	
 	JLabel texto = new JLabel(String.format("Digite seu nome!"));
@@ -119,10 +146,21 @@ public class MenuRegistro {
 		gbc.gridy = 6;
 		painelTexto.add(jogador6, gbc);
 
-		//posicionamento do botão continuar
+		//posicionamento e ação do botão continuar
 		gbc.gridy = 8;
         gbc.gridx = 1;
 		painelTexto.add(continuar, gbc);
+		continuar.acaoContinuar(tabuleiro);
+
+		//posicionamento e ação do boão voltar
+		gbc.gridx = 0;
+		painelTexto.add(voltar, gbc);
+		voltar.BotaoVoltar(tabuleiro);
+
+		//posicionamento e ação do botão sair
+		gbc.gridx = 2;
+		painelTexto.add(sair, gbc);
+		sair.BotaoSair(tabuleiro);
 
         continuar.acaoContinuar(tabuleiro);
 
@@ -175,6 +213,12 @@ class ContinuarJogo extends JPanel
             {
 				if (tabuleiro.jogo.registroValido()) {
 					tabuleiro.jogo.setEstado(Estados.JOGANDO);
+					//limpa a tela
+					tabuleiro.janela.getContentPane().removeAll();
+					//atualiza a janela
+					tabuleiro.janela.getContentPane().revalidate();
+					tabuleiro.janela.getContentPane().repaint();
+					//atualiza o tabuleiro
 					tabuleiro.atualizaTabuleiro();
 				}
             }

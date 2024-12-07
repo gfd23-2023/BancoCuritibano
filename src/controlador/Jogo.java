@@ -29,7 +29,7 @@ public class Jogo {
 	
 	ArrayList<Jogador> jogadores;
 	ArrayList<Casa> casas;
-	LinkedList<Carta> cartas; // lista ligada (FIFO)
+	public LinkedList<Carta> cartas; // lista ligada (FIFO)
 	Dado dado1, dado2;
 	Banco banco;
 	
@@ -41,6 +41,7 @@ public class Jogo {
 		this.jogadores = new ArrayList<>();
 		this.casas = new ArrayList<>();
 		this.cartas = new LinkedList<>();
+		this.cartas = ListaCartas.geraLista("src/modelo/cartas/cartas.csv", ";");
 		this.dado1 = new Dado();
 		this.dado2 = new Dado();
 		this.banco = banco.getInstancia();

@@ -1,6 +1,7 @@
 package visao;
 import controlador.*;
 import modelo.*;
+import modelo.cartas.*;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.awt.event.ActionEvent;
@@ -37,6 +38,11 @@ public class Tabuleiro {
 	MenuInicial menu = new MenuInicial();
 	MenuRegistro registro = new MenuRegistro();
 
+	//constroi o painel de cartas
+	ExibeCartas cartaVisual = new ExibeCartas();
+
+	//cartas: tabuleiro.jogo.cartas (pra acessar - trocar tabuleiro po display)
+
 	// dependendo do estado do jogo, exibe o menu correspondente
 	public void atualizaTabuleiro() {
 
@@ -47,6 +53,9 @@ public class Tabuleiro {
 				break;
 			case MENU_REGISTRO_JOGADORES:
 				registro.exibeRegistro(this);
+			case JOGANDO:
+				cartaVisual.exibeCartas(this, this.jogo.cartas.get(12));
+				cartaVisual.desenhaCarta(this);
 				break;
 		}
 	}
@@ -61,6 +70,7 @@ class Janela extends JFrame {
 		this.setTitle("Banco Curitibano");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(X_SCREEN, Y_SCREEN);
+
 		// cria icone com a logo do jogo
 		ImageIcon logo = new ImageIcon("../assets/logoBC.png");
 		this.setIconImage(logo.getImage()); 
