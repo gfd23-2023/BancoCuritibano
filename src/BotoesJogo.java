@@ -19,15 +19,11 @@ import java.util.*;
 public class BotoesJogo {
 
 	public static void exibeJogarDados(Display display) {
-		JPanel painel = new JPanel();
-		BJogarDados botao = new BJogarDados();
 		int un = display.Y_SCREEN/10;
-		painel.setBounds(11*un, 8*un, 3*un, un);
-		painel.add(botao);
+		BJogarDados botao = new BJogarDados(un);
 		display.janela.setLayout(null);
-		display.janela.add(painel);
+		display.janela.add(botao);
 		display.janela.revalidate();
-		display.janela.repaint();
 		botao.acaoJogarDados(display);
 	}	
 }
@@ -37,14 +33,17 @@ class BJogarDados extends JPanel
     JButton jogarDados = new JButton("JOGAR DADOS");
 
     //personalização do botão
-    public BJogarDados()
+    public BJogarDados(int tam)
     {
 		jogarDados.setFont(new Font("Courier New", Font.BOLD, 25));
 		jogarDados.setBackground(new Color(255,192,203));
 		jogarDados.setForeground(new Color(250,128,114));
-		jogarDados.setOpaque(true);
-		setLayout(null);
-        add(jogarDados);
+		jogarDados.setPreferredSize(new Dimension(4*tam, tam*2/3));
+		jogarDados.setHorizontalTextPosition(JButton.CENTER);
+		jogarDados.setVerticalTextPosition(JButton.CENTER);
+		setBounds(11*tam,8*tam,4*tam,tam);
+		add(jogarDados);
+
     }
 
     public void acaoJogarDados(Display display)

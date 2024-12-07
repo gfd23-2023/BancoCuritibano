@@ -19,9 +19,9 @@ import java.awt.*;
 
 public class Tabuleiro {
 
+	// jogando dados
 	public void exibeTabuleiro(Display display) {
-		
-		BotoesJogo.exibeJogarDados(display);
+		// desenha infos do tabuleiro
 		Desenha.desenhaJogadores(display);
 		Desenha.desenhaCasas(display);
 		Desenha.desenhaRodada(display);
@@ -29,8 +29,5 @@ public class Tabuleiro {
 		Desenha.desenhaInfoJogadores(display);
 		display.janela.repaint();
 	}
-
-
-
 
 }

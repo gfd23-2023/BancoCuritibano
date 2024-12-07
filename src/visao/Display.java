@@ -56,8 +56,8 @@ public class Display {
 			case MENU_REGISTRO_JOGADORES:
 				registro.exibeRegistro(this);
 				break;
-			case JOGANDO:
-				jogo.iniciaCasas();
+			case JOGAR_DADOS:
+				BotoesJogo.exibeJogarDados(this);
 				tabuleiro.exibeTabuleiro(this);
 				break;
 		}

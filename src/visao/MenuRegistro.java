@@ -175,7 +175,7 @@ class ContinuarJogo extends JPanel
             {
 				if (display.jogo.registroValido()) {
 					display.janela.getContentPane().removeAll();
-					display.jogo.setEstado(Estados.JOGANDO);
+					display.jogo.setEstado(Estados.JOGAR_DADOS);
 					display.atualizaDisplay();
 				}
             }
