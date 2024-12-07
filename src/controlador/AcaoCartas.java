@@ -34,7 +34,7 @@ public class AcaoCartas {
 	 * 
 	 * Retorna true se a opcao escolhida deu certo e 0 em caso de erro
 	 */
-	public static boolean acaoCartaPagarOuCadeia(CartaPagarOuCadeia carta, Jogador origem, int opcao) {
+	public static boolean acaoCartaPagarOuCadeia(CartaPagarOuCadeia carta, Jogador origem, int opcao, int posicaoCadeia, int quantCasas) {
 		Banco banco = Banco.getInstancia();
 			
 		// Se opcao é 0, tenta efetuar o pagamento
@@ -48,6 +48,7 @@ public class AcaoCartas {
 			}
 		} else if (opcao == 1) {
 			origem.setNaCadeia(true);
+			origem.setCasa(posicaoCadeia, quantCasas);
 			return true;
 		} else {
 			System.out.println("Erro: opção inválida na ação da carta PagarOuCadeia");

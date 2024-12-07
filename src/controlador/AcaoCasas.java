@@ -3,6 +3,7 @@ import modelo.casas.*;
 import modelo.cartas.*;
 import modelo.*;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 // Classe que relaciona Casa com Jogador
 public class AcaoCasas {
@@ -46,42 +47,43 @@ public class AcaoCasas {
 	}
 
 	// Ao passar ou chegar em ponto de partida, o jogador recebe seu salario
-	public void acaoPontoDePartida(CasaPontoDePartida casa, Jogador origem) {
+	public static void acaoPontoDePartida(CasaPontoDePartida casa, Jogador origem) {
 		Banco banco = Banco.getInstancia();
 
 		banco.alteraDinheiro(origem.getId(), casa.getSalario());
 	}
 
 	// Retorna a primeira carta da lista
-	public Carta acaoCasaCarta(CasaSorteOuReves casa, Jogador origem, ArrayList<Carta> cartas) {
+	public static Carta acaoCasaCarta(CasaSorteOuReves casa, Jogador origem, LinkedList<Carta> cartas) {
 		Carta cartaSorteada;
 
-		cartaSorteada = cartas.get(0);
+		// cartaSorteada := primeira carta
+		cartaSorteada = cartas.getFirst();
 
 		// Remove ela do começo e adiciona no final
-		cartas.remove(cartaSorteada);
+		cartas.removeFirst();
 		// Se a carta é habeas corpus, só é recolocada no monte depois de ser usada
 		if (!(cartaSorteada instanceof CartaHabeasCorpus))
-			cartas.add(cartaSorteada);
+			cartas.addLast(cartaSorteada);
 
 		return cartaSorteada;
 	}
 
 	// Ação da casa Vá Para a Cadeia
-	public void acaoCasaVaParaCadeia(CasaVaParaCadeia casa, Jogador origem, int posicaoCadeia, int quantCasas) {
+	public static void acaoCasaVaParaCadeia(CasaVaParaCadeia casa, Jogador origem, int posicaoCadeia, int quantCasas) {
 		origem.setNaCadeia(true);
 		origem.setCasa(posicaoCadeia, quantCasas);
 	}
 
 	// Ação da casa Voltar Para Ponto de Partida
-	public void acaoCasaVoltarPontoPartida(CasaVoltarPontoPartida casa, Jogador origem) {
+	public static void acaoCasaVoltarPontoPartida(CasaVoltarPontoPartida casa, Jogador origem) {
 		origem.setCasa(0, -1); // quantCasas = -1 porque nunca vai ser usado nesse caso
 	}
 	
 	/* Tenta realizar a compra de uma propriedade por um jogador.
 	 * Se obteve sucesso retorna true, caso contrário retorna false. 
 	 */
-	public boolean compraPropriedade(Propriedade propriedade, Jogador origem) {
+	public static boolean compraPropriedade(Propriedade propriedade, Jogador origem) {
 		Banco banco = Banco.getInstancia();
 		
 		// Se a propriedade já tem um proprietário, não pode ser comprada
@@ -100,7 +102,7 @@ public class AcaoCasas {
 	}
 
 	// Se possível, efetua o pagamento do aluguel da propriedade. Se não, declara falência.
-	public void pagaAluguelPropriedade(Propriedade propriedade, Jogador origem) {
+	public static void pagaAluguelPropriedade(Propriedade propriedade, Jogador origem) {
 		Banco banco = Banco.getInstancia();
 
 		// Se tem dinheiro suficiente para pagar, faz a transferência. Se não, declara falência.
@@ -114,7 +116,7 @@ public class AcaoCasas {
 	/* Verifica se o jogador idVerificar tem monopólio sobre as casas do grupo da cor passada como parâmetro
 	 * Se tem retorna true, caso contrário retorna false.
 	 */
-	public boolean verificaMonopolio(ArrayList<Propriedade> propriedades, String cor, int idVerificar) {
+	public static boolean verificaMonopolio(ArrayList<Propriedade> propriedades, String cor, int idVerificar) {
 		for (Propriedade propAtual : propriedades) {
 			if (propAtual.getCor().equals(cor)) {
 				// Se propriedadeAtual é da cor solicitada mas o proprietario não for o solicitado, retorna false 
@@ -141,7 +143,7 @@ public class AcaoCasas {
 	 * - -1 se a construção não pode ser feita porque já tem a quantidade máxima de casas (requisito 2)
 	 * - -2 se a construção não pode ser feita porque as outras propriedades do monopólio não tem a quantidade mínima de casas (requisito 3) 	 
 	 */
-	public int verificaConstrucao(ArrayList<Propriedade> propriedades, Propriedade propriedadeConstrucao, int idConstrutor) {
+	public static int verificaConstrucao(ArrayList<Propriedade> propriedades, Propriedade propriedadeConstrucao, int idConstrutor) {
 		String cor = propriedadeConstrucao.getCor(); // Armazena a cor da propriedade a ser construída
 		int quantCasasPropriedade = propriedadeConstrucao.getQuantConstrucoes();
 
@@ -170,7 +172,7 @@ public class AcaoCasas {
 	 * - -2, -1, 0 e 1: mesmo uso de verificaConstrucao
 	 * - -3 se a construção não pode ser feita por falta de dinheiro do jogador
 	 */
-	public int constroiPropriedade(ArrayList<Propriedade> propriedades, Propriedade propriedadeConstrucao, Jogador construtor) {
+	public static int constroiPropriedade(ArrayList<Propriedade> propriedades, Propriedade propriedadeConstrucao, Jogador construtor) {
 		int retornoVerificaConstrucao = verificaConstrucao(propriedades, propriedadeConstrucao, construtor.getId());
 		Banco banco = Banco.getInstancia();
 
@@ -188,5 +190,34 @@ public class AcaoCasas {
 
 		// Se o jogador não tem dinheiro, retorna -3
 		return -3;
+	}
+
+	/* Efetua uma tentativa de sair da cadeia pelo jogador origem.
+	 * Retorna true para sucesso e false para erro.
+	 * 
+	 * O parâmetro opção indica de qual forma o jogador quer tentar sair, seguindo o uso:
+	 * - 0: usar habeas corpus
+	 * - 1: pagar 50 reais
+	 */
+	public static boolean tentativaSairCadeia(Cadeia cadeia, Jogador origem, int opcao, LinkedList<Carta> cartas) {
+		Banco banco = Banco.getInstancia();
+
+		if (opcao == 0) {
+			if (origem.getHabeasCorpus()) {
+				origem.setNaCadeia(false);
+				origem.setHabeasCorpus(false);
+				ListaCartas.adicionaHabeasCorpus(cartas);
+				return true;
+			} else {
+				return false;
+			}
+		} else if (opcao == 1) {
+			if (origem.getDinheiro() - 50 >= 0) {
+				origem.setNaCadeia(false);
+				banco.alteraDinheiro(origem.getId(), -50);		
+			}
+		}
+		
+		return true;
 	}
 }
