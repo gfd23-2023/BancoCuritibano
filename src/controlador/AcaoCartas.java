@@ -16,15 +16,15 @@ public class AcaoCartas {
 	}
 
 	// Ação da Carta Ganhar Dinheiro
-	public static void acaoCartaGanharDinheiro(CartaGanharDinheiro carta, Jogador origem) {
+	public static void acaoCartaGanharDinheiro(CartaGanharDinheiro carta, int idJogadorOrigem) {
 		Banco banco = Banco.getInstancia();
-		banco.alteraDinheiro(origem, carta.getValor());
+		banco.alteraDinheiro(idJogadorOrigem, carta.getValor());
 	}
 
 	// Ação da Carta Perder Dinheiro
-	public static void acaoCartaPerderDinheiro(CartaPerderDinheiro carta, Jogador origem) {
+	public static void acaoCartaPerderDinheiro(CartaPerderDinheiro carta, int idJogadorOrigem) {
 		Banco banco = Banco.getInstancia();
-		banco.alteraDinheiro(origem, -carta.getValor());
+		banco.alteraDinheiro(idJogadorOrigem, -carta.getValor());
 	}
 
 	/* Ação da Carta Pagar Ou Cadeia
@@ -41,7 +41,7 @@ public class AcaoCartas {
 		if (opcao == 0) {
 			// Verifica se tem o dinheiro disponível e, se tiver, faz o pagamento
 			if (origem.getDinheiro() - carta.getValor() >= 0) {
-				banco.alteraDinheiro(origem, -carta.getValor());
+				banco.alteraDinheiro(origem.getId(), -carta.getValor());
 				return true;
 			} else {
 				return false;

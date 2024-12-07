@@ -5,8 +5,8 @@ public class CartaPagarOuCadeia extends Carta {
 	private int valor;
 
 	// Construtor 
-	public CartaPagarOuCadeia(int index, String nome, String descricao, int valor) {
-		super(index, nome, descricao);
+	public CartaPagarOuCadeia(String nome, String descricao, int valor) {
+		super(nome, descricao);
     	this.valor = valor;
   	}
 

@@ -38,19 +38,19 @@ public class ListaCartas {
                 String[] carta = linhaCSV.split(separadorCSV);
 
                 if (carta[0].equals("0")) { // Carta avançar
-                    cartaAtual = new CartaAvancar(i, carta[1], carta[2], Integer.parseInt(carta[3]));
+                    cartaAtual = new CartaAvancar(carta[1], carta[2], Integer.parseInt(carta[3]));
                 } else if (carta[0].equals("1")) { // Carta voltar
                     cartaAtual = new CartaVoltar(i, carta[1], carta[2], Integer.parseInt(carta[3]));
                 } else if (carta[0].equals("2")) { // Carta ganhar dinheiro
-                    cartaAtual = new CartaGanharDinheiro(i, carta[1], carta[2], Integer.parseInt(carta[3]));
+                    cartaAtual = new CartaGanharDinheiro(carta[1], carta[2], Integer.parseInt(carta[3]));
                 } else if (carta[0].equals("3")) { // Carta perder dinheiro
-                    cartaAtual = new CartaPerderDinheiro(i, carta[1], carta[2], Integer.parseInt(carta[3]));
+                    cartaAtual = new CartaPerderDinheiro(carta[1], carta[2], Integer.parseInt(carta[3]));
                 } else if (carta[0].equals("4")) { // Carta pagar ou ir para a cadeia
-                    cartaAtual = new CartaPagarOuCadeia(i, carta[1], carta[2], Integer.parseInt(carta[3]));
+                    cartaAtual = new CartaPagarOuCadeia(carta[1], carta[2], Integer.parseInt(carta[3]));
                 } else if (carta[0].equals("5")) { // Carta de espera
-					cartaAtual = new CartaEspera(i, carta[1], carta[2], Integer.parseInt(carta[3]));
+					cartaAtual = new CartaEspera(carta[1], carta[2], Integer.parseInt(carta[3]));
                 } else if (carta[0].equals("6")) { // Carta Habeas Corpus
-					cartaAtual = new CartaHabeasCorpus(i, carta[1], carta[2]);
+					cartaAtual = new CartaHabeasCorpus(carta[1], carta[2]);
 				} else {
                 	System.out.printf("Tipo nao definido: %s\n", carta[0]);
                 	return null;

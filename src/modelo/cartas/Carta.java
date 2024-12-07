@@ -2,26 +2,16 @@ package modelo.cartas;
 
 // Classe de cartas 
 public class Carta {
-	private int index;
 	private String nome;
     private String descricao;
 
     // Construtor 
-    Carta(int index, String nome, String descricao) {
-        this.index = index;
+    Carta(String nome, String descricao) {
         this.nome = nome;
         this.descricao = descricao;
     }
 
     // Getters e Setters 
-    public int getIndex() {
-        return index;
-    }
-
-    public void setIndex(int index) {
-        this.index = index;
-    }
-
     public String getNome() {
         return nome;
     }

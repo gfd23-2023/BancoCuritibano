@@ -3,7 +3,6 @@
 // maioria dos metodos sao getters e setters dos atributos
 
 package modelo;
-import javax.swing.ImageIcon;
 import java.util.ArrayList;
 import modelo.casas.*;
 
@@ -11,7 +10,6 @@ public class Jogador {
 	// Características do jogador
 	private int id;
 	private String nome;
-	private ImageIcon foto;
 	
 	// Informações sobre o estado do jogador
 	private int dinheiro;
@@ -32,10 +30,9 @@ public class Jogador {
 
 	// Construtores
 	// Inicializador (para jogo novo)
-	public Jogador(int id, String nome, ImageIcon foto) {
+	public Jogador(int id, String nome) {
 	    this.id = id;
 	    this.nome = nome;
-	    this.foto = foto;
 	    this.dinheiro = 2000;
 	    this.casaAtual = 0;
 	    this.falido = false;
@@ -49,10 +46,9 @@ public class Jogador {
 	}
 
 	// Recebe todos os parametros (para jogo carregado)
-	public Jogador(int id, String nome, ImageIcon foto, int dinheiro, int casaAtual, boolean falido, boolean pontoDePartida, ArrayList<Propriedade> propriedades, boolean naCadeia, int rodadasNaCadeia, boolean habeasCorpus, boolean esperando, int rodadasEsperando, int rodadasEsperar) {
+	public Jogador(int id, String nome, int dinheiro, int casaAtual, boolean falido, boolean pontoDePartida, ArrayList<Propriedade> propriedades, boolean naCadeia, int rodadasNaCadeia, boolean habeasCorpus, boolean esperando, int rodadasEsperando, int rodadasEsperar) {
 	    this.id = id;
 	    this.nome = nome;
-	    this.foto = foto;
 	    this.dinheiro = dinheiro;
 	    this.casaAtual = casaAtual;
 	    this.falido = falido;
@@ -81,14 +77,6 @@ public class Jogador {
 
 	public void setNome(String nome) {
 	    this.nome = nome;
-	}
-
-	public ImageIcon getFoto() {
-	    return foto;
-	}
-
-	public void setFoto(ImageIcon foto) {
-	    this.foto = foto;
 	}
 
 	public int getDinheiro() {

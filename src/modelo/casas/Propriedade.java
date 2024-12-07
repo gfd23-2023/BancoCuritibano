@@ -12,14 +12,14 @@ public class Propriedade extends Casa {
 
 	// Construtores
 	public Propriedade(String nome, int index, int coordenadaX, int coordenadaY, int valor, int aluguel) {
-		super(nome, index, coordenadaX, coordenadaY);
+		super(nome, index);
 		this.idProprietario = -1; 
 		this.valor = valor;
 		this.aluguel = aluguel;
 	}
 
 	public Propriedade(String nome, int index, int coordenadaX, int coordenadaY, int idProprietario, int valor, int aluguel) {
-		super(nome, index, coordenadaX, coordenadaY);
+		super(nome, index);
 		this.idProprietario = idProprietario;
 		this.valor = valor;
 		this.aluguel = aluguel;

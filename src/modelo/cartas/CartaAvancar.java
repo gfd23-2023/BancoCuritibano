@@ -5,8 +5,8 @@ public class CartaAvancar extends Carta {
   private int casasAvancadas;
 
   // Construtor 
-  public CartaAvancar(int index, String nome, String descricao, int casasAvancadas) {
-    super(index, nome, descricao);
+  public CartaAvancar(String nome, String descricao, int casasAvancadas) {
+    super(nome, descricao);
     this.casasAvancadas = casasAvancadas;
   }
 

@@ -7,7 +7,7 @@ public class CasaImpostoDeRenda extends Casa {
 
 	// Construtor
 	public CasaImpostoDeRenda(String nome, int index, int coordenadaX, int coordenadaY, int porcentagem, int valor) {
-		super(nome, index, coordenadaX, coordenadaY);		
+		super(nome, index);		
 		this.porcentagem = porcentagem;
 		this.valor = valor;
 	}

@@ -5,7 +5,7 @@ public class Cadeia extends Casa {
 
 	// Construtor
 	public Cadeia(String nome, int index, int coordenadaX, int coordenadaY) {
-		super(nome, index, coordenadaX, coordenadaY);
+		super(nome, index);
 	}
 
 	/*

@@ -5,7 +5,7 @@ public class CasaSorteOuReves extends Casa {
 
 	// Construtor
 	public CasaSorteOuReves(String nome, int index, int coordenadaX, int coordenadaY) {
-		super(nome, index, coordenadaX, coordenadaY);
+		super(nome, index);
 	}
 	
 }
