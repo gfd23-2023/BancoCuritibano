@@ -133,7 +133,10 @@ public class Jogo {
 			return true;
 	}
 
-    //public void iniciaJogo() {
+	public void jogaDados() {
+		dado1.jogaDados();
+		dado2.jogaDados();
+	}
         
 
 

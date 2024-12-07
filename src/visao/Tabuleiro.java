@@ -21,6 +21,7 @@ public class Tabuleiro {
 
 	public void exibeTabuleiro(Display display) {
 		
+		BotoesJogo.exibeJogarDados(display);
 		Desenha.desenhaJogadores(display);
 		Desenha.desenhaCasas(display);
 		Desenha.desenhaRodada(display);
