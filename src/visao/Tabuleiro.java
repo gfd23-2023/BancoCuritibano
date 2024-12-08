@@ -19,10 +19,13 @@ import java.awt.*;
 
 public class Tabuleiro {
 
-	// jogando dados
-	public void exibeTabuleiro(Display display) {
-		// desenha infos do tabuleiro
-		Desenha.desenhaCarta(display, false);
+	public static void exibeTabuleiro(Display display) {
+
+		if (display.jogo.getEstado() == Estados.JOGAR_CARTA_ACAO)
+			Desenha.desenhaCarta(display, true);
+		else
+			Desenha.desenhaCarta(display, false);
+
 		Desenha.desenhaJogadores(display);
 		Desenha.desenhaCasas(display);
 		DesenhaInfo.desenhaInfoRodada(display);
@@ -31,10 +34,9 @@ public class Tabuleiro {
 		display.janela.repaint();
 	}
 
-	public void movimentoTabuleiro(Display display) {
+	public static void movimentoTabuleiro(Display display) {
 
 		exibeTabuleiro(display);
-		// numero de casas que vai andar
 		int num = display.jogo.valorDados();
 		Timer timer = new Timer(400, new ActionListener() {
 			int cont = 0; // contagem de quantas casas andou
@@ -46,11 +48,20 @@ public class Tabuleiro {
 				exibeTabuleiro(display); // atualiza tabuleiro
 				if (cont == num) {
 					((Timer) e.getSource()).stop();
+					display.jogo.setEstado(Estados.JOGAR_CARTA);
+					display.atualizaDisplay();
 				}
 			}
 		});
 
 		timer.start();
 	}
+
+	public static void exibeCartaTabuleiro(Display display) {
+		Desenha.desenhaCarta(display, true);
+		display.jogo.retiraCarta();
+		display.janela.repaint();
+	}
+
 
 }

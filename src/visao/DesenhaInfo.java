@@ -147,7 +147,19 @@ public class DesenhaInfo {
 		}
 		else if (jogador.estaFalido()) {
 			estado.setText("FALIDO");
-			estado.setBackground(cor1);
+			estado.setBackground(new Color(245, 54, 102));
+			estado.setForeground(new Color(255,255,255));
+		}
+		else if (jogador.estaNaCadeia()) {
+			estado.setText("PRESO");
+			estado.setBackground(new Color(245, 54, 102));
+			estado.setForeground(new Color(255,255,255));
+		}
+		else if (jogador.estaEsperando()) {
+			String texto = String.format("ESPERANDO (%d)", jogador.getRodadasEsperar() - jogador.getRodadasEsperando());
+			estado.setText(texto);
+			estado.setBackground(new Color(245, 54, 102));
+			estado.setForeground(new Color(255,255,255));
 		}
 		else {
 			estado.setText("");

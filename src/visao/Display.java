@@ -42,7 +42,6 @@ public class Display {
 	
 	MenuInicial menu = new MenuInicial();
 	MenuRegistro registro = new MenuRegistro();
-	Tabuleiro tabuleiro = new Tabuleiro();
 	
 
 	// dependendo do estado do jogo, exibe o menu correspondente
@@ -58,12 +57,29 @@ public class Display {
 				break;
 			case JOGAR_DADOS:
 				BotoesJogo.exibeJogarDados(this);
-				tabuleiro.exibeTabuleiro(this);
+				Tabuleiro.exibeTabuleiro(this);
 				break;
 			case JOGAR_MOVIMENTO:
-				tabuleiro.movimentoTabuleiro(this);
+				Tabuleiro.movimentoTabuleiro(this);
+				break;
+			case JOGAR_PROXIMO:
+				BotoesJogo.exibeProximo(this);
+				Tabuleiro.exibeTabuleiro(this);
+				break;
+			case JOGAR_CARTA:
+				BotoesJogo.exibeRetirarCarta(this);
+				Tabuleiro.exibeTabuleiro(this);
+				break;
+			case JOGAR_CARTA_ACAO:
+				Tabuleiro.exibeTabuleiro(this);
+				jogo.retiraCarta();
+				atualizaDisplay();
+			case JOGAR_CARTA_OPCAO:
+				BotoesJogo.exibePagarOuCadeia(this);
+				Tabuleiro.exibeTabuleiro(this);
 				break;
 		}
+		System.out.println("estado atual: " + jogo.getEstado());
 	}
 }
 
