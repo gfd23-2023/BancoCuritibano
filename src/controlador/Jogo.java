@@ -162,33 +162,75 @@ public class Jogo {
 	}
 
 	// retira uma carta do baralho, executa ação e guarda no final
-	public void retiraCarta() {
+	// retorna carta retirada visao exibir botoes Pagar ou Cadeia caso necessário
+	public Carta retiraCarta() {
 		Carta carta = cartas.removeFirst();
 
 		if (carta instanceof CartaAvancar) {
 			AcaoCartas.acaoCartaAvancar((CartaAvancar) carta, jogadores.get(jogada), casas.size());
+			this.estado = Estados.JOGAR_PROXIMO;
 		}
 		else if (carta instanceof CartaVoltar) {
 			AcaoCartas.acaoCartaVoltar((CartaVoltar) carta, jogadores.get(jogada), casas.size());
+			this.estado = Estados.JOGAR_PROXIMO;
 		}
 		else if (carta instanceof CartaGanharDinheiro) {
 			AcaoCartas.acaoCartaGanharDinheiro((CartaGanharDinheiro) carta, jogadores.get(jogada).getId());
+			this.estado = Estados.JOGAR_PROXIMO;
 		}
 		else if (carta instanceof CartaPerderDinheiro) {
 			AcaoCartas.acaoCartaPerderDinheiro((CartaPerderDinheiro) carta, jogadores.get(jogada).getId());
+			this.estado = Estados.JOGAR_PROXIMO;
+		}
+		else if (carta instanceof CartaEspera) {
+			AcaoCartas.acaoCartaEspera((CartaEspera) carta, jogadores.get(jogada));
+			this.estado = Estados.JOGAR_PROXIMO;
+		}
+		else if (carta instanceof CartaHabeasCorpus) {
+			AcaoCartas.acaoCartaHabeasCorpus((CartaHabeasCorpus) carta, jogadores.get(jogada));
+			this.estado = Estados.JOGAR_PROXIMO;
+		}
+		else if (carta instanceof CartaPagarOuCadeia) {
+			this.estado = Estados.JOGAR_CARTA_OPCAO;
 		}
 
 		cartas.addLast(carta);
+		return carta;
+	}
+
+	public void cartaPagarOuCadeia(int opcao) {
+		// carta ja foi retirada, está no final
+		Carta carta = cartas.getLast();
+		AcaoCartas.acaoCartaPagarOuCadeia((CartaPagarOuCadeia) carta, jogadores.get(jogada), opcao);
+		estado = Estados.JOGAR_PROXIMO;
 	}
 
 	public void proximaJogada() {
 		++jogada; // incrementa jogada
 	
 		int quant = jogadores.size(); // quantidade de jogadores
+
 		// se todos os jogadores ja jogaram, vai para proxima rodada
 		if (jogada >= quant) {
 			++rodada;
 			jogada = 0;
+			// percorre todos os jogadores atualizando rodadas esperando
+			for (int i = 0; i < quant; i++) {
+				// se ainda precisa esperar
+				if (!AcaoCartas.verificaEspera(jogadores.get(i))) {
+					// atualizamos a espera porque passou uma rodada
+					int esperando = jogadores.get(i).getRodadasEsperando();
+					jogadores.get(i).setRodadasEsperando(esperando -1);
+				}
+				if (jogadores.get(i).estaNaCadeia()) {
+					// verifica se ja completou 3 rodadas na cadeia
+					if (jogadores.get(i).getRodadasNaCadeia() == 3)
+						jogadores.get(i).setRodadasNaCadeia(0); // liberta
+					else
+						jogadores.get(i).setRodadasNaCadeia(1); // incrementa rodada
+				}
+			}
+
 		}
 
 		// verifica se jogador pode jogar

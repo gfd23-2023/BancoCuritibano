@@ -44,6 +44,22 @@ public class BotoesJogo {
 		display.janela.revalidate();
 		botao.acaoProximo(display);
 	}	
+
+	public static void exibePagarOuCadeia(Display display) {
+		int un = display.Y_SCREEN/10;
+		BPagar botao1 = new BPagar(un);
+		BCadeia botao2 = new BCadeia(un);
+		
+		JPanel painel = new JPanel(new GridLayout(1,2));
+		painel.setBounds(11*un,8*un,4*un,un);
+		painel.add(botao1);
+		painel.add(botao2);
+		display.janela.setLayout(null);
+		display.janela.add(painel);
+		display.janela.revalidate();
+		botao1.acaoPagar(display);
+		botao2.acaoCadeia(display);
+	}	
 }
 
 class BJogarDados extends JPanel
@@ -104,7 +120,7 @@ class BRetirarCarta extends JPanel
             public void actionPerformed(ActionEvent e)
             {
 				display.janela.getContentPane().removeAll();
-				display.jogo.setEstado(Estados.JOGAR_ACAO_CARTA);
+				display.jogo.setEstado(Estados.JOGAR_CARTA_ACAO);
 				display.atualizaDisplay();
             }
         });
@@ -139,6 +155,74 @@ class BProximo extends JPanel
 				display.jogo.proximaJogada();
 				display.janela.getContentPane().removeAll();
 				display.jogo.setEstado(Estados.JOGAR_DADOS);
+				display.atualizaDisplay();
+            }
+        });
+	}
+}
+
+class BPagar extends JPanel
+{
+    JButton pagar = new JButton("PAGAR");
+
+    //personalização do botão
+    public BPagar(int tam)
+    {
+		pagar.setFont(new Font("Courier New", Font.BOLD, 25));
+		pagar.setBackground(new Color(255,192,203));
+		pagar.setForeground(new Color(250,128,114));
+		pagar.setPreferredSize(new Dimension(2*tam, tam*2/3));
+		pagar.setHorizontalTextPosition(JButton.CENTER);
+		pagar.setVerticalTextPosition(JButton.CENTER);
+		setBounds(11*tam,8*tam,2*tam,tam);
+		add(pagar);
+
+    }
+
+    public void acaoPagar(Display display)
+    {
+        pagar.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+				// opcao 0 -> pagar
+				display.jogo.cartaPagarOuCadeia(0);
+				display.janela.getContentPane().removeAll();
+				display.jogo.setEstado(Estados.JOGAR_PROXIMO);
+				display.atualizaDisplay();
+            }
+        });
+	}
+}
+
+class BCadeia extends JPanel
+{
+    JButton cadeia = new JButton("CADEIA");
+
+    //personalização do botão
+    public BCadeia(int tam)
+    {
+		cadeia.setFont(new Font("Courier New", Font.BOLD, 25));
+		cadeia.setBackground(new Color(255,192,203));
+		cadeia.setForeground(new Color(250,128,114));
+		cadeia.setPreferredSize(new Dimension(2*tam, tam*2/3));
+		cadeia.setHorizontalTextPosition(JButton.CENTER);
+		cadeia.setVerticalTextPosition(JButton.CENTER);
+		setBounds(11*tam,8*tam,2*tam,tam);
+		add(cadeia);
+
+    }
+
+    public void acaoCadeia(Display display)
+    {
+        cadeia.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+				// opcao 1 -> cadeia
+				display.jogo.cartaPagarOuCadeia(1);
+				display.janela.getContentPane().removeAll();
+				display.jogo.setEstado(Estados.JOGAR_PROXIMO);
 				display.atualizaDisplay();
             }
         });

@@ -70,10 +70,13 @@ public class Display {
 				BotoesJogo.exibeRetirarCarta(this);
 				Tabuleiro.exibeTabuleiro(this);
 				break;
-			case JOGAR_ACAO_CARTA:
-				BotoesJogo.exibeProximo(this);
+			case JOGAR_CARTA_ACAO:
 				Tabuleiro.exibeTabuleiro(this);
 				jogo.retiraCarta();
+				atualizaDisplay();
+			case JOGAR_CARTA_OPCAO:
+				BotoesJogo.exibePagarOuCadeia(this);
+				Tabuleiro.exibeTabuleiro(this);
 				break;
 		}
 		System.out.println("estado atual: " + jogo.getEstado());

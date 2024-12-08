@@ -21,7 +21,7 @@ public class Tabuleiro {
 
 	public static void exibeTabuleiro(Display display) {
 
-		if (display.jogo.getEstado() == Estados.JOGAR_ACAO_CARTA)
+		if (display.jogo.getEstado() == Estados.JOGAR_CARTA_ACAO)
 			Desenha.desenhaCarta(display, true);
 		else
 			Desenha.desenhaCarta(display, false);

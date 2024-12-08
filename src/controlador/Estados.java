@@ -9,9 +9,12 @@ public enum Estados {
 	JOGAR_DADOS,			// jogar os dados
 	JOGAR_MOVIMENTO,		// jogador vai se movimentar depois de jogar os dados
 	JOGAR_CASA,				// analise da casa atual
-	JOGAR_CARTA,			// retirar uma carta
-	JOGAR_ACAO_CARTA,		// ação da carta retirada
-	JOGAR_PROXIMO,			// ir para proxima jogada
+	JOGAR_CARTA,			// exibe botao para retirar uma carta
+	JOGAR_CARTA_ACAO,		// executa a ação da carta
+	JOGAR_CARTA_OPCAO,		// exibe botao das opcoes (pagar ou cadeia)	
+	JOGAR_CARTA_PAGAR,		// executa acao pagar
+	JOGAR_CARTA_CADEIA,		// executa acao cadeia
+	JOGAR_PROXIMO,			// exibe botao para proxima jogada
 	// ...
 }
 
