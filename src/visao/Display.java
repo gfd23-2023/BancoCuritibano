@@ -63,7 +63,12 @@ public class Display {
 			case JOGAR_MOVIMENTO:
 				tabuleiro.movimentoTabuleiro(this);
 				break;
+			case JOGAR_PROXIMO:
+				BotoesJogo.exibeProximo(this);
+				tabuleiro.exibeTabuleiro(this);
+				break;
 		}
+		System.out.println("estado atual: " + jogo.getEstado());
 	}
 }
 

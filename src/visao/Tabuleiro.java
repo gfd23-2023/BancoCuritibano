@@ -46,11 +46,20 @@ public class Tabuleiro {
 				exibeTabuleiro(display); // atualiza tabuleiro
 				if (cont == num) {
 					((Timer) e.getSource()).stop();
+					display.jogo.setEstado(Estados.JOGAR_PROXIMO);
+					display.atualizaDisplay();
 				}
 			}
 		});
 
 		timer.start();
 	}
+
+	public void exibeCartaTabuleiro(Display display) {
+		Desenha.desenhaCarta(display, true);
+		display.jogo.retiraCarta();
+		display.janela.repaint();
+	}
+
 
 }

@@ -8,8 +8,9 @@ public enum Estados {
 	MENU_REGISTRO_JOGADORES,// escolha dos jogadores
 	JOGAR_DADOS,			// momento para jogar os dados
 	JOGAR_MOVIMENTO,		// momento para jogador vai se movimentar
+	JOGAR_CARTA,			// momento para retirar uma carta
+	JOGAR_PROXIMO,
 	JOGAR_CASA,				// momento para exibir em qual casa jogador caiu
-	JOGANDO					//saiu do registro e entrou no tabuleiro
 	// ...
 }
 

@@ -193,8 +193,6 @@ public class Desenha {
 		quad.setForeground(cor);
 		quad.setFont(new Font("CourierNew", Font.BOLD, 20));
 
-		System.out.println("Posição do jogador " + id + ": " + quad.getBounds());
-
 		display.janela.add(quad);
 	}
 
@@ -232,11 +230,11 @@ public class Desenha {
 		}
 		else {
 			// carrega imagem da logo e redimensiona o seu tamanho
-			ImageIcon logo = new ImageIcon("src/assets/logoBC.png");
+			ImageIcon logo = new ImageIcon("src/assets/logoBCtransp.png");
 			Image image = logo.getImage();
 			Image logoRes = image.getScaledInstance(2*tam, 2*tam, Image.SCALE_SMOOTH);
 			logo = new ImageIcon(logoRes);
-			// adiciona a logo no menu usando uma label
+			// adiciona a logo numa label
 			JLabel imagem = new JLabel();
 			imagem.setIcon(logo);
 			imagem.setVerticalAlignment(JLabel.BOTTOM);
@@ -250,7 +248,7 @@ public class Desenha {
 		painel.setBackground(new Color(175,238,238));
 		painel.setBounds(x, y, tam*2, tam*5/2);
 
-		Border borda = new LineBorder(new Color(38, 181, 189), 3);
+		Border borda = new LineBorder(new Color(72, 90, 93), 2);
 		painel.setBorder(borda);
 
 		display.janela.add(painel);

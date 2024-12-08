@@ -150,33 +150,28 @@ public class Jogo {
 		jogadores.get(jogada).setCasa(casaAtual+1, casas.size());
 	}
 
+	// retira uma carta do baralho e guarda no final
+	public void retiraCarta() {
+		Carta carta = cartas.removeFirst();
+		cartas.addLast(carta);
+	}
 
-
-        
-
-
-
-
-
-
-
-
-/*
 	public void proximaJogada() {
 		++jogada; // incrementa jogada
 	
 		int quant = jogadores.size(); // quantidade de jogadores
 		// se todos os jogadores ja jogaram, vai para proxima rodada
-		if (jogada > quant) {
+		if (jogada >= quant) {
 			++rodada;
 			jogada = 0;
 		}
 
 		// verifica se jogador pode jogar
-		// colocar se esta esperando
-		if (jogadores.get(jogada).estaFalido() || jogadores.get(jogada).estaNaCadeia()) {
+		if (jogadores.get(jogada).estaFalido() 
+		|| jogadores.get(jogada).estaNaCadeia()
+		|| jogadores.get(jogada).estaEsperando()) {
+
 			this.proximaJogada();
 		}
 	}
-*/
 }
