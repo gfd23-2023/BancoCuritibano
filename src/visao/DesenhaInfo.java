@@ -181,8 +181,9 @@ public class DesenhaInfo {
 		return painel;
 	}
 
-	public static void desenhaInfoPropriedade(Display display, Propriedade casa) {
+	public static void desenhaInfoPropriedade(Display display) {
 
+		Propriedade casa = (Propriedade) display.jogo.casaJogada();
 		Color cor1 = new Color(42, 56, 61);
 		Color cor2 = new Color(139, 168, 179);
 		
@@ -233,7 +234,7 @@ public class DesenhaInfo {
 		
 		int pos = display.X_SCREEN*3/5;
 		int tam = display.Y_SCREEN/20;
-		painel.setBounds(pos, 8*tam, 8*tam, 5*tam);
+		painel.setBounds(pos, 10*tam, 8*tam, 5*tam);
 
 		display.janela.add(painel);
 		display.janela.revalidate();

@@ -55,7 +55,7 @@ public class AcaoCasas {
 	}
 
 	// Ação da casa Voltar Para Ponto de Partida
-	public static void acaoCasaVoltarPontoPartida(CasaVoltarPontoPartida casa, Jogador origem) {
+	public static void acaoCasaVoltarPontoPartida(Jogador origem) {
 		origem.setCasa(0, -1); // quantCasas = -1 porque nunca vai ser usado nesse caso
 	}
 	

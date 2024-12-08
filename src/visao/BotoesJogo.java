@@ -60,6 +60,40 @@ public class BotoesJogo {
 		botao1.acaoPagar(display);
 		botao2.acaoCadeia(display);
 	}	
+
+	public static void exibeComprarOuProximo(Display display) {
+		int un = display.Y_SCREEN/10;
+		BComprar botao1 = new BComprar(un);
+		BProximo botao2 = new BProximo(un);
+		
+		JPanel painel = new JPanel(new GridLayout(1,2));
+		painel.setBounds(11*un,8*un,4*un,un);
+		painel.add(botao1);
+		painel.add(botao2);
+		display.janela.setLayout(null);
+		display.janela.add(painel);
+		display.janela.revalidate();
+		botao1.acaoComprar(display);
+		botao2.acaoProximo(display);
+	}	
+
+	public static void exibePagarAluguel(Display display) {
+		int un = display.Y_SCREEN/10;
+		BAluguel botao = new BAluguel(un);
+		display.janela.setLayout(null);
+		display.janela.add(botao);
+		display.janela.revalidate();
+		botao.acaoAluguel(display);
+	}	
+
+	public static void exibeConstruir(Display display) {
+		int un = display.Y_SCREEN/10;
+		BConstruir botao = new BConstruir(un);
+		display.janela.setLayout(null);
+		display.janela.add(botao);
+		display.janela.revalidate();
+		botao.acaoConstruir(display);
+	}	
 }
 
 class BJogarDados extends JPanel
@@ -253,6 +287,73 @@ class BAluguel extends JPanel
             @Override
             public void actionPerformed(ActionEvent e)
             {
+				display.jogo.acaoCasa();
+				display.janela.getContentPane().removeAll();
+				display.jogo.setEstado(Estados.JOGAR_PROXIMO);
+				display.atualizaDisplay();
+            }
+        });
+	}
+}
+
+class BComprar extends JPanel
+{
+    JButton comprar = new JButton("COMPRAR");
+
+    //personalização do botão
+    public BComprar(int tam)
+    {
+		comprar.setFont(new Font("Courier New", Font.BOLD, 23));
+		comprar.setBackground(new Color(255,192,203));
+		comprar.setForeground(new Color(250,128,114));
+		comprar.setPreferredSize(new Dimension(2*tam, tam*2/3));
+		comprar.setHorizontalTextPosition(JButton.CENTER);
+		comprar.setVerticalTextPosition(JButton.CENTER);
+		setBounds(11*tam,8*tam,3*tam,tam);
+		add(comprar);
+
+    }
+
+    public void acaoComprar(Display display)
+    {
+        comprar.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+				display.jogo.acaoCasa();
+				display.janela.getContentPane().removeAll();
+				display.jogo.setEstado(Estados.JOGAR_PROXIMO);
+				display.atualizaDisplay();
+            }
+        });
+	}
+}
+
+class BConstruir extends JPanel
+{
+    JButton construir = new JButton("COMPRAR");
+
+    //personalização do botão
+    public BConstruir(int tam)
+    {
+		construir.setFont(new Font("Courier New", Font.BOLD, 23));
+		construir.setBackground(new Color(255,192,203));
+		construir.setForeground(new Color(250,128,114));
+		construir.setPreferredSize(new Dimension(2*tam, tam*2/3));
+		construir.setHorizontalTextPosition(JButton.CENTER);
+		construir.setVerticalTextPosition(JButton.CENTER);
+		setBounds(11*tam,8*tam,3*tam,tam);
+		add(construir);
+
+    }
+
+    public void acaoConstruir(Display display)
+    {
+        construir.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+				display.jogo.acaoCasa();
 				display.janela.getContentPane().removeAll();
 				display.jogo.setEstado(Estados.JOGAR_PROXIMO);
 				display.atualizaDisplay();

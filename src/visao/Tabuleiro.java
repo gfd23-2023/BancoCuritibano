@@ -48,7 +48,7 @@ public class Tabuleiro {
 				exibeTabuleiro(display); // atualiza tabuleiro
 				if (cont == num) {
 					((Timer) e.getSource()).stop();
-					display.jogo.setEstado(Estados.JOGAR_CARTA);
+					display.jogo.setEstado(Estados.JOGAR_CASA);
 					display.atualizaDisplay();
 				}
 			}

@@ -164,6 +164,22 @@ public class Jogo {
 		return cor;
 	}
 
+	// recebe o indice da casa, se for propriedade, retorna ela
+	public Propriedade casaPropriedade(int index) {
+		if (casas.get(index) instanceof Propriedade) {
+			Propriedade casa = (Propriedade) casas.get(index);
+			return casa;
+		}
+		return null;
+	}
+
+
+	public Casa casaJogada() {
+		int index = jogadores.get(jogada).getCasa();
+		return casas.get(index);
+	}
+
+
 
 	public int casaCadeia() {
 		// descobre qual eh a casa da cadeia
@@ -190,22 +206,53 @@ public class Jogo {
 			this.estado = Estados.JOGAR_CADEIA;
 		}
 		else if (casa instanceof CasaImpostoDeRenda) {
-			this.estado = Estados.JOGAR_PAGAR_IMPOSTO;
+			this.estado = Estados.JOGAR_IMPOSTO;
 		}
 		else if (casa instanceof CasaVoltarPontoPartida) {
 			this.estado = Estados.JOGAR_PARTIDA;
 		}
 		else if (casa instanceof Propriedade) {
-			String cor = ((Propriedade) casa).getCor();
-			if (AcaoCasas.verificaMonopolio(cor, jogadores.get(jogada).getId()))
+			Propriedade prop = (Propriedade) casa;
+			String cor = prop.getCor();
+			if (AcaoCasas.verificaConstrucao(prop, jogadores.get(jogada).getId()))
 				this.estado = Estados.JOGAR_CONSTRUIR;
-			else
+			else if (prop.getIdProprietario() == -1)
 				this.estado = Estados.JOGAR_PROPRIEDADE;
+			else 
+				this.estado = Estados.JOGAR_ALUGUEL;
 		}
 		else {
 			this.estado = Estados.JOGAR_PROXIMO;
 		}
 	}
+
+	public void acaoCasa() {
+		// indice da casa do jogador atual da rodada
+		int index = jogadores.get(jogada).getCasa();
+		Casa casa = casas.get(index);
+		Jogador jogador = jogadores.get(jogada);
+
+		if (casa instanceof CasaVaParaCadeia) {
+			AcaoCasas.acaoCasaVaParaCadeia(jogador, this.casaCadeia(), casas.size());
+		}
+		else if (casa instanceof CasaImpostoDeRenda) {
+			AcaoCasas.chegadaImpostoDeRenda((CasaImpostoDeRenda) casa, jogador);
+		}
+
+		else if (casa instanceof CasaVoltarPontoPartida) {
+			AcaoCasas.acaoCasaVoltarPontoPartida(jogador);
+		}
+		else if (casa instanceof Propriedade) {
+			Propriedade prop = (Propriedade) casa;
+			if (estado == Estados.JOGAR_PROPRIEDADE)
+				AcaoCasas.compraPropriedade(prop, jogador);
+			else if (estado == Estados.JOGAR_CONSTRUIR) 
+				AcaoCasas.constroiPropriedade(prop, jogador);
+			else
+				AcaoCasas.pagaAluguelPropriedade(prop, jogador);
+		}
+	}
+
 
 	// retira uma carta do baralho, executa ação e guarda no final
 	// chama os metodos de AçãoCartas e atualiza o estado do jogo

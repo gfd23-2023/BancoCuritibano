@@ -2,6 +2,7 @@ package visao;
 
 import controlador.*;
 import modelo.*;
+import modelo.casas.*;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.awt.event.ActionEvent;
@@ -23,12 +24,14 @@ public class Desenha {
 		// calcular qual deve ser o tamanho das casas e suas posições
 		int quant = display.jogo.casas.size() / 4; // quantidade por lado
 		int tam = (display.Y_SCREEN * 8/10) / quant;
+		int un = tam/3;
 
 		String cor;
 		// desenha casas superiores
 		int j = 0;
 		for (int i = 0; i < quant; i++) {
 			cor = display.jogo.corCasa(i);
+			desenhaProprietario(display, i, j*tam, tam, tam);
 			desenhaBloco(j*tam, 0, display.jogo.casas.get(i).getNome(), cor, tam, display);
 			j++;
 		}
@@ -36,6 +39,7 @@ public class Desenha {
 		j = 0;
 		for (int i = quant; i < 2*quant; i++) {
 			cor = display.jogo.corCasa(i);
+			desenhaProprietario(display, i, quant*tam -tam, j*tam+un, tam);
 			desenhaBloco(quant*tam, j*tam, display.jogo.casas.get(i).getNome(), cor, tam, display);
 			j++;
 		}
@@ -43,6 +47,7 @@ public class Desenha {
 		j = quant;
 		for (int i = 2*quant; i < 3*quant; i++) {
 			cor = display.jogo.corCasa(i);
+			desenhaProprietario(display, i, j*tam, quant*tam-tam, tam);
 			desenhaBloco(j*tam, quant*tam, display.jogo.casas.get(i).getNome(), cor, tam, display);
 			j--;
 		}
@@ -50,6 +55,7 @@ public class Desenha {
 		j = quant;
 		for (int i = 3*quant; i < 4*quant; i++) {
 			cor = display.jogo.corCasa(i);
+			desenhaProprietario(display, i, tam, j*tam+un, tam);
 			desenhaBloco(0, j*tam, display.jogo.casas.get(i).getNome(), cor, tam, display);
 			j--;
 		}
@@ -116,6 +122,70 @@ public class Desenha {
 		display.janela.add(bloco);
 		display.janela.revalidate();
     }
+
+	public static void desenhaProprietario(Display display, int index, int x, int y, int tam) {
+
+		Propriedade casa = display.jogo.casaPropriedade(index);
+
+		Color cor1 = new Color(209, 71, 133);
+		Color cor2 = new Color(255, 196, 223);
+
+		if (casa != null) {
+			// se houver proprietatio
+			if (casa.getIdProprietario() != -1) {
+				// escolhe cor com base no id do proprietario
+				switch (casa.getIdProprietario()) {
+					case 0: // vermelho
+						cor1 = new Color(219, 68, 68);
+						cor2 = new Color(235, 176, 176);
+						break;
+					case 1: // laranja
+						cor1 = new Color(230, 145, 67);
+						cor2 = new Color(245, 207, 171);
+						break;
+					case 2: // amarelo
+						cor1 = new Color(224, 197, 58);
+						cor2 = new Color(255, 244, 189);
+						break;
+					case 3: // verde
+						cor1 = new Color(72, 214, 54);
+						cor2 = new Color(164, 232, 155);
+						break;
+					case 4: // azul
+						cor1 = new Color(38, 181, 189);
+						cor2 = new Color(148, 223, 227);
+						break;
+					case 5: // roxo
+						cor1 = new Color(74, 54, 163);
+						cor2 = new Color(164, 150, 227);
+						break;
+				}
+				String texto = String.format("CASAS: %d", casa.getQuantConstrucoes());
+				JLabel prop = new JLabel(texto);
+				prop.setForeground(cor1);
+				prop.setFont(new Font("Courier New", Font.BOLD, 12));
+				Border ajuste = new EmptyBorder(5, 5, 5, 5);
+				prop.setBorder(ajuste);	
+				prop.setPreferredSize(new Dimension(tam, tam/3));
+
+				prop.setHorizontalTextPosition(JLabel.CENTER);
+				prop.setVerticalTextPosition(JLabel.TOP);
+				prop.setHorizontalAlignment(JLabel.CENTER);
+				prop.setVerticalAlignment(JLabel.TOP);
+
+				JPanel painel = new JPanel();
+				Border borda = new LineBorder(cor1, 3);
+				painel.setBackground(cor2);
+				painel.setBorder(borda);
+				painel.setBounds(x,y,tam,tam/3);
+
+				painel.add(prop);
+				display.janela.add(painel);
+				display.janela.revalidate();
+			}
+		}
+
+	}
 
 	public static void desenhaDados(Display display) {
 
@@ -296,6 +366,10 @@ public class Desenha {
 
 	}
 
+
+
+
+	// funcao auxiliar que quebra um texto em um vetor de linhas com no maximo tam caracteres
 	private static ArrayList<String> quebraLinhas(String texto, int largura) {
 		
 		ArrayList<String> linhas = new ArrayList<>(); // Lista que armazenará as linhas quebradas

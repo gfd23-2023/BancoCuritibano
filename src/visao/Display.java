@@ -66,6 +66,25 @@ public class Display {
 				BotoesJogo.exibeProximo(this);
 				Tabuleiro.exibeTabuleiro(this);
 				break;
+			case JOGAR_CASA:
+				jogo.analisaCasa();
+				atualizaDisplay();
+				break;
+			case JOGAR_PROPRIEDADE:
+				DesenhaInfo.desenhaInfoPropriedade(this);
+				BotoesJogo.exibeComprarOuProximo(this);
+				Tabuleiro.exibeTabuleiro(this);
+				break;
+			case JOGAR_ALUGUEL:
+				DesenhaInfo.desenhaInfoPropriedade(this);
+				BotoesJogo.exibePagarAluguel(this);
+				Tabuleiro.exibeTabuleiro(this);
+				break;
+			case JOGAR_CONSTRUIR:
+				DesenhaInfo.desenhaInfoPropriedade(this);
+				BotoesJogo.exibeConstruir(this);
+				Tabuleiro.exibeTabuleiro(this);
+				break;
 			case JOGAR_CARTA:
 				BotoesJogo.exibeRetirarCarta(this);
 				Tabuleiro.exibeTabuleiro(this);

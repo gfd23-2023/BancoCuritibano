@@ -10,8 +10,8 @@ public enum Estados {
 	JOGAR_MOVIMENTO,		// jogador vai se movimentar depois de jogar os dados
 	JOGAR_CASA,				// analise da casa atual
 	JOGAR_PROPRIEDADE,		// exibe propriedade e possibilidade de compra
-	JOGAR_PAGAR_ALUGUEL,	// propriedade tem dono, paga aluguel
-	JOGAR_PAGAR_IMPOSTO,	// caiu na casa de pagar imposto
+	JOGAR_ALUGUEL,			// propriedade tem dono, paga aluguel
+	JOGAR_IMPOSTO,			// caiu na casa de pagar imposto
 	JOGAR_CADEIA,			// caiu na casa vai para cadeia
 	JOGAR_CONSTRUIR,		// tem o monopolio, exibe propriedade, pode construir
 	JOGAR_PARTIDA,			// vai voltar para o ponto de partida 
