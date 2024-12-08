@@ -1,8 +1,29 @@
-Tipo,Nome,Index,InfoExtra1,infoExtra2,AluguelInicial,Aluguel,Cor,quantConstrucoes,valorConstrucao,multiplicadorAluguel
-0,Cadeia,0
-1,Imposto de Renda,1,10,200
-2,Ponto de Partida,2,200
-3,Sorte ou Revés,3
-4,Vá para a cadeia,4
-5,Voltar ponto de partida,5
-6,Propriedade,6,-1,500,100,100,Amarelo,0,50,0.5
+Tipo,Nome,Index,InfoExtra1,Valor,AluguelInicial,Aluguel,Cor,quantConstrucoes,valorConstrucao,multiplicadorAluguel
+2,Início,0,200
+6,Passeio Público,1,-1,400,30,30,Verde,0,25,0.3
+3,Sorte Ou Revés?,2
+6,Calçadão R.XV,3,-1,450,40,40,Rosa,0,35,0.4
+6,Gibiteca,4,-1,350,25,25,Amarelo,0,20,0.2
+6,UFPR Prédio Histórico,5,-1,510,70,70,Roxo,0,40,0.5
+6,Paço da Liberdade,6,-1,500,40,40,Azul,0,30,0.7
+0,Cadeia,7
+3,Sorte Ou Revés?,8
+6,Museu Oscar Niemeyer,9,-1,550,45,45,Azul,0,40,0.7
+6,Santa Felicidade,10,-1,430,47,47,Rosa,0,32,0.4
+6,UFPR Politécnico,11,-1,500,65,65,Roxo,0,32,0.5
+6,UFPR Jardim Botânico,12,-1,500,65,65,Roxo,0,32,0.5
+1,Imposto de Renda,13,100
+5,Linha Turismo (volte para o início),14
+6,Teatro Guaíra,15,-1,525,42,42,Azul,0,35,0.7
+6,Shopping Barigui,16,-1,375,30,30,Vermelho,0,25,0.2
+6,Parque Barigui,17,-1,350,25,25,Vermelho,0,22,0.2
+6,Mercado Municipal,18,-1,325,20,20,Vermelho,0,20,0.2
+6,Parque Tingui,19,-1,410,35,35,Verde,0,30,0.3
+6,Bosque Alemão,20,-1,380,25,25,Verde,0,15,0.3
+4,BLITZ (vá para a cadeia),21
+6,Praça do Japão,22,-1,400,30,30,Verde,0,25,0.3
+3,Sorte Ou Revés?,23
+6,Torre Panorâmica,24,-1,410,35,35,Rosa,0,30,0.4
+6,Catedral,25,-1,300,15,15,Amarelo,0,20,0.2
+6,Shopping Pátio Batel,26,-1,325,20,20,Amarelo,0,22,0.2
+6,Prefeitura de Curitiba,27,-1,375,30,30,Amarelo,0,25,0.2

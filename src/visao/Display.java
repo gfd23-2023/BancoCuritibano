@@ -26,8 +26,8 @@ public class Display {
 	final int Y_SCREEN = gd.getDisplayMode().getHeight();
 
 	// construtor
-	public Display() {
-		this.jogo = jogo.getInstancia(); // cria jogo
+	private Display() {
+		this.jogo = Jogo.getInstancia(); // cria jogo
 		this.janela = new Janela(X_SCREEN, Y_SCREEN);
 	}
 

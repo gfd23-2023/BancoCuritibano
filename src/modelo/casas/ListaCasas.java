@@ -41,7 +41,7 @@ public class ListaCasas {
                 if (casa[0].equals("0")) { // Casa cadeia
                     casaAtual = new Cadeia(casa[1], Integer.parseInt(casa[2]));
                 } else if (casa[0].equals("1")) { // Casa imposto de renda
-                    casaAtual = new CasaImpostoDeRenda(casa[1], Integer.parseInt(casa[2]), Integer.parseInt(casa[3]), Integer.parseInt(casa[4]));
+                    casaAtual = new CasaImpostoDeRenda(casa[1], Integer.parseInt(casa[2]), Integer.parseInt(casa[3]));
                 } else if (casa[0].equals("2")) { // Casa ponto de partida
                     casaAtual = new CasaPontoDePartida(casa[1], Integer.parseInt(casa[2]), Integer.parseInt(casa[3]));
                 } else if (casa[0].equals("3")) { // Casa sorte ou reves
