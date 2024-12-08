@@ -5,7 +5,7 @@ public class CartaVoltar extends Carta {
     private int casasPerdidas;
 
     // Construtor 
-    public CartaVoltar(int index, String nome, String descricao, int casasPerdidas) {
+    public CartaVoltar(String nome, String descricao, int casasPerdidas) {
         super(nome, descricao);
         this.casasPerdidas = casasPerdidas;
     }

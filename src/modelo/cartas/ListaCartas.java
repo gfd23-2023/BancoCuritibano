@@ -17,7 +17,6 @@ public class ListaCartas {
     public static LinkedList<Carta> geraLista(String caminhoCSV, String separadorCSV) {
         // Armazena as cartas - retorno do metodo
         LinkedList<Carta> cartas = new LinkedList<>();
-        int i = 0;
 
         // Usadas para leitura do CSV
         BufferedReader conteudoCSV = null;
@@ -40,7 +39,7 @@ public class ListaCartas {
                 if (carta[0].equals("0")) { // Carta avançar
                     cartaAtual = new CartaAvancar(carta[1], carta[2], Integer.parseInt(carta[3]));
                 } else if (carta[0].equals("1")) { // Carta voltar
-                    cartaAtual = new CartaVoltar(i, carta[1], carta[2], Integer.parseInt(carta[3]));
+                    cartaAtual = new CartaVoltar(carta[1], carta[2], Integer.parseInt(carta[3]));
                 } else if (carta[0].equals("2")) { // Carta ganhar dinheiro
                     cartaAtual = new CartaGanharDinheiro(carta[1], carta[2], Integer.parseInt(carta[3]));
                 } else if (carta[0].equals("3")) { // Carta perder dinheiro
@@ -58,7 +57,6 @@ public class ListaCartas {
 
                 // adiciona carta no "final do baralho"
                 cartas.addLast(cartaAtual);
-                i++;
             } 
         } // Tratamento de exceções
         catch (FileNotFoundException e) {

@@ -5,6 +5,7 @@ public class Banco {
 	private static Banco instanciaUnica;
 	private static Jogo instanciaJogo;
 	
+	// Retorna a instância do jogo para o banco
 	public void getInstanciaJogo() {
 		instanciaJogo = Jogo.getInstancia();
 	}
@@ -17,7 +18,9 @@ public class Banco {
 		return instanciaUnica;
 	}
 
-	
+	// Construtor (private para classes externas usarem apenas getInstancia)
+	private Banco() {};
+
 	// Transferências ------------------
 	// Dinheiro de um jogador para outro
 	public void transferencia(int idJogadorOrigem, int idJogadorDestino, int valor) {

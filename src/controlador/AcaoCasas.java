@@ -7,42 +7,19 @@ import java.util.LinkedList;
 // Classe que relaciona Casa com Jogador
 public class AcaoCasas {
 	
-	/* Chegada em imposto de renda: pagar alguma porcentagem do proprio dinheiro ou um valor fixo
-	 * Uso de opcao:
-	 *  -  0 se jogador optou por pagar porcentagem
-	 *  -  1 se jogador optou por pagar valor fixo
-	 * 
-	 * Retorno é true se a opção escolhida funcionou e false caso contrário.
-	 */
-	public static boolean chegadaImpostoDeRenda(CasaImpostoDeRenda casa, Jogador origem, int opcao) {
+	//Chegada em imposto de renda: pagar alguma porcentagem do proprio dinheiro ou um valor fixo
+	public static void chegadaImpostoDeRenda(CasaImpostoDeRenda casa, Jogador origem) {
 		Banco banco = Banco.getInstancia();
-		int valorPorcentagem = (int) ((float) casa.getPorcentagem()/100 * origem.getDinheiro());
 
-		// Se o jogador não tem dinheiro para nenhuma das opções, declara falência e retorna erro
-		if ((origem.getDinheiro() - valorPorcentagem < 0) && (origem.getDinheiro() - casa.getValor() < 0)) {
+		// Se o jogador não tem dinheiro, declara falência e interrompe a execução
+		if (origem.getDinheiro() - casa.getValor() < 0) {
 			origem.setFalido();
-			return false;
+			return;
 		}
 
-		if (opcao == 0) {
-			// Se o jogador preferiu pagar a porcentagem e tem dinheiro suficiente, faz o pagamento e retorna true
-			if (origem.getDinheiro() - valorPorcentagem >= 0) {
-				banco.alteraDinheiro(origem.getId(), -valorPorcentagem);
-				return true;	
-			} else { // Se essa opção não funcionou, retorna false
-				return false;
-			} 
-		} else if (opcao == 1) {
-			// Se o jogador preferiu pagar o valor fixo e tem dinheiro suficiente, faz o pagamento e retorna true
-			if (origem.getDinheiro() - casa.getValor() >= 0) {
-				banco.alteraDinheiro(origem.getId(), -casa.getValor());
-				return true;
-			} else { // Se essa opção não funcionou, retorna false
-				return false; 
-			}
-		} else { // Se o código de opção é invalido, retorna false
-			return false;
-		}
+		// Se o jogador tem dinheiro suficiente, faz o pagamento 
+		banco.alteraDinheiro(origem.getId(), -casa.getValor());
+		
 	}
 
 	// Ao passar ou chegar em ponto de partida, o jogador recebe seu salario

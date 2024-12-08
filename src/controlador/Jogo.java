@@ -34,8 +34,8 @@ public class Jogo {
 	public Dado dado1, dado2;
 	public Banco banco;
 	
-	// construtor
-	public Jogo() {
+	// construtor (private para só getInstancia utilizar)
+	private Jogo() {
 		this.estado = Estados.MENU_INICIAL;
 		this.rodada = 1;
 		this.jogada = 0;
