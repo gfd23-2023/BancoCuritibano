@@ -24,37 +24,68 @@ public class Desenha {
 		int quant = display.jogo.casas.size() / 4; // quantidade por lado
 		int tam = (display.Y_SCREEN * 8/10) / quant;
 
+		String cor;
 		// desenha casas superiores
 		int j = 0;
 		for (int i = 0; i < quant; i++) {
-			desenhaBloco(j*tam, 0, display.jogo.casas.get(i).getNome(), tam, display);
+			cor = display.jogo.corCasa(i);
+			desenhaBloco(j*tam, 0, display.jogo.casas.get(i).getNome(), cor, tam, display);
 			j++;
 		}
 		// desenha casas da lateral direita
 		j = 0;
 		for (int i = quant; i < 2*quant; i++) {
-			desenhaBloco(quant*tam, j*tam, display.jogo.casas.get(i).getNome(), tam, display);
+			cor = display.jogo.corCasa(i);
+			desenhaBloco(quant*tam, j*tam, display.jogo.casas.get(i).getNome(), cor, tam, display);
 			j++;
 		}
 		// desenha casas inferiores
 		j = quant;
 		for (int i = 2*quant; i < 3*quant; i++) {
-			desenhaBloco(j*tam, quant*tam, display.jogo.casas.get(i).getNome(), tam, display);
+			cor = display.jogo.corCasa(i);
+			desenhaBloco(j*tam, quant*tam, display.jogo.casas.get(i).getNome(), cor, tam, display);
 			j--;
 		}
 		// desenha casas da lateral esquerda
 		j = quant;
 		for (int i = 3*quant; i < 4*quant; i++) {
-			desenhaBloco(0, j*tam, display.jogo.casas.get(i).getNome(), tam, display);
+			cor = display.jogo.corCasa(i);
+			desenhaBloco(0, j*tam, display.jogo.casas.get(i).getNome(), cor, tam, display);
 			j--;
 		}
 	}
 
 
-    private static void desenhaBloco(int x, int y, String nome, int tam, Display display) {
+    private static void desenhaBloco(int x, int y, String nome, String cor, int tam, Display display) {
 		// define a cor da casa
-		Color cor1 = new Color(245, 54, 102);
-		Color cor2 = new Color(255,212,219);
+		Color cor1 = new Color(209, 71, 133);
+		Color cor2 = new Color(255, 196, 223);
+		switch (cor) {
+			case "Vermelho": // vermelho
+				cor1 = new Color(219, 68, 68);
+				cor2 = new Color(235, 176, 176);
+				break;
+			case "Laranja": // laranja
+				cor1 = new Color(230, 145, 67);
+				cor2 = new Color(245, 207, 171);
+				break;
+			case "Amarelo": // amarelo
+				cor1 = new Color(224, 197, 58);
+				cor2 = new Color(255, 244, 189);
+				break;
+			case "Verde": // verde
+				cor1 = new Color(72, 214, 54);
+				cor2 = new Color(197, 250, 190);
+				break;
+			case "Azul": // azul
+				cor1 = new Color(38, 181, 189);
+				cor2 = new Color(148, 223, 227);
+				break;
+			case "Roxo": // roxo
+				cor1 = new Color(74, 54, 163);
+				cor2 = new Color(164, 150, 227);
+				break;
+		}
 
 		// ajusta nome da casa (quebrando a linha)
 		ArrayList<String> texto = quebraLinhas(nome, 10);

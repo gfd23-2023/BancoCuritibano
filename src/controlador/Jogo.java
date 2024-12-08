@@ -47,49 +47,6 @@ public class Jogo {
 		this.banco = banco.getInstancia();
 	}
 
-	// função provisória
-	public void iniciaCasas() {
-
-		if (casas.size() > 0 ) 
-			return;
-
-		for (int i = 0; i < 28; i++)
-            casas.add(new Casa());
-
-        // Adiciona as casas com seus respectivos nomes, posições e valores
-        casas.get(0).setCasa("Início", 0);
-        casas.get(1).setCasa("Passeio Público", 1);
-        casas.get(2).setCasa("Sorte ou Azar?", 2);
-        casas.get(3).setCasa("Calçadão R.XV", 3);
-        casas.get(4).setCasa("Gibiteca", 4);
-        casas.get(5).setCasa("UFPR Prédio Histórico", 5);
-        casas.get(6).setCasa("Paço da Liberdade", 6);
-        casas.get(7).setCasa("Cadeia", 7);
-        casas.get(8).setCasa("Sorte ou Azar?", 8);
-        casas.get(9).setCasa("Museu Oscar Niemeyer", 9);
-        casas.get(10).setCasa("Santa Felicidade", 10);
-        casas.get(11).setCasa("UFPR Politécnico", 11);
-        casas.get(12).setCasa("UFPR Jardim Botânico", 12);
-        casas.get(13).setCasa("Jardim Botânico", 13);
-        casas.get(14).setCasa("Linha de Turismo", 14);
-        casas.get(15).setCasa("Teatro Guaíra", 15);
-        casas.get(16).setCasa("Shopping Barigui", 16);
-        casas.get(17).setCasa("Parque Barigui", 17);
-        casas.get(18).setCasa("Mercado Municipal", 18);
-        casas.get(19).setCasa("Parque Tingui", 19);
-        casas.get(20).setCasa("Bosque Alemão", 20);
-        casas.get(21).setCasa("BLITZ", 21);
-        casas.get(22).setCasa("Praça do Japão", 22);
-        casas.get(23).setCasa("Sorte ou Azar?", 23);
-        casas.get(24).setCasa("Torre Panorâmica", 24);
-        casas.get(25).setCasa("Catedral Curitiba", 25);
-        casas.get(26).setCasa("Shopping Pátio Batel", 26);
-        casas.get(27).setCasa("Prefeitura de Curitiba", 27);
-    }
-
-		
-
-
 	// getters e setters ---------------------------
 
 	public Estados getEstado() {
@@ -142,8 +99,8 @@ public class Jogo {
 
 	public void iniciaJogo() {
 		this.cartas = ListaCartas.geraLista("src/modelo/cartas/cartas.csv", ";");
+		this.casas = ListaCasas.geraLista("src/modelo/casas/casas.csv", ",");
 		this.banco.getInstanciaJogo();
-		iniciaCasas();
 	}
 
 
@@ -196,6 +153,15 @@ public class Jogo {
 
 			this.proximaJogada();
 		}
+	}
+
+	public String corCasa(int index) {
+		String cor = "Rosa";
+		if (casas.get(index) instanceof Propriedade) {
+			Casa casa = casas.get(index);
+			cor = ((Propriedade) casa).getCor();
+		}
+		return cor;
 	}
 
 

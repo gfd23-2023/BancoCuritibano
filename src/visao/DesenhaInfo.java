@@ -43,8 +43,8 @@ public class DesenhaInfo {
 		jogador.setVerticalTextPosition(JLabel.BOTTOM);
 		
 		// define as cores
-		Color cor1 = new Color(245, 54, 102);
-		Color cor2 = new Color(255,212,219);
+		Color cor1 = new Color(209, 71, 133);
+		Color cor2 = new Color(255, 196, 223);
 
 		// seta cores dos textos
 		rodada.setForeground(cor1);
