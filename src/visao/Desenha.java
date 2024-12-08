@@ -52,29 +52,38 @@ public class Desenha {
 
 
     private static void desenhaBloco(int x, int y, String nome, int tam, Display display) {
-		
-		// cria uma label/retangulo com o nome da casa
-		JLabel bloco = new JLabel(nome);
-		// centraliza o texto
-		bloco.setHorizontalTextPosition(JLabel.CENTER);
-		bloco.setVerticalTextPosition(JLabel.CENTER);
-		bloco.setHorizontalAlignment(JLabel.CENTER);
-		bloco.setVerticalAlignment(JLabel.CENTER);
-
 		// define a cor da casa
 		Color cor1 = new Color(245, 54, 102);
 		Color cor2 = new Color(255,212,219);
 
-		bloco.setForeground(cor1);
-		bloco.setFont(new Font("CourierNew", Font.BOLD, tam/6));
+		// ajusta nome da casa (quebrando a linha)
+		ArrayList<String> texto = quebraLinhas(nome, 10);
+		int linhas = texto.size();
+		JPanel bloco = new JPanel(new GridLayout(linhas+2, 1));
+		Border ajuste = new EmptyBorder(2, 4, 2, 4);
+		JLabel espaco1 = new JLabel(""); // espaco para ajuste no grid
+		bloco.add(espaco1);
+		for (int i = 0; i < linhas; i++) {
+			JLabel linha = new JLabel(texto.get(i));
+			linha.setForeground(cor1);
+			linha.setFont(new Font("CourierNew", Font.BOLD, tam/7));
+			linha.setBorder(ajuste);
+			linha.setHorizontalTextPosition(JLabel.CENTER);
+			linha.setVerticalTextPosition(JLabel.CENTER);
+			linha.setHorizontalAlignment(JLabel.CENTER);
+			linha.setVerticalAlignment(JLabel.CENTER);
+			bloco.add(linha);
+		}
+
+
 		bloco.setBounds(x, y, tam, tam);
 
 		Border borda = new LineBorder(cor1, 3);
 		bloco.setBorder(borda);
 		bloco.setBackground(cor2);
-		bloco.setOpaque(true);
 
 		display.janela.add(bloco);
+		display.janela.revalidate();
     }
 
 	public static void desenhaDados(Display display) {
