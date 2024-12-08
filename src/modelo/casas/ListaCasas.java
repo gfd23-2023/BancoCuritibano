@@ -57,8 +57,8 @@ public class ListaCasas {
                 	return null;
                 }
 
-                // adiciona casa no "final do baralho"
-                casas.addLast(casaAtual);
+                // adiciona casa
+                casas.add(casaAtual);
             } 
         } // Tratamento de exceções
         catch (FileNotFoundException e) {
