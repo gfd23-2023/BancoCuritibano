@@ -33,7 +33,7 @@ public class Jogador {
 	public Jogador(int id, String nome) {
 	    this.id = id;
 	    this.nome = nome;
-	    this.dinheiro = 2000;
+	    this.dinheiro = 20000;
 	    this.casaAtual = 0;
 	    this.falido = false;
 		this.pontoDePartida = false;
@@ -113,6 +113,11 @@ public class Jogador {
 
 	public void setFalido() {
 	    falido = true;
+		// Quando é declarado como falido, deixa de ser proprietário de todas as suas propriedades
+		for (Propriedade propAtual : propriedades) {
+			propAtual.setIdProprietario(-1);
+			propAtual.setAluguel(propAtual.getAluguelInicial());
+		}
 	}
 
 	public boolean passouPontoDePartida() {
