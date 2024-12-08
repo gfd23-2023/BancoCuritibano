@@ -77,6 +77,15 @@ public class ListaCartas {
             }
         }
 
+		// Muda a ordem de cartas ("embaralha" o monte)
+		Collections.shuffle(cartas);
         return cartas;
-    } 
+    }
+	
+	// Adiciona um habeas corpus no final de cartas
+	public static void adicionaHabeasCorpus(LinkedList <Carta> cartas) {
+		CartaHabeasCorpus carta = new CartaHabeasCorpus("HABEAS CORPUS", "Use quando precisar sair da cadeia.");
+
+		cartas.addLast(carta);
+	}
 }
