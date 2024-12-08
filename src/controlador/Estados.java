@@ -6,12 +6,12 @@ package controlador;
 public enum Estados {
 	MENU_INICIAL, 
 	MENU_REGISTRO_JOGADORES,// escolha dos jogadores
-	JOGAR_DADOS,			// momento para jogar os dados
-	JOGAR_MOVIMENTO,		// momento para jogador vai se movimentar
-	JOGAR_CARTA,			// momento para retirar uma carta
-	JOGAR_ACAO_CARTA,
-	JOGAR_PROXIMO,
-	JOGAR_CASA,				// momento para exibir em qual casa jogador caiu
+	JOGAR_DADOS,			// jogar os dados
+	JOGAR_MOVIMENTO,		// jogador vai se movimentar depois de jogar os dados
+	JOGAR_CASA,				// analise da casa atual
+	JOGAR_CARTA,			// retirar uma carta
+	JOGAR_ACAO_CARTA,		// ação da carta retirada
+	JOGAR_PROXIMO,			// ir para proxima jogada
 	// ...
 }
 

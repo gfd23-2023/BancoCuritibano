@@ -34,24 +34,21 @@ public class Tabuleiro {
 		display.janela.repaint();
 	}
 
-	public static void movimentoTabuleiro(Display display, int num, int direcao) {
+	public static void movimentoTabuleiro(Display display) {
 
 		exibeTabuleiro(display);
+		int num = display.jogo.valorDados();
 		Timer timer = new Timer(400, new ActionListener() {
 			int cont = 0; // contagem de quantas casas andou
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				cont++;
-				display.jogo.movimentaJogador(direcao);
+				display.jogo.movimentaJogador();
 				display.janela.getContentPane().removeAll(); // limpa tela
 				exibeTabuleiro(display); // atualiza tabuleiro
 				if (cont == num) {
 					((Timer) e.getSource()).stop();
-					// se estivermos movimentando por causa dos dados
-					// podemos atualizar o estado final
-					if (display.jogo.getEstado() == Estados.JOGAR_MOVIMENTO)
-						display.jogo.setEstado(Estados.JOGAR_CARTA);
-
+					display.jogo.setEstado(Estados.JOGAR_CARTA);
 					display.atualizaDisplay();
 				}
 			}
@@ -59,5 +56,12 @@ public class Tabuleiro {
 
 		timer.start();
 	}
+
+	public static void exibeCartaTabuleiro(Display display) {
+		Desenha.desenhaCarta(display, true);
+		display.jogo.retiraCarta();
+		display.janela.repaint();
+	}
+
 
 }

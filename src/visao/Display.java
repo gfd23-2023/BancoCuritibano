@@ -24,9 +24,6 @@ public class Display {
 	GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
 	final int X_SCREEN = gd.getDisplayMode().getWidth();		//obtem a largura do display DISPONÍVEL 
 	final int Y_SCREEN = gd.getDisplayMode().getHeight();
-	// direcoes dos movimentos
-	final int AVANCAR = 1;
-	final int VOLTAR = -1; 
 
 	// construtor
 	public Display() {
@@ -63,7 +60,7 @@ public class Display {
 				Tabuleiro.exibeTabuleiro(this);
 				break;
 			case JOGAR_MOVIMENTO:
-				Tabuleiro.movimentoTabuleiro(this, jogo.valorDados(), AVANCAR);
+				Tabuleiro.movimentoTabuleiro(this);
 				break;
 			case JOGAR_PROXIMO:
 				BotoesJogo.exibeProximo(this);

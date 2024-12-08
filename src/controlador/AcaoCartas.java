@@ -1,21 +1,18 @@
 package controlador;
 import modelo.cartas.*;
 import modelo.*;
-import visao.*;
 
 // Classe que relaciona Carta com Jogador
 public class AcaoCartas {
 
 	// Ação da Carta Avançar
-	public static void acaoCartaAvancar(CartaAvancar carta) {
-		Display display = Display.getInstancia();
-		Tabuleiro.movimentoTabuleiro(display, carta.getCasasAvancadas(), 1); // 1 -> avançar
+	public static void acaoCartaAvancar(CartaAvancar carta, Jogador origem, int quantCasas) {
+		origem.setCasa(origem.getCasa() + carta.getCasasAvancadas(), quantCasas);
 	}
 
 	// Ação da Carta Voltar
-	public static void acaoCartaVoltar(CartaVoltar carta) {
-		Display display = Display.getInstancia();
-		Tabuleiro.movimentoTabuleiro(display, carta.getCasasPerdidas(), -1); // -1 -> voltar
+	public static void acaoCartaVoltar(CartaVoltar carta, Jogador origem, int quantCasas) {
+		origem.setCasa(origem.getCasa() - carta.getCasasPerdidas(), quantCasas);
 	}
 
 	// Ação da Carta Ganhar Dinheiro

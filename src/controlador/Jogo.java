@@ -3,6 +3,7 @@ package controlador;
 import modelo.*;
 import modelo.casas.*;
 import modelo.cartas.*;
+import visao.*;
 import java.util.*;
 
 // CLASSE JOGO
@@ -155,11 +156,9 @@ public class Jogo {
 	}
 
 	// movimenta jogador da vez 1 casa
-	// direcao: 1 => avança
-	//         -1 => volta
-	public void movimentaJogador(int direcao) {	
+	public void movimentaJogador() {	
 		int casaAtual = jogadores.get(jogada).getCasa();
-		jogadores.get(jogada).setCasa(casaAtual+1*direcao, casas.size());
+		jogadores.get(jogada).setCasa(casaAtual+1, casas.size());
 	}
 
 	// retira uma carta do baralho, executa ação e guarda no final
@@ -167,10 +166,10 @@ public class Jogo {
 		Carta carta = cartas.removeFirst();
 
 		if (carta instanceof CartaAvancar) {
-			AcaoCartas.acaoCartaAvancar((CartaAvancar) carta);
+			AcaoCartas.acaoCartaAvancar((CartaAvancar) carta, jogadores.get(jogada), casas.size());
 		}
 		else if (carta instanceof CartaVoltar) {
-			AcaoCartas.acaoCartaVoltar((CartaVoltar) carta);
+			AcaoCartas.acaoCartaVoltar((CartaVoltar) carta, jogadores.get(jogada), casas.size());
 		}
 		else if (carta instanceof CartaGanharDinheiro) {
 			AcaoCartas.acaoCartaGanharDinheiro((CartaGanharDinheiro) carta, jogadores.get(jogada).getId());
