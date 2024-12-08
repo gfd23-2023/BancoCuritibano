@@ -108,7 +108,9 @@ public class Jogo {
 		return jogada;
 	}
 
-	// métodos de controle -----------------------------------------------------
+	// ------------------------------------------------------------------------------
+	// MÈTODOS GERAIS JOGO ----------------------------------------------------------
+	// ------------------------------------------------------------------------------
 
 	// recebe um nome de um jogador e adiciona ele na lista
 	public void registroJogadores(String nome, int id) {
@@ -161,8 +163,88 @@ public class Jogo {
 		jogadores.get(jogada).setCasa(casaAtual+1, casas.size());
 	}
 
+	public void proximaJogada() {
+		++jogada; // incrementa jogada
+	
+		int quant = jogadores.size(); // quantidade de jogadores
+
+		// se todos os jogadores ja jogaram, vai para proxima rodada
+		if (jogada >= quant) {
+			++rodada;
+			jogada = 0;
+			// percorre todos os jogadores atualizando rodadas esperando
+			for (int i = 0; i < quant; i++) {
+				// se ainda precisa esperar
+				if (!AcaoCartas.verificaEspera(jogadores.get(i))) {
+					// atualizamos a espera porque passou uma rodada
+					int esperando = jogadores.get(i).getRodadasEsperando();
+					jogadores.get(i).setRodadasEsperando(esperando+1);
+				}
+				if (jogadores.get(i).estaNaCadeia()) {
+					// verifica se ja completou 3 rodadas na cadeia
+					if (jogadores.get(i).getRodadasNaCadeia() == 3)
+						jogadores.get(i).setRodadasNaCadeia(0); // liberta
+					else
+						jogadores.get(i).setRodadasNaCadeia(1); // incrementa rodada
+				}
+			}
+		}
+		// verifica se jogador pode jogar
+		if (jogadores.get(jogada).estaFalido() 
+		|| jogadores.get(jogada).estaNaCadeia()
+		|| jogadores.get(jogada).estaEsperando()) {
+
+			this.proximaJogada();
+		}
+	}
+
+
+	public int casaCadeia() {
+		// descobre qual eh a casa da cadeia
+		for (int i = 0; i < casas.size(); i++) {
+			if (casas.get(i) instanceof Cadeia) {
+				return casas.get(i).getIndex();
+			}
+		}
+		// retorna casa atual
+		return casas.get(jogadores.get(jogada).getCasa()).getIndex();
+	}
+
+	// analisa a casa em que o jogador da jogada parou 
+	// atualiza o estado to jogo
+	public void analisaCasa() {
+		// indice da casa do jogador atual da rodada
+		int index = jogadores.get(jogada).getCasa();
+		Casa casa = casas.get(index);
+
+		if (casa instanceof CasaSorteOuReves) {
+			this.estado = Estados.JOGAR_CARTA;
+		}
+		else if (casa instanceof CasaVaParaCadeia) {
+			this.estado = Estados.JOGAR_CADEIA;
+		}
+		else if (casa instanceof CasaImpostoDeRenda) {
+			this.estado = Estados.JOGAR_PAGAR_IMPOSTO;
+		}
+		else if (casa instanceof CasaVoltarPontoPartida) {
+			this.estado = Estados.JOGAR_PARTIDA;
+		}
+		else if (casa instanceof Propriedade) {
+			String cor = ((Propriedade) casa).getCor();
+			if (AcaoCasas.verificaMonopolio(cor, jogadores.get(jogada).getId()))
+				this.estado = Estados.JOGAR_CONSTRUIR;
+			else
+				this.estado = Estados.JOGAR_PROPRIEDADE;
+		}
+		else {
+			this.estado = Estados.JOGAR_PROXIMO;
+		}
+	}
+
 	// retira uma carta do baralho, executa ação e guarda no final
+	// chama os metodos de AçãoCartas e atualiza o estado do jogo
 	// retorna carta retirada visao exibir botoes Pagar ou Cadeia caso necessário
+	// trata com o jogador atua da rodada
 	public Carta retiraCarta() {
 		Carta carta = cartas.removeFirst();
 
@@ -205,44 +287,5 @@ public class Jogo {
 		estado = Estados.JOGAR_PROXIMO;
 	}
 
-	public void CasaCadeia() {
-		// descobre qual eh a casa da cadeia
-	}
 
-	public void proximaJogada() {
-		++jogada; // incrementa jogada
-	
-		int quant = jogadores.size(); // quantidade de jogadores
-
-		// se todos os jogadores ja jogaram, vai para proxima rodada
-		if (jogada >= quant) {
-			++rodada;
-			jogada = 0;
-			// percorre todos os jogadores atualizando rodadas esperando
-			for (int i = 0; i < quant; i++) {
-				// se ainda precisa esperar
-				if (!AcaoCartas.verificaEspera(jogadores.get(i))) {
-					// atualizamos a espera porque passou uma rodada
-					int esperando = jogadores.get(i).getRodadasEsperando();
-					jogadores.get(i).setRodadasEsperando(esperando+1);
-				}
-				if (jogadores.get(i).estaNaCadeia()) {
-					// verifica se ja completou 3 rodadas na cadeia
-					if (jogadores.get(i).getRodadasNaCadeia() == 3)
-						jogadores.get(i).setRodadasNaCadeia(0); // liberta
-					else
-						jogadores.get(i).setRodadasNaCadeia(1); // incrementa rodada
-				}
-			}
-
-		}
-
-		// verifica se jogador pode jogar
-		if (jogadores.get(jogada).estaFalido() 
-		|| jogadores.get(jogada).estaNaCadeia()
-		|| jogadores.get(jogada).estaEsperando()) {
-
-			this.proximaJogada();
-		}
-	}
 }

@@ -228,3 +228,35 @@ class BCadeia extends JPanel
         });
 	}
 }
+
+class BAluguel extends JPanel
+{
+    JButton aluguel = new JButton("PAGAR ALUGUEL");
+
+    //personalização do botão
+    public BAluguel(int tam)
+    {
+		aluguel.setFont(new Font("Courier New", Font.BOLD, 25));
+		aluguel.setBackground(new Color(255,192,203));
+		aluguel.setForeground(new Color(250,128,114));
+		aluguel.setPreferredSize(new Dimension(4*tam, tam*2/3));
+		aluguel.setHorizontalTextPosition(JButton.CENTER);
+		aluguel.setVerticalTextPosition(JButton.CENTER);
+		setBounds(11*tam,8*tam,4*tam,tam);
+		add(aluguel);
+
+    }
+
+    public void acaoAluguel(Display display)
+    {
+        aluguel.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+				display.janela.getContentPane().removeAll();
+				display.jogo.setEstado(Estados.JOGAR_PROXIMO);
+				display.atualizaDisplay();
+            }
+        });
+	}
+}

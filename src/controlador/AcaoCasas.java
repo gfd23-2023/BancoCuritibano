@@ -72,7 +72,7 @@ public class AcaoCasas {
 	}
 
 	// Ação da casa Vá Para a Cadeia
-	public static void acaoCasaVaParaCadeia(CasaVaParaCadeia casa, Jogador origem, int posicaoCadeia, int quantCasas) {
+	public static void acaoCasaVaParaCadeia(Jogador origem, int posicaoCadeia, int quantCasas) {
 		origem.setNaCadeia(true);
 		origem.setCasa(posicaoCadeia, quantCasas);
 	}
