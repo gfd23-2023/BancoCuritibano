@@ -37,6 +37,7 @@ public class Jogador {
 	    this.casaAtual = 0;
 	    this.falido = false;
 		this.pontoDePartida = false;
+		this.propriedades = new ArrayList<>();
 	    this.naCadeia = false;
 	    this.rodadasNaCadeia = 0;
 		this.habeasCorpus = false;

@@ -5,7 +5,7 @@ public class CasaPontoDePartida extends Casa {
 	private int salario;
 
 	// Construtor
-    public CasaPontoDePartida(String nome, int index, int coordenadaX, int coordenadaY, int salario) {
+    public CasaPontoDePartida(String nome, int index, int salario) {
 		super(nome, index);
 		this.salario = salario;
 	}

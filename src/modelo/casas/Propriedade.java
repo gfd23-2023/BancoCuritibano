@@ -11,18 +11,28 @@ public class Propriedade extends Casa {
 	private float multiplicadorAluguel;
 
 	// Construtores
-	public Propriedade(String nome, int index, int coordenadaX, int coordenadaY, int valor, int aluguel) {
+	// Recebe apenas alguns atributos (para novo jogo)
+	public Propriedade(String nome, int index, int valor, int aluguel, String cor, int valorConstrucao, float multiplicadorAluguel) {
 		super(nome, index);
 		this.idProprietario = -1; 
 		this.valor = valor;
 		this.aluguel = aluguel;
+		this.cor = cor;
+		this.quantConstrucoes = 0;
+		this.valorConstrucao = valorConstrucao;
+		this.multiplicadorAluguel = multiplicadorAluguel;
 	}
 
-	public Propriedade(String nome, int index, int coordenadaX, int coordenadaY, int idProprietario, int valor, int aluguel) {
+	// Recebe todos os atributos (para carregar jogo)
+	public Propriedade(String nome, int index, int idProprietario, int valor, int aluguel, String cor, int quantConstrucoes, int valorConstrucao, float multiplicadorAluguel) {
 		super(nome, index);
 		this.idProprietario = idProprietario;
 		this.valor = valor;
 		this.aluguel = aluguel;
+		this.cor = cor;
+		this.quantConstrucoes = quantConstrucoes;
+		this.valorConstrucao = valorConstrucao;
+		this.multiplicadorAluguel = multiplicadorAluguel;
 	}
 
 
