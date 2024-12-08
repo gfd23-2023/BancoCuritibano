@@ -2,6 +2,7 @@ package visao;
 
 import controlador.*;
 import modelo.*;
+import modelo.casas.*;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.awt.event.ActionEvent;
@@ -179,16 +180,63 @@ public class DesenhaInfo {
 
 		return painel;
 	}
-/*
-	public static void desenhaInfoPropriedade(Display display, Casa casa) {
-		// exibir nome
-		// valor compra
-		// valor aluguel
-		// valor das contrucoes
+
+	public static void desenhaInfoPropriedade(Display display, Propriedade casa) {
+
+		Color cor1 = new Color(42, 56, 61);
+		Color cor2 = new Color(139, 168, 179);
+		
+		JLabel nome	= new JLabel(casa.getNome());
+		nome.setForeground(cor2);
+		nome.setFont(new Font("CourierNew", Font.BOLD, 20));
+		nome.setBackground(cor1);
+		nome.setOpaque(true);
+
+		JLabel aluguel = new JLabel(String.format("Aluguel: %d", casa.consultaAluguel(0)));
+		JLabel casa1 = new JLabel(String.format("1 Casa: %d", casa.consultaAluguel(1)));
+		JLabel casa2 = new JLabel(String.format("2 Casas: %d", casa.consultaAluguel(2)));
+		JLabel casa3 = new JLabel(String.format("3 Casas: %d", casa.consultaAluguel(3)));
+		JLabel casa4 = new JLabel(String.format("4 Casas: %d", casa.consultaAluguel(4)));
+		JLabel valor = new JLabel(String.format("Valor compra: %d", casa.getValor()));
+		JLabel constr = new JLabel(String.format("Valor construção: %d", casa.getValorConstrucao()));
+
+		Font fonte = (new Font("CourierNew", Font.BOLD, 13));
+		aluguel.setFont(fonte);
+		casa1.setFont(fonte);
+		casa2.setFont(fonte);
+		casa3.setFont(fonte);
+		casa4.setFont(fonte);
+		valor.setFont(fonte);
+		constr.setFont(fonte);
+
+		aluguel.setForeground(cor1);
+		casa1.setForeground(cor1);
+		casa2.setForeground(cor1);
+		casa3.setForeground(cor1);
+		casa4.setForeground(cor1);
+		valor.setForeground(cor1);
+		constr.setForeground(cor1);
+
+		JPanel painel = new JPanel(new GridLayout(8,1));
+		painel.add(nome);
+		painel.add(aluguel);
+		painel.add(casa1);
+		painel.add(casa2);
+		painel.add(casa3);
+		painel.add(casa4);
+		painel.add(valor);
+		painel.add(constr);
+
+		painel.setBackground(cor2);
+		Border borda = new LineBorder(cor1, 4);
+		painel.setBorder(borda);
+		
+		int pos = display.X_SCREEN*3/5;
+		int tam = display.Y_SCREEN/20;
+		painel.setBounds(pos, 8*tam, 8*tam, 5*tam);
+
+		display.janela.add(painel);
+		display.janela.revalidate();
 	}
-*/
-	
-
-
 	
 }
