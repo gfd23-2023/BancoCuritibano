@@ -205,6 +205,10 @@ public class Jogo {
 		estado = Estados.JOGAR_PROXIMO;
 	}
 
+	public void vaiParaCasaCadeia() {
+		// descobre qual eh a casa da cadeia e seta jogador la
+	}
+
 	public void proximaJogada() {
 		++jogada; // incrementa jogada
 	
