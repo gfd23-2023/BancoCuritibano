@@ -208,7 +208,7 @@ public class Desenha {
 			// pega infos carta do baralho
 			JLabel nome = new JLabel(display.jogo.cartas.getFirst().getNome());
 			nome.setForeground(new Color(38, 181, 189));
-			nome.setFont(new Font("CourierNew", Font.BOLD, 22));
+			nome.setFont(new Font("CourierNew", Font.BOLD, 20));
 			nome.setHorizontalTextPosition(JLabel.CENTER);
 			nome.setVerticalTextPosition(JLabel.CENTER);
 			nome.setHorizontalAlignment(JLabel.CENTER);
@@ -219,11 +219,11 @@ public class Desenha {
 			int linhas = texto.size() + 1;
 			painel = new JPanel(new GridLayout(linhas, 1));
 			painel.add(nome);
-			Border ajuste = new EmptyBorder(2, 10, 2, 10);
+			Border ajuste = new EmptyBorder(10, 10, 10, 10);
 			for (int i = 0; i < linhas-1; i++) {
 				JLabel linha = new JLabel(texto.get(i));
 				linha.setForeground(new Color(38, 181, 189));
-				linha.setFont(new Font("CourierNew", Font.BOLD, 15));
+				linha.setFont(new Font("CourierNew", Font.BOLD, 14));
 				linha.setBorder(ajuste);
 				painel.add(linha);
 			}
