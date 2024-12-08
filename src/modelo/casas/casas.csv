@@ -1,0 +1,8 @@
+Tipo,Nome,Index,InfoExtra1,infoExtra2,AluguelInicial,Aluguel,Cor,quantConstrucoes,valorConstrucao,multiplicadorAluguel
+0,Cadeia,0
+1,Imposto de Renda,1,10,200
+2,Ponto de Partida,2,200
+3,Sorte ou Revés,3
+4,Vá para a cadeia,4
+5,Voltar ponto de partida,5
+6,Propriedade,6,-1,500,100,100,Amarelo,0,50,0.5
