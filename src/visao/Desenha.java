@@ -139,7 +139,7 @@ public class Desenha {
 				y = quant*tam;
 			} else {
 				x = 0;
-				y = (quant - quant%casa)*tam;
+				y = (quant - casa%quant)*tam;
 			}
 
 			posicionaJogador(display, display.jogo.jogadores.get(i).getId(), x, y, tam);
@@ -210,7 +210,7 @@ public class Desenha {
 			nome.setForeground(new Color(38, 181, 189));
 			nome.setFont(new Font("CourierNew", Font.BOLD, 22));
 			nome.setHorizontalTextPosition(JLabel.CENTER);
-			nome.setVerticalTextPosition(JLabel.TOP);
+			nome.setVerticalTextPosition(JLabel.CENTER);
 			nome.setHorizontalAlignment(JLabel.CENTER);
 			nome.setVerticalAlignment(JLabel.CENTER);
 
@@ -220,7 +220,7 @@ public class Desenha {
 			painel = new JPanel(new GridLayout(linhas, 1));
 			painel.add(nome);
 			Border ajuste = new EmptyBorder(2, 10, 2, 10);
-			for (int i = 1; i < linhas-1; i++) {
+			for (int i = 0; i < linhas-1; i++) {
 				JLabel linha = new JLabel(texto.get(i));
 				linha.setForeground(new Color(38, 181, 189));
 				linha.setFont(new Font("CourierNew", Font.BOLD, 15));

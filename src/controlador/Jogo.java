@@ -40,15 +40,18 @@ public class Jogo {
 		this.jogada = 0;
 		this.jogadores = new ArrayList<>();
 		this.casas = new ArrayList<>();
-		this.cartas = ListaCartas.geraLista("src/modelo/cartas/cartas.csv", ";");
+		this.cartas = new LinkedList<>();
 		this.dado1 = new Dado();
 		this.dado2 = new Dado();
 		this.banco = banco.getInstancia();
-		this.iniciaCasas();
 	}
 
 	// função provisória
 	public void iniciaCasas() {
+
+		if (casas.size() > 0 ) 
+			return;
+
 		for (int i = 0; i < 28; i++)
             casas.add(new Casa());
 
@@ -134,6 +137,13 @@ public class Jogo {
 			return true;
 	}
 
+	public void iniciaJogo() {
+		this.cartas = ListaCartas.geraLista("src/modelo/cartas/cartas.csv", ";");
+		this.banco.getInstanciaJogo();
+		iniciaCasas();
+	}
+
+
 	public void jogaDados() {
 		dado1.jogaDados();
 		dado2.jogaDados();
@@ -145,14 +155,30 @@ public class Jogo {
 	}
 
 	// movimenta jogador da vez 1 casa
-	public void movimentaJogador() {	
+	// direcao: 1 => avança
+	//         -1 => volta
+	public void movimentaJogador(int direcao) {	
 		int casaAtual = jogadores.get(jogada).getCasa();
-		jogadores.get(jogada).setCasa(casaAtual+1, casas.size());
+		jogadores.get(jogada).setCasa(casaAtual+1*direcao, casas.size());
 	}
 
-	// retira uma carta do baralho e guarda no final
+	// retira uma carta do baralho, executa ação e guarda no final
 	public void retiraCarta() {
 		Carta carta = cartas.removeFirst();
+
+		if (carta instanceof CartaAvancar) {
+			AcaoCartas.acaoCartaAvancar((CartaAvancar) carta);
+		}
+		else if (carta instanceof CartaVoltar) {
+			AcaoCartas.acaoCartaVoltar((CartaVoltar) carta);
+		}
+		else if (carta instanceof CartaGanharDinheiro) {
+			AcaoCartas.acaoCartaGanharDinheiro((CartaGanharDinheiro) carta, jogadores.get(jogada).getId());
+		}
+		else if (carta instanceof CartaPerderDinheiro) {
+			AcaoCartas.acaoCartaPerderDinheiro((CartaPerderDinheiro) carta, jogadores.get(jogada).getId());
+		}
+
 		cartas.addLast(carta);
 	}
 

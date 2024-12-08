@@ -19,10 +19,13 @@ import java.awt.*;
 
 public class Tabuleiro {
 
-	// jogando dados
-	public void exibeTabuleiro(Display display) {
-		// desenha infos do tabuleiro
-		Desenha.desenhaCarta(display, false);
+	public static void exibeTabuleiro(Display display) {
+
+		if (display.jogo.getEstado() == Estados.JOGAR_ACAO_CARTA)
+			Desenha.desenhaCarta(display, true);
+		else
+			Desenha.desenhaCarta(display, false);
+
 		Desenha.desenhaJogadores(display);
 		Desenha.desenhaCasas(display);
 		DesenhaInfo.desenhaInfoRodada(display);
@@ -31,22 +34,24 @@ public class Tabuleiro {
 		display.janela.repaint();
 	}
 
-	public void movimentoTabuleiro(Display display) {
+	public static void movimentoTabuleiro(Display display, int num, int direcao) {
 
 		exibeTabuleiro(display);
-		// numero de casas que vai andar
-		int num = display.jogo.valorDados();
 		Timer timer = new Timer(400, new ActionListener() {
 			int cont = 0; // contagem de quantas casas andou
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				cont++;
-				display.jogo.movimentaJogador();
+				display.jogo.movimentaJogador(direcao);
 				display.janela.getContentPane().removeAll(); // limpa tela
 				exibeTabuleiro(display); // atualiza tabuleiro
 				if (cont == num) {
 					((Timer) e.getSource()).stop();
-					display.jogo.setEstado(Estados.JOGAR_PROXIMO);
+					// se estivermos movimentando por causa dos dados
+					// podemos atualizar o estado final
+					if (display.jogo.getEstado() == Estados.JOGAR_MOVIMENTO)
+						display.jogo.setEstado(Estados.JOGAR_CARTA);
+
 					display.atualizaDisplay();
 				}
 			}
@@ -54,12 +59,5 @@ public class Tabuleiro {
 
 		timer.start();
 	}
-
-	public void exibeCartaTabuleiro(Display display) {
-		Desenha.desenhaCarta(display, true);
-		display.jogo.retiraCarta();
-		display.janela.repaint();
-	}
-
 
 }

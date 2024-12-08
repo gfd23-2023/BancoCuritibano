@@ -213,6 +213,7 @@ class ContinuarJogo extends JPanel
             public void actionPerformed(ActionEvent e)
             {
 				if (display.jogo.registroValido()) {
+					display.jogo.iniciaJogo();
 					display.janela.getContentPane().removeAll();
 					display.jogo.setEstado(Estados.JOGAR_DADOS);
 					display.atualizaDisplay();

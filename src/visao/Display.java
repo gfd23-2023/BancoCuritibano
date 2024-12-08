@@ -24,6 +24,9 @@ public class Display {
 	GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
 	final int X_SCREEN = gd.getDisplayMode().getWidth();		//obtem a largura do display DISPONÍVEL 
 	final int Y_SCREEN = gd.getDisplayMode().getHeight();
+	// direcoes dos movimentos
+	final int AVANCAR = 1;
+	final int VOLTAR = -1; 
 
 	// construtor
 	public Display() {
@@ -42,7 +45,6 @@ public class Display {
 	
 	MenuInicial menu = new MenuInicial();
 	MenuRegistro registro = new MenuRegistro();
-	Tabuleiro tabuleiro = new Tabuleiro();
 	
 
 	// dependendo do estado do jogo, exibe o menu correspondente
@@ -58,14 +60,23 @@ public class Display {
 				break;
 			case JOGAR_DADOS:
 				BotoesJogo.exibeJogarDados(this);
-				tabuleiro.exibeTabuleiro(this);
+				Tabuleiro.exibeTabuleiro(this);
 				break;
 			case JOGAR_MOVIMENTO:
-				tabuleiro.movimentoTabuleiro(this);
+				Tabuleiro.movimentoTabuleiro(this, jogo.valorDados(), AVANCAR);
 				break;
 			case JOGAR_PROXIMO:
 				BotoesJogo.exibeProximo(this);
-				tabuleiro.exibeTabuleiro(this);
+				Tabuleiro.exibeTabuleiro(this);
+				break;
+			case JOGAR_CARTA:
+				BotoesJogo.exibeRetirarCarta(this);
+				Tabuleiro.exibeTabuleiro(this);
+				break;
+			case JOGAR_ACAO_CARTA:
+				BotoesJogo.exibeProximo(this);
+				Tabuleiro.exibeTabuleiro(this);
+				jogo.retiraCarta();
 				break;
 		}
 		System.out.println("estado atual: " + jogo.getEstado());

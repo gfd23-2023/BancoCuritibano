@@ -89,7 +89,7 @@ class BRetirarCarta extends JPanel
 		retirar.setFont(new Font("Courier New", Font.BOLD, 25));
 		retirar.setBackground(new Color(255,192,203));
 		retirar.setForeground(new Color(250,128,114));
-		retirar.setPreferredSize(new Dimension(4*tam, tam*2/3));
+		retirar.setPreferredSize(new Dimension(6*tam, tam*2/3));
 		retirar.setHorizontalTextPosition(JButton.CENTER);
 		retirar.setVerticalTextPosition(JButton.CENTER);
 		setBounds(11*tam,8*tam,4*tam,tam);
@@ -104,7 +104,7 @@ class BRetirarCarta extends JPanel
             public void actionPerformed(ActionEvent e)
             {
 				display.janela.getContentPane().removeAll();
-				display.jogo.setEstado(Estados.JOGAR_CARTA);
+				display.jogo.setEstado(Estados.JOGAR_ACAO_CARTA);
 				display.atualizaDisplay();
             }
         });
