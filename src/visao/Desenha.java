@@ -47,7 +47,7 @@ public class Desenha {
 		j = quant;
 		for (int i = 2*quant; i < 3*quant; i++) {
 			cor = display.jogo.corCasa(i);
-			desenhaProprietario(display, i, j*tam, quant*tam-tam, tam);
+			desenhaProprietario(display, i, j*tam, quant*tam-un, tam);
 			desenhaBloco(j*tam, quant*tam, display.jogo.casas.get(i).getNome(), cor, tam, display);
 			j--;
 		}
@@ -103,7 +103,7 @@ public class Desenha {
 		for (int i = 0; i < linhas; i++) {
 			JLabel linha = new JLabel(texto.get(i));
 			linha.setForeground(cor1);
-			linha.setFont(new Font("CourierNew", Font.BOLD, tam/7));
+			linha.setFont(new Font("Courier New", Font.BOLD, tam/7));
 			linha.setBorder(ajuste);
 			linha.setHorizontalTextPosition(JLabel.CENTER);
 			linha.setVerticalTextPosition(JLabel.CENTER);
@@ -301,7 +301,7 @@ public class Desenha {
 		quad.setOpaque(true);
 		quad.setText("+");
 		quad.setForeground(cor);
-		quad.setFont(new Font("CourierNew", Font.BOLD, 20));
+		quad.setFont(new Font("Courier New", Font.BOLD, 20));
 
 		display.janela.add(quad);
 	}
@@ -318,7 +318,7 @@ public class Desenha {
 			// pega infos carta do baralho
 			JLabel nome = new JLabel(display.jogo.cartas.getFirst().getNome());
 			nome.setForeground(new Color(38, 181, 189));
-			nome.setFont(new Font("CourierNew", Font.BOLD, 20));
+			nome.setFont(new Font("Courier New", Font.BOLD, 20));
 			nome.setHorizontalTextPosition(JLabel.CENTER);
 			nome.setVerticalTextPosition(JLabel.CENTER);
 			nome.setHorizontalAlignment(JLabel.CENTER);
@@ -333,7 +333,7 @@ public class Desenha {
 			for (int i = 0; i < linhas-1; i++) {
 				JLabel linha = new JLabel(texto.get(i));
 				linha.setForeground(new Color(38, 181, 189));
-				linha.setFont(new Font("CourierNew", Font.BOLD, 14));
+				linha.setFont(new Font("Courier New", Font.BOLD, 14));
 				linha.setBorder(ajuste);
 				painel.add(linha);
 			}

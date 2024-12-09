@@ -48,9 +48,9 @@ public class DesenhaInfo {
 
 		// seta cores dos textos
 		rodada.setForeground(cor1);
-		rodada.setFont(new Font("CourierNew", Font.BOLD, 20));
+		rodada.setFont(new Font("Courier New", Font.BOLD, 20));
 		jogador.setForeground(cor1);
-		jogador.setFont(new Font("CourierNew", Font.BOLD, 20));
+		jogador.setFont(new Font("Courier New", Font.BOLD, 20));
 
 		int pos = display.X_SCREEN*3/5;
 		int tam = display.Y_SCREEN/20;
@@ -134,11 +134,11 @@ public class DesenhaInfo {
 
 		// seta fontes e cores
 		nome.setForeground(cor1);
-		nome.setFont(new Font("CourierNew", Font.BOLD, 20));
+		nome.setFont(new Font("Courier New", Font.BOLD, 20));
 		dinheiro.setForeground(cor1);
-		dinheiro.setFont(new Font("CourierNew", Font.BOLD, 15));
+		dinheiro.setFont(new Font("Courier New", Font.BOLD, 15));
 		estado.setForeground(cor2);
-		estado.setFont(new Font("CourierNew", Font.BOLD, 15));
+		estado.setFont(new Font("Courier New", Font.BOLD, 15));
 		estado.setOpaque(true);
 
 		// configura texto do estado
@@ -189,7 +189,7 @@ public class DesenhaInfo {
 		
 		JLabel nome	= new JLabel(casa.getNome());
 		nome.setForeground(cor2);
-		nome.setFont(new Font("CourierNew", Font.BOLD, 20));
+		nome.setFont(new Font("Courier New", Font.BOLD, 20));
 		nome.setBackground(cor1);
 		nome.setOpaque(true);
 
@@ -197,11 +197,11 @@ public class DesenhaInfo {
 		JLabel casa1 = new JLabel(String.format("1 Casa: %d", casa.consultaAluguel(1)));
 		JLabel casa2 = new JLabel(String.format("2 Casas: %d", casa.consultaAluguel(2)));
 		JLabel casa3 = new JLabel(String.format("3 Casas: %d", casa.consultaAluguel(3)));
-		JLabel casa4 = new JLabel(String.format("4 Casas: %d", casa.consultaAluguel(4)));
+		JLabel casa4 = new JLabel(String.format("Hotel: %d", casa.consultaAluguel(4)));
 		JLabel valor = new JLabel(String.format("Valor compra: %d", casa.getValor()));
 		JLabel constr = new JLabel(String.format("Valor construção: %d", casa.getValorConstrucao()));
 
-		Font fonte = (new Font("CourierNew", Font.BOLD, 13));
+		Font fonte = (new Font("Courier New", Font.BOLD, 13));
 		aluguel.setFont(fonte);
 		casa1.setFont(fonte);
 		casa2.setFont(fonte);
@@ -240,4 +240,37 @@ public class DesenhaInfo {
 		display.janela.revalidate();
 	}
 	
+	public static void desenhaInfoImposto(Display display) {
+
+		CasaImpostoDeRenda casa = (CasaImpostoDeRenda) display.jogo.casaJogada();
+		Color cor1 = new Color(42, 56, 61);
+		Color cor2 = new Color(139, 168, 179);
+		
+		JLabel nome	= new JLabel(casa.getNome());
+		nome.setForeground(cor2);
+		nome.setFont(new Font("Courier New", Font.BOLD, 20));
+		nome.setBackground(cor1);
+		nome.setOpaque(true);
+
+		JLabel valor = new JLabel(String.format("Valor: %d", casa.getValor()));
+		Font fonte = (new Font("Courier New", Font.BOLD, 13));
+		valor.setFont(fonte);
+		valor.setForeground(cor1);
+
+		JPanel painel = new JPanel(new GridLayout(2,1));
+		painel.setBackground(cor2);
+		Border borda = new LineBorder(cor1, 4);
+		painel.setBorder(borda);
+		
+		int pos = display.X_SCREEN*3/5;
+		int tam = display.Y_SCREEN/20;
+		painel.setBounds(pos, 11*tam, 8*tam, 2*tam);
+
+		painel.add(nome);
+		painel.add(valor);
+		display.janela.add(painel);
+		display.janela.revalidate();
+	}
+
+
 }

@@ -67,7 +67,7 @@ public class BotoesJogo {
 		BProximo botao2 = new BProximo(un);
 		
 		JPanel painel = new JPanel(new GridLayout(1,2));
-		painel.setBounds(11*un,8*un,4*un,un);
+		painel.setBounds(10*un,8*un,6*un,un);
 		painel.add(botao1);
 		painel.add(botao2);
 		display.janela.setLayout(null);
@@ -93,6 +93,24 @@ public class BotoesJogo {
 		display.janela.add(botao);
 		display.janela.revalidate();
 		botao.acaoConstruir(display);
+	}	
+
+	public static void exibeCadeia(Display display) {
+		int un = display.Y_SCREEN/10;
+		BCadeia botao = new BCadeia(un);
+		display.janela.setLayout(null);
+		display.janela.add(botao);
+		display.janela.revalidate();
+		botao.acaoCadeia(display);
+	}	
+
+	public static void exibePagarImposto(Display display) {
+		int un = display.Y_SCREEN/10;
+		BImposto botao = new BImposto(un);
+		display.janela.setLayout(null);
+		display.janela.add(botao);
+		display.janela.revalidate();
+		botao.acaoImposto(display);
 	}	
 }
 
@@ -253,8 +271,12 @@ class BCadeia extends JPanel
             @Override
             public void actionPerformed(ActionEvent e)
             {
-				// opcao 1 -> cadeia
-				display.jogo.cartaPagarOuCadeia(1);
+				if (display.jogo.getEstado() == Estados.JOGAR_CADEIA)
+					display.jogo.acaoCasa();
+				else // carta
+					// opcao 1 -> cadeia
+					display.jogo.cartaPagarOuCadeia(1);
+
 				display.janela.getContentPane().removeAll();
 				display.jogo.setEstado(Estados.JOGAR_PROXIMO);
 				display.atualizaDisplay();
@@ -306,10 +328,10 @@ class BComprar extends JPanel
 		comprar.setFont(new Font("Courier New", Font.BOLD, 23));
 		comprar.setBackground(new Color(255,192,203));
 		comprar.setForeground(new Color(250,128,114));
-		comprar.setPreferredSize(new Dimension(2*tam, tam*2/3));
+		comprar.setPreferredSize(new Dimension(4*tam, tam*2/3));
 		comprar.setHorizontalTextPosition(JButton.CENTER);
 		comprar.setVerticalTextPosition(JButton.CENTER);
-		setBounds(11*tam,8*tam,3*tam,tam);
+		setBounds(11*tam,8*tam,4*tam,tam);
 		add(comprar);
 
     }
@@ -331,7 +353,7 @@ class BComprar extends JPanel
 
 class BConstruir extends JPanel
 {
-    JButton construir = new JButton("COMPRAR");
+    JButton construir = new JButton("CONSTRUIR");
 
     //personalização do botão
     public BConstruir(int tam)
@@ -350,6 +372,39 @@ class BConstruir extends JPanel
     public void acaoConstruir(Display display)
     {
         construir.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+				display.jogo.acaoCasa();
+				display.janela.getContentPane().removeAll();
+				display.jogo.setEstado(Estados.JOGAR_PROXIMO);
+				display.atualizaDisplay();
+            }
+        });
+	}
+}
+
+class BImposto extends JPanel
+{
+    JButton imposto = new JButton("PAGAR IMPOSTO");
+
+    //personalização do botão
+    public BImposto(int tam)
+    {
+		imposto.setFont(new Font("Courier New", Font.BOLD, 23));
+		imposto.setBackground(new Color(255,192,203));
+		imposto.setForeground(new Color(250,128,114));
+		imposto.setPreferredSize(new Dimension(4*tam, tam*2/3));
+		imposto.setHorizontalTextPosition(JButton.CENTER);
+		imposto.setVerticalTextPosition(JButton.CENTER);
+		setBounds(11*tam,8*tam,4*tam,tam);
+		add(imposto);
+
+    }
+
+    public void acaoImposto(Display display)
+    {
+        imposto.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e)
             {

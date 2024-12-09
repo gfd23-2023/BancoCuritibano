@@ -208,10 +208,10 @@ public class Jogo {
 		else if (casa instanceof CasaImpostoDeRenda) {
 			this.estado = Estados.JOGAR_IMPOSTO;
 		}
-		else if (casa instanceof CasaVoltarPontoPartida) {
+/*		else if (casa instanceof CasaVoltarPontoPartida) {
 			this.estado = Estados.JOGAR_PARTIDA;
 		}
-		else if (casa instanceof Propriedade) {
+*/		else if (casa instanceof Propriedade) {
 			Propriedade prop = (Propriedade) casa;
 			String cor = prop.getCor();
 			if (AcaoCasas.verificaConstrucao(prop, jogadores.get(jogada).getId()))
@@ -238,11 +238,11 @@ public class Jogo {
 		else if (casa instanceof CasaImpostoDeRenda) {
 			AcaoCasas.chegadaImpostoDeRenda((CasaImpostoDeRenda) casa, jogador);
 		}
-
+/*
 		else if (casa instanceof CasaVoltarPontoPartida) {
 			AcaoCasas.acaoCasaVoltarPontoPartida(jogador);
 		}
-		else if (casa instanceof Propriedade) {
+*/		else if (casa instanceof Propriedade) {
 			Propriedade prop = (Propriedade) casa;
 			if (estado == Estados.JOGAR_PROPRIEDADE)
 				AcaoCasas.compraPropriedade(prop, jogador);

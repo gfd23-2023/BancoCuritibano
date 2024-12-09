@@ -85,6 +85,15 @@ public class Display {
 				BotoesJogo.exibeConstruir(this);
 				Tabuleiro.exibeTabuleiro(this);
 				break;
+			case JOGAR_IMPOSTO:
+				DesenhaInfo.desenhaInfoImposto(this);
+				BotoesJogo.exibePagarImposto(this);
+				Tabuleiro.exibeTabuleiro(this);
+				break;
+			case JOGAR_CADEIA:
+				BotoesJogo.exibeCadeia(this);
+				Tabuleiro.exibeTabuleiro(this);
+				break;
 			case JOGAR_CARTA:
 				BotoesJogo.exibeRetirarCarta(this);
 				Tabuleiro.exibeTabuleiro(this);
