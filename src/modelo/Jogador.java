@@ -3,10 +3,11 @@
 // maioria dos metodos sao getters e setters dos atributos
 
 package modelo;
+import java.io.Serializable;
 import java.util.ArrayList;
 import modelo.casas.*;
 
-public class Jogador {
+public class Jogador implements Serializable {
 	// Características do jogador
 	private int id;
 	private String nome;

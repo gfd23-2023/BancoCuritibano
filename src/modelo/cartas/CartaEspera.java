@@ -1,6 +1,4 @@
 package modelo.cartas;
-
-// Faz o jogador perder rodadas
 public class CartaEspera extends Carta {
     private int turnosEspera;
 

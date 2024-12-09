@@ -1,10 +1,10 @@
 package controlador;
 
-import modelo.*;
-import modelo.casas.*;
-import modelo.cartas.*;
-import visao.*;
+import java.io.Serializable;
 import java.util.*;
+import modelo.*;
+import modelo.cartas.*;
+import modelo.casas.*;
 
 // CLASSE JOGO
 // responsável por instanciar todos os componentes do jogo BC
@@ -12,7 +12,7 @@ import java.util.*;
 // ela cria a conexao entre visao e modelo
 // só pode existir UM jogo no programa, logo eh uma classe Singleton
 
-public class Jogo {
+public class Jogo implements Serializable {
 
 	// classe jogo eh singleton
 	private static Jogo instanciaUnica;

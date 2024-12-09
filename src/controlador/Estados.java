@@ -19,6 +19,8 @@ public enum Estados {
 	JOGAR_CARTA_ACAO,		// executa a ação da carta
 	JOGAR_CARTA_OPCAO,		// exibe botao das opcoes (pagar ou cadeia)	
 	JOGAR_PROXIMO,			// exibe botao para proxima jogada
+	JOGAR_SALVAR,			// salvar jogo
+	JOGAR_CARREGAR,			// carregar jogo
 	// ...
 }
 

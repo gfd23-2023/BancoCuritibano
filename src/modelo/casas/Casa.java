@@ -1,7 +1,9 @@
 package modelo.casas;
 
+import java.io.Serializable;
+
 // Classe que define a estrutura geral de casas
-public class Casa {
+public class Casa implements Serializable{
     private String nome;
     private int index;
 

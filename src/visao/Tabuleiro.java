@@ -1,15 +1,9 @@
 package visao;
 
 import controlador.*;
-import modelo.*;
-import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 import java.awt.event.ActionEvent;
-import javax.imageio.ImageIO;
-import java.io.IOException;
+import java.awt.event.ActionListener;
 import javax.swing.*;
-import java.io.File;
-import java.awt.*;
 
 // CLASSE TABULEIRO 
 // responsável por exibir o tabuleiro 
@@ -62,6 +56,8 @@ public class Tabuleiro {
 		display.jogo.retiraCarta();
 		display.janela.repaint();
 	}
+
+	
 
 
 }

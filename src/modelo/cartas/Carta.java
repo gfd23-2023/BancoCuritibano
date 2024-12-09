@@ -1,7 +1,10 @@
 package modelo.cartas;
 
 // Classe de cartas 
-public class Carta {
+
+import java.io.Serializable;
+
+public class Carta implements Serializable{
 	private String nome;
     private String descricao;
 

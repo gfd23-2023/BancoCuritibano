@@ -2,8 +2,9 @@ package modelo.cartas;
 import java.io.*;
 import java.util.*;
 
+
 // Classe que gera a lista de cartas usadas no jogo a partir de um arquivo csv 
-public class ListaCartas {
+public class ListaCartas implements Serializable{
     /* Retorna a lista de cartas do jogo descritas no arquivo passado em caminhoCSV 
      * DEFINIÇÃO DOS TIPOS:
      * - 0: Carta de avançar casas

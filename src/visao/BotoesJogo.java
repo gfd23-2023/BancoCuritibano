@@ -112,6 +112,15 @@ public class BotoesJogo {
 		display.janela.revalidate();
 		botao.acaoImposto(display);
 	}	
+
+	public static void exibeSalvarJogo(Display display){
+		int un = display.Y_SCREEN/10;
+		BSalvarJogo botao = new BSalvarJogo(un);
+		display.janela.setLayout(null);
+		display.janela.add(botao);
+		display.janela.revalidate();
+		botao.acaoSalvar(display);
+	}
 }
 
 class BJogarDados extends JPanel
@@ -121,13 +130,13 @@ class BJogarDados extends JPanel
     //personalização do botão
     public BJogarDados(int tam)
     {
-		jogarDados.setFont(new Font("Courier New", Font.BOLD, 25));
+		jogarDados.setFont(new Font("Courier New", Font.BOLD, 20));
 		jogarDados.setBackground(new Color(255,192,203));
 		jogarDados.setForeground(new Color(250,128,114));
 		jogarDados.setPreferredSize(new Dimension(4*tam, tam*2/3));
 		jogarDados.setHorizontalTextPosition(JButton.CENTER);
 		jogarDados.setVerticalTextPosition(JButton.CENTER);
-		setBounds(11*tam,8*tam,4*tam,tam);
+		setBounds(10*tam,8*tam,3*tam,tam);
 		add(jogarDados);
 
     }
@@ -193,7 +202,7 @@ class BProximo extends JPanel
 		proximo.setPreferredSize(new Dimension(4*tam, tam*2/3));
 		proximo.setHorizontalTextPosition(JButton.CENTER);
 		proximo.setVerticalTextPosition(JButton.CENTER);
-		setBounds(11*tam,8*tam,4*tam,tam);
+		setBounds(10*tam,8*tam,3*tam,tam);
 		add(proximo);
 
     }
@@ -415,4 +424,33 @@ class BImposto extends JPanel
             }
         });
 	}
+}
+
+class BSalvarJogo extends JPanel
+{
+	JButton salvamento = new JButton("SALVAR JOGO");
+
+	public BSalvarJogo(int tam){
+		salvamento.setFont(new Font ("Courier New", Font.BOLD, 20));
+		salvamento.setBackground(new Color(255,192,203));
+		salvamento.setForeground(new Color(250,128,114));
+		salvamento.setPreferredSize(new Dimension(4*tam, tam*2/3));
+		salvamento.setHorizontalTextPosition(JButton.CENTER);
+		salvamento.setVerticalTextPosition(JButton.CENTER);
+		setBounds(13* tam , 8*tam, 3*tam, tam);
+		add(salvamento);
+	}
+
+	public void acaoSalvar(Display display){
+		salvamento.addActionListener(new ActionListener() 
+		{
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				display.jogo.setEstado(Estados.JOGAR_SALVAR);
+				display.atualizaDisplay();
+			}
+		});
+	}
+
 }

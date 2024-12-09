@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.*;
 
 // Classe que gera a lista de casas usadas no jogo a partir de um arquivo csv 
-public class ListaCasas {
+public class ListaCasas implements Serializable{
 
 	/* Retorna a lista de casas do jogo passadas no arquivo caminhoCSV 
 	 * DEFINIÇÃO DOS TIPOS:

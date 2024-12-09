@@ -1,15 +1,7 @@
 package visao;
 import controlador.*;
-import modelo.*;
-import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.awt.event.ActionEvent;
-import javax.imageio.ImageIO;
-import java.io.IOException;
-import javax.swing.*;
-import java.io.File;
 import java.awt.*;
-import java.util.*;
+import javax.swing.*;
 
 // CLASSE DISPLAY
 // responsável por trocar a exibição da tela com base no estado do jogo
@@ -58,6 +50,7 @@ public class Display {
 			case JOGAR_DADOS:
 				BotoesJogo.exibeJogarDados(this);
 				Tabuleiro.exibeTabuleiro(this);
+				BotoesJogo.exibeSalvarJogo(this);
 				break;
 			case JOGAR_MOVIMENTO:
 				Tabuleiro.movimentoTabuleiro(this);
@@ -65,6 +58,7 @@ public class Display {
 			case JOGAR_PROXIMO:
 				BotoesJogo.exibeProximo(this);
 				Tabuleiro.exibeTabuleiro(this);
+				BotoesJogo.exibeSalvarJogo(this);
 				break;
 			case JOGAR_CASA:
 				jogo.analisaCasa();
@@ -105,7 +99,10 @@ public class Display {
 			case JOGAR_CARTA_OPCAO:
 				BotoesJogo.exibePagarOuCadeia(this);
 				Tabuleiro.exibeTabuleiro(this);
+			case JOGAR_SALVAR:
+				SalvarJogo.salvarJogo();
 				break;
+
 		}
 		System.out.println("estado atual: " + jogo.getEstado());
 	}
