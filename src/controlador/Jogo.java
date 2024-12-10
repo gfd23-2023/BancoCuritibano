@@ -71,6 +71,7 @@ public class Jogo implements Serializable {
 		this.dado1 = dado1;
 		this.dado2 = dado2;
 		this.banco = banco;
+		this.cartas = cartas;
 	}
 
 	// getters e setters ---------------------------
@@ -160,8 +161,7 @@ public class Jogo implements Serializable {
 				// se ainda precisa esperar
 				if (!AcaoCartas.verificaEspera(jogadores.get(i))) {
 					// atualizamos a espera porque passou uma rodada
-					int esperando = jogadores.get(i).getRodadasEsperando();
-					jogadores.get(i).setRodadasEsperando(esperando+1);
+					jogadores.get(i).setRodadasEsperando(1);
 				}
 				if (jogadores.get(i).estaNaCadeia()) {
 					// verifica se ja completou 3 rodadas na cadeia
@@ -234,18 +234,17 @@ public class Jogo implements Serializable {
 		else if (casa instanceof CasaImpostoDeRenda) {
 			this.estado = Estados.JOGAR_IMPOSTO;
 		}
-/*		else if (casa instanceof CasaVoltarPontoPartida) {
-			this.estado = Estados.JOGAR_PARTIDA;
-		}
-*/		else if (casa instanceof Propriedade) {
+		else if (casa instanceof Propriedade) {
 			Propriedade prop = (Propriedade) casa;
 			String cor = prop.getCor();
 			if (AcaoCasas.verificaConstrucao(prop, jogadores.get(jogada).getId()))
 				this.estado = Estados.JOGAR_CONSTRUIR;
 			else if (prop.getIdProprietario() == -1)
 				this.estado = Estados.JOGAR_PROPRIEDADE;
-			else 
+			else if (prop.getIdProprietario() != jogadores.get(jogada).getId())
 				this.estado = Estados.JOGAR_ALUGUEL;
+            else
+				this.estado = Estados.JOGAR_PROXIMO;
 		}
 		else {
 			this.estado = Estados.JOGAR_PROXIMO;
@@ -264,11 +263,7 @@ public class Jogo implements Serializable {
 		else if (casa instanceof CasaImpostoDeRenda) {
 			AcaoCasas.chegadaImpostoDeRenda((CasaImpostoDeRenda) casa, jogador);
 		}
-/*
-		else if (casa instanceof CasaVoltarPontoPartida) {
-			AcaoCasas.acaoCasaVoltarPontoPartida(jogador);
-		}
-*/		else if (casa instanceof Propriedade) {
+		else if (casa instanceof Propriedade) {
 			Propriedade prop = (Propriedade) casa;
 			if (estado == Estados.JOGAR_PROPRIEDADE)
 				AcaoCasas.compraPropriedade(prop, jogador);
