@@ -11,34 +11,6 @@ import javax.swing.*;
 import java.io.File;
 import java.awt.*;
 
-
-//Botão de voltar para a tela inicial
-/*class Voltar extends JPanel
-{
-	JButton voltar = new JButton("Voltar");
-
-	//personalização do botão
-	public Voltar()
-	{
-		voltar.setFont(new Font("Times New Roman", Font.BOLD, 25));
-		voltar.setBackground(new Color(255,192,203));
-		voltar.setForeground(new Color(250,128,114));
-		add(voltar);
-	}
-
-	//ação do botão
-	public void BotaoVoltar()
-	{
-		voltar.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e)
-			{
-				//mudar o estado
-			}
-		});
-	}
-}*/
-
 public class MenuRegistro {
 	
 	JLabel texto = new JLabel(String.format("Digite seu nome!"));

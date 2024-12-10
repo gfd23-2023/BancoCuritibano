@@ -10,13 +10,14 @@ import java.io.IOException;
 import javax.swing.*;
 import javax.swing.border.*;
 import java.io.File;
+import java.io.Serializable;
 import java.awt.*;
 import java.util.*;
 
 // CLASSE BOTOES JOGO
 // responsávavel por exibir os botões que excecutam ações do jogo
 
-public class BotoesJogo {
+public class BotoesJogo implements Serializable {
 
 	public static void exibeJogarDados(Display display) {
 		int un = display.Y_SCREEN/10;

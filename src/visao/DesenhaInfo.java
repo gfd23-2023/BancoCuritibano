@@ -13,9 +13,10 @@ import javax.swing.border.*;
 import java.io.File;
 import java.awt.*;
 import java.util.*;
+import java.io.Serializable;
 
 // CLASSE DESENHA PAINEIS DE INFORMAÇÃO
-public class DesenhaInfo {
+public class DesenhaInfo implements Serializable{
 
 	// desenha painel com as informações da rodada 
 	// exibe numero da rodada e jogador da vez

@@ -2,9 +2,10 @@ package controlador;
 
 import modelo.casas.Casa;
 import modelo.casas.Propriedade;
+import java.io.Serializable;
 
 // Classe banco (Singleton) 
-public class Banco {
+public class Banco implements Serializable{
 	private static Banco instanciaUnica;
 	private static Jogo instanciaJogo;
 	

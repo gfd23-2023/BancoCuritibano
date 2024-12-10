@@ -1,7 +1,8 @@
 package modelo;
 
+import java.io.Serializable;
 
-public class Dado
+public class Dado implements Serializable
 {
 	private int valor; // valor atual do dado
 

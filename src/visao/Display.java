@@ -2,11 +2,12 @@ package visao;
 import controlador.*;
 import java.awt.*;
 import javax.swing.*;
+import java.io.Serializable;
 
 // CLASSE DISPLAY
 // responsável por trocar a exibição da tela com base no estado do jogo
 // contem as configurações padrões da janela/display
-public class Display {
+public class Display implements Serializable {
 	
 	public Jogo jogo; // contem a instancia do jogo
 	public Janela janela; // Jframe 
@@ -38,7 +39,6 @@ public class Display {
 
 	// dependendo do estado do jogo, exibe o menu correspondente
 	public void atualizaDisplay() {
-
 		switch (jogo.getEstado()) {
 
 			case MENU_INICIAL:
@@ -96,11 +96,17 @@ public class Display {
 				Tabuleiro.exibeTabuleiro(this);
 				jogo.retiraCarta();
 				atualizaDisplay();
+				break;
 			case JOGAR_CARTA_OPCAO:
 				BotoesJogo.exibePagarOuCadeia(this);
 				Tabuleiro.exibeTabuleiro(this);
+				break;
 			case JOGAR_SALVAR:
 				SalvarJogo.salvarJogo();
+				break;
+			case JOGAR_CARREGAR:
+				SalvarJogo.carregarJogo(this);
+				System.out.printf("estou no estado carregar\n");
 				break;
 
 		}

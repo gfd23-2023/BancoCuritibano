@@ -54,7 +54,7 @@ public class MenuInicial {
 
 		//ações dos botões
 		jogar.BotaoJogar(display);
-		carregarJogo.BotaoCarregarJogo();
+		carregarJogo.BotaoCarregarJogo(display);
 		sair.BotaoSair(display);
 
 		//torna visível
@@ -110,13 +110,17 @@ class CarregarJogo extends JPanel
 		add(carregarJogo);
 	}
 
-	public void BotaoCarregarJogo()
+	public void BotaoCarregarJogo(Display display)
 	{
 		carregarJogo.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                //Colocar a lógica de carregar o jogo aqui
+				display.janela.getContentPane().removeAll();
+				display.janela.getContentPane().revalidate();
+				display.janela.getContentPane().repaint();
+				display.jogo.setEstado(Estados.JOGAR_CARREGAR);
+				display.atualizaDisplay();
             }
         });
 	}

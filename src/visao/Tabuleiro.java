@@ -4,6 +4,7 @@ import controlador.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+import java.io.Serializable;
 
 // CLASSE TABULEIRO 
 // responsável por exibir o tabuleiro 
@@ -11,7 +12,7 @@ import javax.swing.*;
 // tem métodos de exibição para cada informação do jogo
 // chama métodos de outras classes auxiliares da visão
 
-public class Tabuleiro {
+public class Tabuleiro implements Serializable {
 
 	public static void exibeTabuleiro(Display display) {
 

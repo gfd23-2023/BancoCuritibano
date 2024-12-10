@@ -21,7 +21,18 @@ public class Jogo implements Serializable {
 	public static synchronized Jogo getInstancia() {
 		if (instanciaUnica == null) 
 			instanciaUnica = new Jogo();
+
+		System.out.println("getInstancia: " + instanciaUnica);
 		return instanciaUnica;
+	}
+
+	public static void setInstancia(Jogo jogo)
+	{
+		System.out.println("setInstancia antes: " + jogo);
+		instanciaUnica = jogo;
+		System.out.println("setInstancia depois: " + jogo);
+
+		System.out.printf("entrei na setInstancia\n");
 	}
 		
 	private Estados estado; // guarda estado atual do jogo
@@ -35,6 +46,7 @@ public class Jogo implements Serializable {
 	public Banco banco;
 	
 	// construtor (private para só getInstancia utilizar)
+	// para NOVO jogo
 	private Jogo() {
 		this.estado = Estados.MENU_INICIAL;
 		this.rodada = 1;
@@ -45,6 +57,20 @@ public class Jogo implements Serializable {
 		this.dado1 = new Dado();
 		this.dado2 = new Dado();
 		this.banco = Banco.getInstancia();
+	}
+
+	//construtor para CARREGAR jogo
+	public void atualizaJogo(Estados estado, int rodada, int jogada, ArrayList<Jogador> jogadores, 
+				ArrayList<Casa> casas, LinkedList<Carta> cartas, Dado dado1, Dado dado2, Banco banco)
+	{
+		this.estado = estado;
+		this.rodada = rodada;
+		this.jogada = jogada;
+		this.jogadores = jogadores;
+		this.casas = casas;
+		this.dado1 = dado1;
+		this.dado2 = dado2;
+		this.banco = banco;
 	}
 
 	// getters e setters ---------------------------

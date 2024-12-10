@@ -13,11 +13,12 @@ import javax.swing.border.*;
 import java.io.File;
 import java.awt.*;
 import java.util.*;
+import java.io.Serializable;
 
 // CLASSE DESENHA
 // responsável por desenhar/exibir informações específicas de classes modelo
 
-public class Desenha {
+public class Desenha implements Serializable {
 
 	public static void desenhaCasas(Display display) {
 		// assumindo que a quantidade de casas deve ser múplipla de 4
