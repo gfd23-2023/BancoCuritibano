@@ -16,6 +16,8 @@ public class Dado implements Serializable
 		return valor;
 	}
 
+	/* machoski esteve aqui*/
+
 	// muda o valor do dado para um numero aleatorio entre 1 e 6
 	public void jogaDados() {
 		int dados = (int) (Math.random() * 6) + 1;
