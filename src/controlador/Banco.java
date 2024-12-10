@@ -1,5 +1,8 @@
 package controlador;
 
+import modelo.casas.Casa;
+import modelo.casas.Propriedade;
+
 // Classe banco (Singleton) 
 public class Banco {
 	private static Banco instanciaUnica;
@@ -25,13 +28,38 @@ public class Banco {
 	// Dinheiro de um jogador para outro
 	public void transferencia(int idJogadorOrigem, int idJogadorDestino, int valor) {
 		getInstanciaJogo();
-		alteraDinheiro(idJogadorDestino, valor);
 		alteraDinheiro(idJogadorOrigem, -valor);
+
+		if (instanciaJogo.jogadores.get(idJogadorDestino).estaFalido() == false)
+			alteraDinheiro(idJogadorDestino, valor);
 	}
 
 	// Adiciona o valor no dinheiro do jogador (se for um valor negativo, o jogador perde dinheiro)
 	public void alteraDinheiro(int idJogador, int valor) {
 		getInstanciaJogo();
-		instanciaJogo.jogadores.get(idJogador).setDinheiro(instanciaJogo.jogadores.get(idJogador).getDinheiro() + valor);
+		
+		if (instanciaJogo.jogadores.get(idJogador).getDinheiro() + valor >= 0) {
+			instanciaJogo.jogadores.get(idJogador).setDinheiro(instanciaJogo.jogadores.get(idJogador).getDinheiro() + valor);
+		} else {
+			instanciaJogo.jogadores.get(idJogador).setFalido();
+			devolvePropriedades(idJogador);
+		} 
+	}
+
+	// Devolve todas as propriedades de idJogador (usada quando ele é declarado como falido)
+	public void devolvePropriedades(int idJogador) {
+		getInstanciaJogo();
+
+		for (Casa casaAtual : instanciaJogo.casas) {
+			if (casaAtual instanceof Propriedade) {
+				Propriedade propAtual = (Propriedade) casaAtual;
+
+				if (propAtual.getIdProprietario() == idJogador) {
+					propAtual.setIdProprietario(-1);
+					propAtual.setAluguel(propAtual.getAluguelInicial());
+					propAtual.zeraQuantConstrucoes();
+				}
+			}
+		}
 	}
 }

@@ -11,13 +11,7 @@ public class AcaoCasas {
 	public static void chegadaImpostoDeRenda(CasaImpostoDeRenda casa, Jogador origem) {
 		Banco banco = Banco.getInstancia();
 
-		// Se o jogador não tem dinheiro, declara falência e interrompe a execução
-		if (origem.getDinheiro() - casa.getValor() < 0) {
-			origem.setFalido();
-			return;
-		}
-
-		// Se o jogador tem dinheiro suficiente, faz o pagamento 
+		// Faz o pagamento 
 		banco.alteraDinheiro(origem.getId(), -casa.getValor());
 		
 	}
@@ -85,11 +79,8 @@ public class AcaoCasas {
 		Banco banco = Banco.getInstancia();
 
 		// Se tem dinheiro suficiente para pagar, faz a transferência. Se não, declara falência.
-		if (origem.getDinheiro() - propriedade.getAluguel() >= 0) {
-			banco.transferencia(origem.getId(), propriedade.getIdProprietario(), propriedade.getAluguel());
-		} else {
-			origem.setFalido();
-		}
+		
+		banco.transferencia(origem.getId(), propriedade.getIdProprietario(), propriedade.getAluguel());
 	}
 
 	/* Verifica se o jogador idVerificar tem monopólio sobre as casas do grupo da cor passada como parâmetro

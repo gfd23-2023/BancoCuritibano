@@ -75,6 +75,10 @@ public class Propriedade extends Casa {
 	public void aumentaQuantConstrucoes() {
 		++quantConstrucoes;
 	}
+
+	public void zeraQuantConstrucoes() {
+		quantConstrucoes = 0;
+	}
 	
 	public int getValorConstrucao() {
 		return valorConstrucao;
