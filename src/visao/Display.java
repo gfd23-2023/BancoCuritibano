@@ -49,16 +49,16 @@ public class Display implements Serializable {
 				break;
 			case JOGAR_DADOS:
 				BotoesJogo.exibeJogarDados(this);
-				Tabuleiro.exibeTabuleiro(this);
 				BotoesJogo.exibeSalvarJogo(this);
+				Tabuleiro.exibeTabuleiro(this);
 				break;
 			case JOGAR_MOVIMENTO:
 				Tabuleiro.movimentoTabuleiro(this);
 				break;
 			case JOGAR_PROXIMO:
 				BotoesJogo.exibeProximo(this);
-				Tabuleiro.exibeTabuleiro(this);
 				BotoesJogo.exibeSalvarJogo(this);
+				Tabuleiro.exibeTabuleiro(this);
 				break;
 			case JOGAR_CASA:
 				jogo.analisaCasa();
@@ -67,38 +67,46 @@ public class Display implements Serializable {
 			case JOGAR_PROPRIEDADE:
 				DesenhaInfo.desenhaInfoPropriedade(this);
 				BotoesJogo.exibeComprarOuProximo(this);
+				BotoesJogo.exibeSalvarJogo(this);
 				Tabuleiro.exibeTabuleiro(this);
 				break;
 			case JOGAR_ALUGUEL:
 				DesenhaInfo.desenhaInfoPropriedade(this);
 				BotoesJogo.exibePagarAluguel(this);
+				BotoesJogo.exibeSalvarJogo(this);
 				Tabuleiro.exibeTabuleiro(this);
 				break;
 			case JOGAR_CONSTRUIR:
 				DesenhaInfo.desenhaInfoPropriedade(this);
 				BotoesJogo.exibeConstruir(this);
+				BotoesJogo.exibeSalvarJogo(this);
 				Tabuleiro.exibeTabuleiro(this);
 				break;
 			case JOGAR_IMPOSTO:
 				DesenhaInfo.desenhaInfoImposto(this);
 				BotoesJogo.exibePagarImposto(this);
+				BotoesJogo.exibeSalvarJogo(this);
 				Tabuleiro.exibeTabuleiro(this);
 				break;
 			case JOGAR_CADEIA:
 				BotoesJogo.exibeCadeia(this);
+				BotoesJogo.exibeSalvarJogo(this);
 				Tabuleiro.exibeTabuleiro(this);
 				break;
 			case JOGAR_CARTA:
 				BotoesJogo.exibeRetirarCarta(this);
+				BotoesJogo.exibeSalvarJogo(this);
 				Tabuleiro.exibeTabuleiro(this);
 				break;
 			case JOGAR_CARTA_ACAO:
 				Tabuleiro.exibeTabuleiro(this);
+				BotoesJogo.exibeSalvarJogo(this);
 				jogo.retiraCarta();
 				atualizaDisplay();
 				break;
 			case JOGAR_CARTA_OPCAO:
 				BotoesJogo.exibePagarOuCadeia(this);
+				BotoesJogo.exibeSalvarJogo(this);
 				Tabuleiro.exibeTabuleiro(this);
 				break;
 			case JOGAR_SALVAR:

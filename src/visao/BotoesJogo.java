@@ -432,13 +432,13 @@ class BSalvarJogo extends JPanel
 	JButton salvamento = new JButton("SALVAR JOGO");
 
 	public BSalvarJogo(int tam){
-		salvamento.setFont(new Font ("Courier New", Font.BOLD, 20));
+		salvamento.setFont(new Font ("Courier New", Font.BOLD, 18));
 		salvamento.setBackground(new Color(255,192,203));
 		salvamento.setForeground(new Color(250,128,114));
-		salvamento.setPreferredSize(new Dimension(4*tam, tam*2/3));
+		salvamento.setPreferredSize(new Dimension(tam*2, tam/2));
 		salvamento.setHorizontalTextPosition(JButton.CENTER);
 		salvamento.setVerticalTextPosition(JButton.CENTER);
-		setBounds(13* tam , 8*tam, 3*tam, tam);
+		setBounds(15*tam , tam/2, tam*2, tam/2);
 		add(salvamento);
 	}
 

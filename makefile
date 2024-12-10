@@ -26,3 +26,7 @@ run: all
 .PHONY: clean
 clean:
 	find $(BIN_DIR) -name "*.class" -delete
+
+.PHONY: clean_salvamento
+clean_salvamento:
+	find . -name "*.ser" -delete

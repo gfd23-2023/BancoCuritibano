@@ -148,6 +148,7 @@ public class Jogador implements Serializable {
 	public void setRodadasNaCadeia(int zerarOuAumentar) {
 	    if (zerarOuAumentar == 0) {
 	        rodadasNaCadeia = 0;
+            naCadeia = false;
 	    } else if (zerarOuAumentar == 1) {
 	        rodadasNaCadeia++;
 	    } else {
@@ -179,6 +180,7 @@ public class Jogador implements Serializable {
 	public void setRodadasEsperando(int zerarOuAumentar) {
 	    if (zerarOuAumentar == 0) {
 	        rodadasEsperando = 0;
+            esperando = false;
 	    } else if (zerarOuAumentar == 1) {
 	        rodadasEsperando++;
 	    } else {
