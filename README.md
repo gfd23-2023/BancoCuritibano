@@ -4,6 +4,7 @@ O __Banco Curitibano__ é uma implementação do jogo __Banco Imobiliário__ que
 As regras do jogo, a estrutura de pacotes e pastas e o uso do makefile estão detalhados nas próximas seções.
 
 #### __Regras do jogo__
+
 ###### Dinheiro
 Cada jogador começa com 5000 reais.
 
