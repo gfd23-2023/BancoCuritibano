@@ -24,8 +24,6 @@ Um jogador, em seu turno, roda os dados. Automaticamente, a "peça" com sua cor 
 
 * Imposto de renda: ao cair no imposto de renda, o jogador terá que pagar 100 reais.
 
-* Ponto de partida: ao cair ou passar no ponto de partida, o jogador receberá 200 reais (seu salário).
-
 ##### Construção
 O jogo aceita construções (criar casas) em uma propriedade. Essas construções podem ser feitas levando em consideração que:
 * O número máximo de casas por propriedade é 5.
